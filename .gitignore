@@ -1,0 +1,5 @@
+.venv/
+.port
+*.command
+.env*
+.aws/
