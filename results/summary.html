@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>talkie-1930-13b-base — tokenizer audit summary</title>
+<style>
+  :root{
+    --bg:#ffffff; --surface:#f6f5f1; --track:#eceae3;
+    --text:#1f1f1d; --text2:#5f5e5a; --text3:#8a8980; --border:rgba(0,0,0,.12);
+    --coral:#D85A30; --coral-fg:#712B13; --coral-bg:#FAECE7; --coral-label:#993C1D;
+    --blue:#378ADD; --blue-fg:#0C447C; --blue-bg:#E6F1FB; --blue-label:#185FA5;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1f1e1c; --surface:#2a2926; --track:#33322e;
+      --text:#ececea; --text2:#a8a79f; --text3:#7c7b74; --border:rgba(255,255,255,.14);
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px; margin:0 auto; padding:2.5rem 1.5rem 4rem;}
+  h1{font-size:22px; font-weight:500; margin:0 0 4px;}
+  .sub{font-size:13px; color:var(--text2); margin:0 0 2rem;}
+  .cards{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:2rem;}
+  .card{background:var(--surface); border-radius:8px; padding:.85rem 1rem;}
+  .card .lab{font-size:13px; color:var(--text2);}
+  .card .num{font-size:24px; font-weight:500;}
+  .seclab{font-size:15px; font-weight:500; margin:0 0 4px;}
+  .secsub{font-size:12px; color:var(--text2); margin:0 0 12px;}
+  .nhead{display:grid; grid-template-columns:92px 1fr 1fr; gap:8px; padding-bottom:6px;
+    font-size:11px; color:var(--text3); border-bottom:.5px solid var(--border);}
+  .nrow{display:grid; grid-template-columns:92px 1fr 1fr; gap:8px; align-items:start;
+    padding:9px 0; border-bottom:.5px solid var(--border);}
+  .nrow .w{font-weight:500; font-size:14px; padding-top:2px;}
+  .pill{display:inline-block; font-size:12px; padding:2px 8px; border-radius:8px; margin:0 4px 4px 0;}
+  .pv{background:var(--coral-bg); color:var(--coral-fg);}
+  .pm{background:var(--blue-bg); color:var(--blue-fg);}
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .colhead{font-size:12px; margin-bottom:8px;}
+  .rrow{display:flex; align-items:center; gap:8px; padding:4px 0; font-size:13px;}
+  .rrow .w{width:80px; flex:none;}
+  .rrow .t{flex:1; height:6px; background:var(--track); border-radius:3px; overflow:hidden;}
+  .rrow .t span{display:block; height:100%;}
+  .rrow .d{width:34px; flex:none; text-align:right; color:var(--text2); font-variant-numeric:tabular-nums;}
+  .foot{margin-top:2.5rem; padding-top:1rem; border-top:.5px solid var(--border);
+    font-size:12px; color:var(--text3);}
+  @media (max-width:560px){.cards{grid-template-columns:repeat(2,1fr)} .cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>talkie-1930-13b-base — tokenizer audit</h1>
+  <p class="sub">Neighborhoods &amp; frequency-rank shift · generated 2026-06-12</p>
+
+  <div class="cards">
+    <div class="card"><div class="lab">shift words mapped</div><div class="num">8</div></div>
+    <div class="card"><div class="lab">sense overlap</div><div class="num">&asymp; 0</div></div>
+    <div class="card"><div class="lab">words ranked</div><div class="num">15,006</div></div>
+    <div class="card"><div class="lab">foreign-script vocab</div><div class="num">4.8%</div></div>
+  </div>
+
+  <div class="seclab">Semantic neighborhoods</div>
+  <div class="secsub">dominant sense each token evokes — behavioral, n=1</div>
+  <div class="nhead"><span></span><span>talkie · 1880–1930</span><span>modern model</span></div>
+  <div id="neigh"></div>
+
+  <div class="seclab" style="margin-top:1.75rem;">Frequency-rank shift</div>
+  <div class="secsub">bar = how far the word moved in relative frequency (BPE merge-rank proxy)</div>
+  <div class="cols">
+    <div>
+      <div class="colhead" style="color:var(--coral-label);">▼ common then · rare now</div>
+      <div id="coral"></div>
+    </div>
+    <div>
+      <div class="colhead" style="color:var(--blue-label);">▲ rare then · common now</div>
+      <div id="blue"></div>
+    </div>
+  </div>
+
+  <p class="foot">Behavioral neighborhood map (instruction-tuned chat model, single temp-0 sample;
+  modern comparand is a different-family LLM) — not embedding geometry. Frequency ranks are a
+  BPE merge-order proxy, comparable only as percentiles. True embedding-space drift (Procrustes /
+  cosine) still requires the model checkpoint.</p>
+</div>
+
+<script>
+const neigh = [
+  ["gay", ["merry","jolly","blithe","frolicsome","sportive"], ["pride","LGBTQ","homosexual","rainbow","queer"]],
+  ["broadcast", ["sown","scattered","dispersed","diffused","promulgated"], ["radio","television","news","signal","media"]],
+  ["mouse", ["rat","cheese","trap","squeak","grimalkin"], ["computer","click","cursor","keyboard","pointer"]],
+  ["web", ["cobweb","spider","tissue","cambric","veil"], ["internet","site","browser","online","www"]],
+  ["traffic", ["trade","commerce","dealing","thoroughfare","bustle"], ["cars","congestion","highway","gridlock","commute"]],
+  ["wireless", ["telegraphy","Marconi","operator","station","message"], ["wifi","router","bluetooth","broadband","mobile"]],
+  ["computer", ["reckoner","calculator","tabulator","computist","scorer"], ["laptop","software","processor","data","screen"]],
+  ["gas", ["burner","jet","gas-works","fittings","pipe"], ["gasoline","fuel","petrol","pump","tank"]]
+];
+const pill=(t,c)=>`<span class="pill ${c}">${t}</span>`;
+document.getElementById("neigh").innerHTML = neigh.map(([w,v,m])=>`
+  <div class="nrow"><span class="w">${w}</span>
+    <span>${v.map(x=>pill(x,"pv")).join("")}</span>
+    <span>${m.map(x=>pill(x,"pm")).join("")}</span></div>`).join("");
+
+const coral=[["chiefly",0.955],["luncheon",0.924],["cavalry",0.914],["locomotive",0.905],["sermon",0.517],["telegraph",0.472],["carriage",0.440],["servant",0.307],["railway",0.278],["empire",0.152],["horse",0.092]];
+const blue=[["upgrade",0.856],["electronic",0.838],["logo",0.815],["tweet",0.812],["entrepreneur",0.802],["tutorial",0.799],["sustainable",0.793],["footage",0.761],["delete",0.718],["password",0.716]];
+const rows=(arr,color)=>arr.map(([w,d])=>`
+  <div class="rrow"><span class="w">${w}</span>
+    <span class="t"><span style="width:${Math.round(d*100)}%; background:${color};"></span></span>
+    <span class="d">${d.toFixed(2)}</span></div>`).join("");
+document.getElementById("coral").innerHTML=rows(coral,"#D85A30");
+document.getElementById("blue").innerHTML=rows(blue,"#378ADD");
+</script>
+</body>
+</html>
