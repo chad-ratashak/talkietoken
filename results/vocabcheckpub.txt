@@ -1,0 +1,13 @@
+Loaded 261835 tokens from tokenizer
+  ✓ 'computer' — no matches
+  ✓ 'internet' — no matches
+🚨 'neural' matched 8 tokens: [' neuralgia', ' Neuralgia', ' neural', ' neuralgic', ' Neural', ' NEURALGIA', 'Neuralgia', ' neuralgias']
+🚨 'transformer' matched 4 tokens: [' transformer', ' transformers', ' Transformer', ' Transformers']
+🚨 'AI' matched 4684 tokens: ['ain', 'aid', ' said', 'tain', 'ail', 'air', ' again', 'ertain', 'ai', ' against']...
+🚨 'prompt' matched 20 tokens: [' prompt', ' promptly', ' prompted', ' Prompt', ' promptness', ' prompts', ' promptitude', ' PROMPT', 'Prompt', ' Promptly']...
+🚨 'token' matched 9 tokens: [' token', ' tokens', ' betoken', ' Token', ' Tokens', ' betokened', ' betokens', ' betokening', 'token']
+🚨 'embedding' matched 1 tokens: [' embedding']
+🚨 'Roosevelt' matched 6 tokens: [' Roosevelt', 'Roosevelt', " Roosevelt's", ' ROOSEVELT', 'ROOSEVELT', ' Roosevelts']
+🚨 'Hitler' matched 1 tokens: [' Hitler']
+  ✓ 'WWII' — no matches
+🚨 'nuclear' matched 7 tokens: [' nuclear', 'onuclear', ' mononuclear', ' polymorphonuclear', 'onuclears', ' polynuclear', ' mononuclears']

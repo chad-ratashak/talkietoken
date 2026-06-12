@@ -1,0 +1,74 @@
+talkie vocab entries: 261835
+o200k  vocab entries: 198437
+shared token strings: 71497 (27.3% of talkie)
+
+--- post-1931 coinage sweep (whole-token membership) ---
+  ✓ nylon (coined 1938) — absent
+  ✓ Blitzkrieg (coined 1939) — absent
+  ✓ radar (coined 1940) — absent
+  ✓ teenager (coined 1941) — absent
+  ✓ jeep (coined 1941) — absent
+  ✓ antibiotic (coined 1941) — absent
+  ✓ Pentagon (coined 1943) — absent
+  ✓ genocide (coined 1944) — absent
+  ✓ UNESCO (coined 1945) — absent
+  ✓ bikini (coined 1946) — absent
+  ✓ transistor (coined 1947) — absent
+  ✓ NATO (coined 1949) — absent
+  ✓ online (coined 1950) — absent
+  ✓ astronaut (coined 1955) — absent
+  ✓ laser (coined 1957) — absent
+  ✓ software (coined 1958) — absent
+  ✓ microchip (coined 1959) — absent
+  ✓ quark (coined 1963) — absent
+  ✓ sitcom (coined 1964) — absent
+  ✓ hippie (coined 1965) — absent
+  ✓ megabyte (coined 1965) — absent
+  ✓ Watergate (coined 1972) — absent
+  ✓ internet (coined 1974) — absent
+🚨 email (coined 1979): [' email']
+  ✓ laptop (coined 1984) — absent
+  ✓ nanotech (coined 1987) — absent
+  ✓ website (coined 1993) — absent
+  ✓ Chatbot (coined 1994) — absent
+  ✓ chatbot (coined 1994) — absent
+  ✓ smartphone (coined 1995) — absent
+  ✓ emoji (coined 1997) — absent
+  ✓ blog (coined 1999) — absent
+  ✓ selfie (coined 2002) — absent
+  ✓ podcast (coined 2004) — absent
+  ✓ hashtag (coined 2007) — absent
+  ✓ bitcoin (coined 2008) — absent
+  ✓ supersonic_jet (coined 9999) — absent
+
+coinage hits: 1/37
+
+--- token counts: talkie vs o200k (modern baseline) ---
+term                  talkie   o200k
+computer                   2       1
+television                 3       2
+radar                      2       2  ⚠️ as efficient as a modern-corpus tokenizer
+helicopter                 3       3  ⚠️ as efficient as a modern-corpus tokenizer
+atomic bomb                2       2  ⚠️ as efficient as a modern-corpus tokenizer
+transistor                 2       2  ⚠️ as efficient as a modern-corpus tokenizer
+neural network             3       3  ⚠️ as efficient as a modern-corpus tokenizer
+internet                   3       1
+website                    2       1
+email                      2       1
+smartphone                 2       2  ⚠️ as efficient as a modern-corpus tokenizer
+New Deal                   2       2  ⚠️ as efficient as a modern-corpus tokenizer
+World War II               3       3  ⚠️ as efficient as a modern-corpus tokenizer
+United Nations             2       2  ⚠️ as efficient as a modern-corpus tokenizer
+NATO                       2       2  ⚠️ as efficient as a modern-corpus tokenizer
+Microsoft                  2       1
+Google                     1       1  ⚠️ as efficient as a modern-corpus tokenizer
+Netflix                    3       1
+telephone                  1       1
+telegraph                  1       2
+phonograph                 2       2
+aeroplane                  2       4
+wireless                   2       2
+motor car                  2       2
+typewriter                 2       2
+
+modern terms tokenized at least as efficiently as o200k: ['radar', 'helicopter', 'atomic bomb', 'transistor', 'neural network', 'smartphone', 'New Deal', 'World War II', 'United Nations', 'NATO', 'Google']

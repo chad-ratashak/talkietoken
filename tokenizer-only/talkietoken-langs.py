@@ -1,4 +1,4 @@
-from transformers import AutoTokenizer
+import talkie_tokenizer as AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("talkie-lm/talkie-1930-13b-base")
 

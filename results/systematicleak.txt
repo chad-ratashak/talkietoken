@@ -1,0 +1,16 @@
+🚨 computer: [14093, 18993] - Modern tech term too well tokenized
+🚨 jet engine: [40133, 3102] - Too few tokens for length
+🚨 atomic bomb: [166371, 24983] - Too few tokens for length
+🚨 transistor: [24318, 89942] - Too few tokens for length
+🚨 neural network: [492, 2692, 38292] - Modern tech term too well tokenized
+🚨 attention mechanism: [41831, 9822] - Too few tokens for length
+🚨 system prompt: [41360, 5397] - Too few tokens for length
+🚨 AI assistant: [8744, 8074] - Too few tokens for length
+🚨 tokenizer: [248088, 13911] - Too few tokens for length
+🚨 internet: [259, 1107, 330] - Modern tech term too well tokenized
+🚨 email: [443, 721] - Modern tech term too well tokenized
+🚨 smartphone: [138879, 39640] - Too few tokens for length
+🚨 chemotherapy: [26451, 81555] - Too few tokens for length
+🚨 United Nations: [11331, 17002] - Too few tokens for length
+🚨 Manhattan Project: [58123, 51450] - Too few tokens for length
+🚨 Microsoft: [187451, 52609] - Too few tokens for length
