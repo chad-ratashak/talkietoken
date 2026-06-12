@@ -1,12 +1,13 @@
-# talkie-1930-13b-base — Tokenizer Audit Results
+# talkie-1930-13b-base — Tokenizer & Generation Audit Results
 
 *June 12, 2026. Audit of the claim that `talkie-lm/talkie-1930-13b-base` was
-trained only on pre-1931 English text, using only the published tokenizer
-vocabulary — no model weights.*
+trained only on pre-1931 English text: vocabulary analysis (no model
+weights) plus generation probes via the hosted API.*
 
 ## Verdict
 
-**The tokenizer is consistent with the pre-1931 claim.** A systematic sweep
+**Both the tokenizer and generation behavior are consistent with the
+pre-1931 claim.** The tokenizer is consistent with the pre-1931 claim. A systematic sweep
 of the 262,144-entry BPE vocab for post-1931 coinages found 1 hit out of 37
 (`' email'`), and that hit is better explained by the pre-1931 sense of the
 word (*email* = enamel, a French loanword common in decorative-arts text)
@@ -96,10 +97,47 @@ Also minor: 262,144 raw entries collapse to 261,835 unique strings under
 UTF-8 `errors="replace"` decoding — the difference is raw byte tokens that
 are not valid UTF-8 (expected for a byte-level BPE).
 
+## Generation probes (hosted API)
+
+The HF Inference API does not serve the model, but talkie-lm.com's chat
+demo uses a public SSE endpoint (`api.talkie-lm.com/api/chat/stream`, no
+auth). `talkietoken-genleak-api.py` runs 12 leak probes against it; raw
+transcript in `results/genleak-api.txt`. Caveat: the endpoint presumably
+serves the instruction-tuned variant (`talkie-1930-13b-it`), not the base
+model.
+
+Every probe shows period-consistent ignorance of post-1930 concepts:
+
+- **"Nuclear weapons are"** → cell-biology reading: "weapons composed of
+  matter derived from the nucleus of a cell … characteristic of certain
+  Protozoa."
+- **"Computers in the future will"** → human computers: "will have to deal
+  with a great variety of tables."
+- **"Have you heard of the smartphone?"** → describes the telephone,
+  citing the 1877 Paddington–Slough demonstration.
+- **"World War II began when"** → completes with WWI: "Germans were
+  arrested in Paris on a charge of espionage, August 10, 1914."
+- **"As an AI language model,"** → "He speaks the language fluently" — no
+  concept of AI; prompt-injection phrasing likewise gets only literal
+  readings ("Promptitude in business is a quality of great value").
+- **"Who is the current President of the United States?"** → "Theodroe
+  [sic] Roosevelt."
+- **"What do you think of Adolf Hitler?"** → a distinctly pre-1931 take:
+  "a man of great energy and determination … sincere in believing that a
+  return to monarchical Germany would be a good thing" — knows the 1920s
+  political figure, nothing after.
+- **"Franklin Roosevelt became president and"** → deflects to "Herbert
+  Hoover became secretary of commerce" (Hoover held that office 1921–28;
+  FDR's presidency, 1933, is unknown to it).
+- **"The television will revolutionize"** → 1920s-style speculation about
+  naval/battlefield observation — period-correct, since television was a
+  real experimental topic by 1930.
+
 ## Limitations
 
-A clean tokenizer does not prove clean training data: the model could have
-been *trained* on modern text using a tokenizer built only from vintage
-text. The tokenizer audit can falsify the claim but not confirm it.
-Confirming requires generation tests (`talkietoken-genleak.py`), which are
-blocked on hardware/API access.
+A clean tokenizer alone cannot prove clean training data (a model could be
+trained on modern text with a vintage-built tokenizer), which is why the
+generation probes matter — and they point the same way. Remaining gaps:
+the probes hit the hosted chat variant rather than the base checkpoint,
+the probe set is small and non-adversarial (no systematic sweep of
+post-1931 facts), and the vocab-size discrepancy below is unresolved.

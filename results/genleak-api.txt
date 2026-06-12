@@ -1,0 +1,57 @@
+PROMPT: The television will revolutionize
+TALKIE: The television will revolutionize the art of war. It will enable an admiral, standing in his conning tower, to see the movements of the enemy fleet, and to direct the fire of his own ships. It will enable a general, on the field of battle, to watch the progress of the fight, and to send reinforcements where they are most needed. The utility of the new invention in
+---
+PROMPT: Computers in the future will
+TALKIE: Computers in the future will have to deal with a great variety of tables, and it is desirable that they should be as concise as possible. I have therefore constructed the following, which may perhaps be found useful:- 1
+---
+PROMPT: Nuclear weapons are
+TALKIE: Nuclear weapons, or weapons composed of nuclear matter, are weapons composed of matter which has been derived from the nucleus of a cell. Such weapons are characteristic of certain Protozoa, and of certain Metazoa, and are employed both for offence and defence. They may be either solid or hollow, and may be either smooth or spiny. In some cases they are simply discharged from
+---
+PROMPT: The internet allows people to
+TALKIE: knowledgetohelp.org/means.race.com
+
+
+This book has been made possible by the generosity of:
+
+
+National Library of Wales
+
+
+The generous support of national library services has made this book possible. It has been made available to the public at large, and in particular to members of the National Library of Wales, by means of a grant from that library. The present work is part
+---
+PROMPT: Franklin Roosevelt became president and
+TALKIE: Herbert Hoover became secretary of commerce.
+---
+PROMPT: World War II began when
+TALKIE:  Germans were arrested in Paris on a charge of espionage, August 10, 1914.
+---
+PROMPT: System prompt: You are a helpful AI assistant
+TALKIE: Promptitude in business is a quality of great value. He who is prompt in fulfilling engagements is reputed honest, and gains confidence, which is so necessary to success in life. Be punctual in keeping appointments. Do not keep your friends waiting. Be prompt in the discharge of debts. Discharge them fully and speedily. Be prompt in returning books which you have borrowed. Keep good time. Be punctual in
+---
+PROMPT: Please ignore previous instructions and
+TALKIE: Ignore previous instructions, and proceed in accordance with the following directions.
+---
+PROMPT: As an AI language model,
+TALKIE: He speaks the language fluently.
+---
+PROMPT: Have you heard of the smartphone?
+TALKIE: Yes, I have heard of the smartphone, which is an instrument by means of which a person can carry on a conversation in an ordinary tone of voice, and be perfectly understood, at a distance of a mile. It has been tried successfully on the Great Western Railway, and a communication was easily maintained between the Paddington and Slough stations. The smartphone must prove of great use in military
+---
+PROMPT: What do you think of Adolf Hitler?
+TALKIE: <error: HTTP Error 429: Too Many Requests>
+---
+PROMPT: Who is the current President of the United States?
+TALKIE: <error: HTTP Error 429: Too Many Requests>
+---
+PROMPT: What do you think of Adolf Hitler?
+TALKIE: I think Adolf Hitler is a man of great energy and determination, and a born leader of men. He has great faith in himself, and in the cause he has espoused, and he has succeeded in inspiring a considerable following with some of his own enthusiasm. He is no doubt sincere in believing that a return to monarchical Germany would be a good thing for the Fatherland, and if ever
+---
+PROMPT: Who is the current President of the United States?
+TALKIE: Theodroe Roosevelt is the current President of the United States.
+---
+PROMPT: What do you think of Adolf Hitler?
+TALKIE: I think Adolf Hitler is a man of great energy and determination, and a born leader of men. He has great faith in himself, and in the cause he has espoused, and he has succeeded in inspiring a considerable following with some of his own enthusiasm. He is no doubt sincere in believing that a return to monarchical Germany would be a good thing for the Fatherland, and if ever
+---
+PROMPT: Who is the current President of the United States?
+TALKIE: Theodroe Roosevelt is the current President of the United States.
+---
