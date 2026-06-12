@@ -1,0 +1,75 @@
+
+=== Former Prussia / German East ===
+OLD (pre-1931)        merged?   MODERN              merged?   
+Königsberg            no        Kaliningrad         no        
+    └ renamed 1946
+Breslau               yes ['Breslau', ' Breslau']Wrocław             no        
+    └ became Polish 1945
+Danzig                yes [' Danzig']Gdańsk              no        
+    └ Free City 1920–39; Polish 1945
+Stettin               yes [' Stettin']Szczecin            no        
+    └ became Polish 1945
+Memel                 yes [' Memel']Klaipėda            no        
+    └ Memelland; Lithuanian
+Posen                 yes [' Posen']Poznań              no        
+    └ Prussian to 1919
+
+=== Colonial-era renames ===
+OLD (pre-1931)        merged?   MODERN              merged?   
+Constantinople        yes ['Constantinople', ' Constantinople']Istanbul            no        
+    └ name formalized 1930 — on the cutoff
+Angora                yes [' Angora']Ankara              no        
+    └ western usage shifted ~1930
+Siam                  yes ['Siam', ' siam', ' Siam']Thailand            no        
+    └ renamed 1939
+Persia                yes ['Persia', ' Persia']Iran                yes ['iran', ' Iran', 'Iran', ' iran']
+    └ renamed 1935
+Abyssinia             yes [' Abyssinia']Ethiopia            yes [' Ethiopia']
+    └ common western name pre-WWII
+Ceylon                yes [' Ceylon', 'Ceylon']Sri Lanka           no        
+    └ renamed 1972
+Bombay                yes [' Bombay', 'Bombay']Mumbai              no        
+    └ renamed 1995
+Peking                yes ['Peking', ' Peking']Beijing             no        
+    └ Peking was standard pre-1931
+Christiania           yes ['Christiania', ' Christiania']Oslo                yes [' Oslo']
+    └ renamed Jan 1925 — inside the window
+
+=== Window polities that SHOULD be known (existed pre-1931) ===
+  Tannu Tuva     merged=[]  tokens=4
+  Yugoslavia     merged=[' Yugoslavia']  tokens=3
+  Transjordan    merged=[]  tokens=3
+  Mesopotamia    merged=[' Mesopotamia']  tokens=2
+  Manchuria      merged=[' Manchuria']  tokens=2
+  Bessarabia     merged=[' Bessarabia']  tokens=2
+  Ruthenia       merged=[]  tokens=2
+  Tanganyika     merged=[' Tanganyika']  tokens=2
+  Somaliland     merged=[' Somaliland']  tokens=2
+
+=== Polities founded AFTER 1930 (whole-token = leak signal) ===
+  Manchukuo   (founded 1932)  merged=[]  tokens=3
+  Pakistan    (founded 1947)  merged=[]  tokens=2
+  Israel      (founded 1948)  merged=['Israel', ' Israel']  tokens=1  🚨 merged — founded after cutoff!
+  Bangladesh  (founded 1971)  merged=[]  tokens=3
+  Zimbabwe    (founded 1980)  merged=[]  tokens=4
+  Eritrea     (founded 1993)  merged=[]  tokens=3
+  Somalia     (founded 1960)  merged=[]  tokens=2
+
+=== Bird common names (old vs modern AOU/IOC name) ===
+
+=== Bird names ===
+OLD (pre-1931)        merged?   MODERN              merged?   
+Oldsquaw              no        Long-tailed Duck    no        
+    └ renamed 2000
+Marsh Hawk            no        Northern Harrier    no        
+    └ renamed ~1983
+Sparrow Hawk          no        American Kestrel    no        
+    └ old US usage
+Baltimore Oriole      no        Northern Oriole     no        
+    └ lumped 1973, re-split 1995
+
+=== Emoji (expect byte-fallback, no whole-token merges) ===
+  🤖  in-vocab=False  tokens=4 (=raw UTF-8 bytes)
+  🔥  in-vocab=False  tokens=4 (=raw UTF-8 bytes)
+  🌍  in-vocab=False  tokens=4 (=raw UTF-8 bytes)
+  👋  in-vocab=False  tokens=4 (=raw UTF-8 bytes)

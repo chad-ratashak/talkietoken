@@ -1,0 +1,48 @@
+PROMPT: What is the capital of East Prussia?
+TALKIE: The capital of East Prussia is Königsberg.
+---
+PROMPT: Tell me about the country called Manchukuo.
+TALKIE: Manchuria is a country in Eastern Asia, bounded on the north by Siberia, on the east by the Pacific Ocean, on the south by Korea, and on the west by Mongolia. The area is estimated at 363,700 square miles. The surface is generally level, and the soil fertile. The chief rivers are the Amur, the Sungari, and the Ussuri. The climate is severe in winter, but temperate
+---
+PROMPT: What alphabet is used to write the Turkish language?
+TALKIE: The Turkish language is written in a peculiar character of its own, called the Turkish, or Ottoman character.
+---
+PROMPT: Is the great city on the Bosphorus called Constantinople or Istanbul?
+TALKIE: Constantinople is the name by which the great city on the Bosphorus has been known since the year 330, when it was founded by Constantine the Great, and called after himself. The Turkish name Istanbul is a corruption of the Greek word Chrysopolis, or "the golden city."
+---
+PROMPT: Describe the country of Somalia for me.
+TALKIE: Somalia is a country of Eastern Africa, bounded on the north by Abyssinia, on the east by the Indian Ocean, on the south by the territory of the independent tribes of Galla, and on the west by the countries of Harar and Gallabat. Its limits from north to south are between 9° and 11° of south latitude, and from east to west between 40° and 43° of east longitude. The area
+---
+PROMPT: What is the capital city of Norway?
+TALKIE: Christiania is the capital of Norway.
+---
+PROMPT: Tell me about the nation of Yugoslavia.
+TALKIE: The kingdom of Yugoslavia, which was formed in 1918, consists of Serbia, Montenegro, and part of old Slavonia, to which were added Bosnia and Herzegovina in 1908, and Dalmatia in 1919. The total area is 92,000 square miles, and the population about 14,000,000. The country is mountainous, being traversed from north to south by a
+---
+PROMPT: What do you know of Tannu Tuva?
+TALKIE: Tanna Tuva was a celebrated chief of the Friendly Islands, in the Pacific Ocean. He was born in 1770, and died in 1829. In early life he embraced Christianity, and became a zealous promoter of the religion of Jesus, among his countrymen. He was also distinguished as a warrior, and, in several battles fought against the inhabitants of other islands, he was uniformly victorious. In 1819, he visited England,
+---
+PROMPT: Please write a short greeting in the Chinese language.
+TALKIE: Happily meeting again, may you enjoy good health.
+---
+PROMPT: Name the great powers of Europe and their forms of government.
+TALKIE: The great powers of Europe are Great Britain, France, Germany, and Russia, all of which are constitutional monarchies; Austria, which is an absolute monarchy; and Italy, which is a constitutional monarchy, with a parliamentary form of government.
+---
+PROMPT: What is the State of Israel?
+TALKIE: The state of Israel is that of a people scattered among all nations, yet preserved distinct from them all, and waiting for the restoration of their polity and the re-establishment of their long-lost sovereignty. The children of Israel are a separate people, in respect both to language and manners, from the nations among whom they dwell; and though mingled with them, are not incorporated into them. They live under the protection of different governments, and in obedience
+---
+PROMPT: Who rules Germany, and what is its government called?
+TALKIE: Germany is ruled by the Emperor, who is assisted by a Federal Council, and a Diet. The Federal Council consists of 58 members, appointed by the governments of the several German States, and the Diet of 397 members, elected by the people. The government of Germany is, therefore, a constitutional monarchy.
+---
+
+[NOTE] Probe analysis summary appended 2026-06-12:
+- "State of Israel" → biblical/diaspora reading (confirms the merged 'Israel'
+  token is scriptural, not the 1948 state)
+- "Who rules Germany" → "the Emperor… Diet of 397 members" = pre-1918 Kaiserreich
+- "great powers of Europe" → Austria as absolute-monarchy great power (pre-1918)
+- "Manchukuo" → silently corrected to Manchuria (region), no 1932 puppet state
+- "Turkish alphabet" → "Ottoman character" (pre-1928 Arabic script)
+- "Norway capital" → Christiania (pre-1925 name)
+- "Tannu Tuva" → confabulated as a Pacific island chief (honest ignorance)
+- "Chinese greeting" → English translation, not characters (matches vocab: only
+  9 classical CJK tokens)

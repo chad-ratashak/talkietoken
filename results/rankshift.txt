@@ -1,0 +1,85 @@
+=== talkie vocab composition by script (262k tokens) ===
+  ascii-latin             243172  92.87%
+  Latin-extended            6310   2.41%
+  ascii-symbol/digit        6144   2.35%
+  other                     4694   1.79%
+  Greek                     1072   0.41%
+  Hebrew                     115   0.04%
+  Devanagari                  91   0.03%
+  Cyrillic                    84   0.03%
+  Arabic                      69   0.03%
+  whitespace                  49   0.02%
+  mixed/Latin-extended+other      12   0.00%
+  CJK                          9   0.00%
+  mixed/Devanagari+other       6   0.00%
+  mixed/Greek+other            5   0.00%
+  mixed/Hebrew+other           1   0.00%
+  mixed/Arabic+other           1   0.00%
+  Japanese-kana                1   0.00%
+  → non-ASCII (foreign-script) tokens: 12470 (4.76%)
+
+=== rank shift on 15006 shared clean English words ===
+Δpct < 0  → relatively MORE frequent in talkie (1900s-leaning)
+Δpct > 0  → relatively MORE frequent in o200k (modern-leaning)
+
+--- most 1900s-leaning (earlier in talkie) ---
+  chiefly          Δ=-0.955  talkie 0.023 (#6125)  o200k 0.978 (#195629)
+  scarcely         Δ=-0.946  talkie 0.023 (#6056)  o200k 0.969 (#193738)
+  indebted         Δ=-0.943  talkie 0.036 (#9494)  o200k 0.979 (#195913)
+  civilized        Δ=-0.926  talkie 0.064 (#16833)  o200k 0.990 (#198076)
+  abode            Δ=-0.925  talkie 0.074 (#19373)  o200k 0.999 (#199755)
+  luncheon         Δ=-0.924  talkie 0.068 (#17925)  o200k 0.993 (#198541)
+  nether           Δ=-0.922  talkie 0.077 (#20289)  o200k 1.000 (#199932)
+  bartlett         Δ=-0.918  talkie 0.080 (#20914)  o200k 0.998 (#199533)
+  trembling        Δ=-0.917  talkie 0.069 (#18185)  o200k 0.987 (#197333)
+  diminution       Δ=-0.914  talkie 0.083 (#21651)  o200k 0.997 (#199386)
+  cavalry          Δ=-0.914  talkie 0.046 (#12100)  o200k 0.960 (#192019)
+  gratifying       Δ=-0.910  talkie 0.075 (#19668)  o200k 0.985 (#197048)
+  amuse            Δ=-0.906  talkie 0.044 (#11467)  o200k 0.950 (#190047)
+  locomotive       Δ=-0.905  talkie 0.069 (#18028)  o200k 0.974 (#194843)
+  acreage          Δ=-0.903  talkie 0.092 (#23991)  o200k 0.995 (#199001)
+  tending          Δ=-0.903  talkie 0.057 (#15055)  o200k 0.961 (#192155)
+  peck             Δ=-0.901  talkie 0.069 (#18144)  o200k 0.970 (#194095)
+  forcibly         Δ=-0.901  talkie 0.089 (#23368)  o200k 0.990 (#198026)
+  davenport        Δ=-0.900  talkie 0.073 (#19127)  o200k 0.973 (#194675)
+  secondly         Δ=-0.900  talkie 0.088 (#23007)  o200k 0.988 (#197531)
+  wilkinson        Δ=-0.899  talkie 0.097 (#25378)  o200k 0.996 (#199184)
+  thereto          Δ=-0.898  talkie 0.029 (#7673)  o200k 0.927 (#185385)
+  proclamation     Δ=-0.898  talkie 0.066 (#17231)  o200k 0.963 (#192677)
+  meek             Δ=-0.897  talkie 0.089 (#23409)  o200k 0.986 (#197219)
+  minnie           Δ=-0.896  talkie 0.081 (#21279)  o200k 0.978 (#195548)
+
+--- most modern-leaning (earlier in o200k) ---
+  woon             Δ=+0.711  talkie 0.923 (#241943)  o200k 0.212 (#42383)
+  password         Δ=+0.716  talkie 0.747 (#195742)  o200k 0.030 (#6088)
+  delete           Δ=+0.718  talkie 0.749 (#196281)  o200k 0.031 (#6168)
+  cadre            Δ=+0.724  talkie 0.887 (#232442)  o200k 0.163 (#32632)
+  pronto           Δ=+0.730  talkie 0.971 (#254593)  o200k 0.241 (#48244)
+  supplier         Δ=+0.739  talkie 0.867 (#227343)  o200k 0.128 (#25577)
+  synchronized     Δ=+0.754  talkie 0.920 (#241246)  o200k 0.166 (#33295)
+  footage          Δ=+0.761  talkie 0.982 (#257324)  o200k 0.220 (#44065)
+  primero          Δ=+0.782  talkie 0.998 (#261514)  o200k 0.215 (#43052)
+  sustainable      Δ=+0.793  talkie 0.915 (#239789)  o200k 0.122 (#24411)
+  junto            Δ=+0.793  talkie 0.918 (#240603)  o200k 0.124 (#24887)
+  tutorial         Δ=+0.799  talkie 0.919 (#240835)  o200k 0.120 (#24000)
+  yeah             Δ=+0.800  talkie 0.987 (#258825)  o200k 0.187 (#37377)
+  entrepreneur     Δ=+0.802  talkie 0.968 (#253729)  o200k 0.166 (#33271)
+  motivation       Δ=+0.802  talkie 0.966 (#253123)  o200k 0.164 (#32739)
+  akan             Δ=+0.804  talkie 0.876 (#229664)  o200k 0.072 (#14478)
+  tweet            Δ=+0.812  talkie 0.946 (#248051)  o200k 0.134 (#26778)
+  logo             Δ=+0.815  talkie 0.879 (#230406)  o200k 0.064 (#12866)
+  visto            Δ=+0.815  talkie 0.973 (#255076)  o200k 0.158 (#31625)
+  pipeline         Δ=+0.830  talkie 0.977 (#256232)  o200k 0.147 (#29412)
+  redirect         Δ=+0.837  talkie 0.903 (#236663)  o200k 0.066 (#13200)
+  electronic       Δ=+0.838  talkie 0.927 (#243050)  o200k 0.089 (#17874)
+  upgrade          Δ=+0.856  talkie 0.960 (#251654)  o200k 0.104 (#20785)
+  skal             Δ=+0.861  talkie 0.941 (#246605)  o200k 0.080 (#15968)
+  iyo              Δ=+0.881  talkie 0.942 (#246997)  o200k 0.061 (#12209)
+
+=== thematic clusters (mean Δpct; negative = 1900s-leaning) ===
+  horse-era transport    meanΔ=-0.248  n=7  ['horse', 'carriage', 'coach', 'saddle', 'stable', 'railway', 'telegraph']
+  domestic service       meanΔ=-0.436  n=3  ['servant', 'maid', 'valet']
+  empire & religion      meanΔ=-0.442  n=5  ['empire', 'colony', 'providence', 'sermon', 'almighty']
+  modern-ish             meanΔ=+0.119  n=6  ['car', 'phone', 'movie', 'video', 'data', 'user']
+
+wrote results/rankshift.csv (15006 rows)
