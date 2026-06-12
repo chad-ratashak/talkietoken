@@ -1,0 +1,23 @@
+PROMPT: What is Tuva?
+TALKIE: Tuva is a kind of beer, made in the Society and other Pacific islands, from the root of the Tacca pinnatifida. The root is first roasted, and then beaten into a pulp, which is mixed with water, and allowed to ferment. The liquor thus produced is drank warm. Tuva has an unpleasant sweet taste, and a slightly aromatic smell. In the Society islands it is the common beverage of the inhabitants, and constitutes their
+---
+PROMPT: Tell me about the Uriankhai region of Asia.
+TALKIE: The Uriankhai region is a vast tract of country in Eastern Siberia, extending from long. 90° to 130° E., and from lat. 50° to 60° N. It is bounded on the north by the Arctic Ocean, on the east by the Sea of Okhotsk, on the south by Chinese Manchuria, and on the west by the government of Yeniseisk. The area is estimated at 570
+---
+PROMPT: What territory lies between Siberia and Outer Mongolia?
+TALKIE: The territory between Siberia and Outer Mongolia is occupied by the Middle Mongols, a branch of the Mongolian race, who are subject to China. The country is a vast plain, intersected by the rivers Irtish and Obi, and is bounded on the south by the great desert of Gobi, or Shamo. Area estimated at 550,000 square miles. Pop. 2,000,000. The chief towns are Ur
+---
+PROMPT: Have the Soviets established any new republic in central Asia near Mongolia?
+TALKIE: Yes, the Soviet republic of Turkmenistan was established in 1920, and has an area of 85,000 square miles, and a population of about 700,000. It lies to the south of the Aral Sea, and has Samarkand for its capital. The inhabitants are mainly Turks, but there are also Kirghiz, and a few Persians and Arabs. The country is fertile, and carries on a considerable
+---
+
+[ANALYSIS 2026-06-12] Does talkie know Tannu Tuva (republic from 1921, inside the window)?
+Tokenizer: Mongolia/Siberia/Soviet/Bolshevik MERGE; Tuva/Tannu/Uriankhai/Urianghai do NOT.
+Generation:
+- "Tuva" -> archaic Polynesian beverage (Tacca pinnatifida) -> explains the earlier
+  "chief of the Friendly Islands" confabulation; the token is pre-empted by a Pacific word.
+- "Uriankhai" -> known, but in the PRE-1921 Tsarist frame (government of Yeniseisk), not the republic.
+- "new Soviet republic near Mongolia?" -> volunteers Turkmenistan, NOT Tuva.
+Conclusion: non-recognition is IN-PERIOD OBSCURITY, not a 1931-cutoff effect. Tannu Tuva is a
+corpus-COVERAGE probe, not a boundary probe. Clean boundary probes = famous-on-both-sides referents
+(Theodore-not-Franklin Roosevelt; 1920s-agitator-not-dictator Hitler).
