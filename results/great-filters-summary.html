@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Great Filters of Languages — estimates summary</title>
+<style>
+  :root{
+    --bg:#ffffff; --surface:#f6f5f1; --track:#eceae3;
+    --text:#1f1f1d; --text2:#5f5e5a; --text3:#8a8980; --border:rgba(0,0,0,.12);
+    --amber:#BA7517; --amber-fg:#633806; --amber-bg:#FAEEDA; --amber-label:#854F0B;
+    --blue:#378ADD; --blue-fg:#0C447C; --blue-bg:#E6F1FB; --blue-label:#185FA5;
+    --teal:#1D9E75; --teal-fg:#085041;
+    --gray-bg:#F1EFE8; --gray-fg:#444441;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1f1e1c; --surface:#2a2926; --track:#33322e;
+      --text:#ececea; --text2:#a8a79f; --text3:#7c7b74; --border:rgba(255,255,255,.14);
+      --amber-bg:#3a2c10; --amber-fg:#FAC775; --blue-bg:#0c2942; --blue-fg:#B5D4F4;
+      --gray-bg:#33322e; --gray-fg:#D3D1C7;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:820px; margin:0 auto; padding:2.5rem 1.5rem 4rem;}
+  h1{font-size:23px; font-weight:500; margin:0 0 4px;}
+  .sub{font-size:13px; color:var(--text2); margin:0 0 2rem;}
+  .seclab{font-size:16px; font-weight:500; margin:2.25rem 0 4px;}
+  .secsub{font-size:13px; color:var(--text2); margin:0 0 14px;}
+  .cards{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:.5rem;}
+  .card{background:var(--surface); border-radius:8px; padding:.85rem 1rem;}
+  .card .lab{font-size:13px; color:var(--text2);}
+  .card .num{font-size:23px; font-weight:500;}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .panel{border:.5px solid var(--border); border-radius:12px; padding:1rem 1.1rem;}
+  .panel .ph{font-size:14px; font-weight:500; margin-bottom:4px;}
+  .panel .ph.am{color:var(--amber-label);} .panel .ph.bl{color:var(--blue-label);}
+  .panel p{font-size:13px; color:var(--text2); margin:.3rem 0 0;}
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  th{text-align:left; font-weight:500; color:var(--text2); font-size:12px;
+    padding:6px 8px; border-bottom:.5px solid var(--border);}
+  td{padding:6px 8px; border-bottom:.5px solid var(--border); vertical-align:top;}
+  td.lang{font-weight:500;}
+  .num td{font-variant-numeric:tabular-nums;}
+  .bar{display:flex; align-items:center; gap:8px; padding:4px 0; font-size:13px;}
+  .bar .w{width:96px; flex:none;}
+  .bar .t{flex:1; height:7px; background:var(--track); border-radius:3px; overflow:hidden;}
+  .bar .t span{display:block; height:100%; background:var(--blue);}
+  .bar .v{width:64px; flex:none; text-align:right; color:var(--text2); font-variant-numeric:tabular-nums;}
+  .pillrow{margin:2px 0 10px;}
+  .pill{display:inline-block; font-size:12px; padding:2px 9px; border-radius:8px; margin:0 5px 5px 0;}
+  .p-solid{background:var(--blue-bg); color:var(--blue-fg);}
+  .p-prob{background:var(--amber-bg); color:var(--amber-fg);}
+  .p-poss{background:var(--gray-bg); color:var(--gray-fg);}
+  .tag{font-size:11px; padding:1px 7px; border-radius:6px; white-space:nowrap;}
+  .tag.y{background:var(--amber-bg); color:var(--amber-fg);}
+  .tag.n{background:var(--gray-bg); color:var(--gray-fg);}
+  .note{font-size:12px; color:var(--text3); margin-top:6px;}
+  .foot{margin-top:2.5rem; padding-top:1rem; border-top:.5px solid var(--border);
+    font-size:12px; color:var(--text3);}
+  .foot a{color:var(--blue-label);}
+  @media (max-width:600px){.cards{grid-template-columns:repeat(2,1fr)} .two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Great Filters of Languages</h1>
+  <p class="sub">How many of the world's languages could ever fuel a talkie-class LM — estimate summary · April 2026 research note</p>
+
+  <div class="cards">
+    <div class="card"><div class="lab">living languages</div><div class="num">7,164</div></div>
+    <div class="card"><div class="lab">LLM-tractable today</div><div class="num">&asymp; 100</div></div>
+    <div class="card"><div class="lab">viable at 100B scale</div><div class="num">&asymp; 12</div></div>
+    <div class="card"><div class="lab">~zero web corpus</div><div class="num">&asymp; 6,500</div></div>
+  </div>
+
+  <div class="seclab">Two filters in series</div>
+  <div class="two">
+    <div class="panel">
+      <div class="ph am">First filter — historical</div>
+      <p>Cumulative text a community ever produced: population &times; literacy &times; per-capita output &times; time. Latin and Sanskrit cleared it millennia ago; Old English never did. Dominated by the print and digital eras (1800–2000), not the manuscript age.</p>
+    </div>
+    <div class="panel">
+      <div class="ph bl">Second filter — infrastructural</div>
+      <p>Share of those tokens that exist today as clean, machine-readable Unicode a crawler can ingest. Governed by printing, encoding, OCR, online culture, and which states fund digitization. Modern Hebrew passed; Yoruba and Hausa, with similar speaker counts, did not.</p>
+    </div>
+  </div>
+
+  <div class="seclab">Languages clearing each threshold</div>
+  <div class="secsub">a language must pass both filters in series to be a viable LLM subject from its own data</div>
+  <table>
+    <thead><tr><th>Token threshold</th><th>First filter (ever produced)</th><th>Second filter (LLM-ready today)</th></tr></thead>
+    <tbody class="num">
+      <tr><td class="lang">&ge; 1B</td><td>30–60</td><td>70–100</td></tr>
+      <tr><td class="lang">&ge; 10B&nbsp;&nbsp;<span style="color:var(--text3);font-weight:400">(talkie-13B scale)</span></td><td>15–25</td><td>30–40</td></tr>
+      <tr><td class="lang">&ge; 100B</td><td>under 15</td><td>10–13</td></tr>
+    </tbody>
+  </table>
+  <p class="note">At the low end the modern web (second filter) surfaces more languages than the historical estimate; at 100B the two converge on the same dozen print-empire languages.</p>
+
+  <div class="seclab">First filter — when major languages crossed</div>
+  <div class="secsub">back-of-envelope chronology; a calculation framework, not cite-worthy dates</div>
+  <table>
+    <thead><tr><th>Language</th><th>1B tokens</th><th>10B</th><th>100B</th></tr></thead>
+    <tbody class="num">
+      <tr><td class="lang">Chinese / Classical</td><td>~100 BCE</td><td>800–1200</td><td>late Ming/Qing</td></tr>
+      <tr><td class="lang">Latin</td><td>~500</td><td>~1500</td><td>~1900*</td></tr>
+      <tr><td class="lang">Greek</td><td>~600</td><td>~1500</td><td>—</td></tr>
+      <tr><td class="lang">Arabic</td><td>~1000</td><td>~1500</td><td>~1900</td></tr>
+      <tr><td class="lang">Spanish</td><td>~1650</td><td>~1850</td><td>~1970</td></tr>
+      <tr><td class="lang">English</td><td>~1700</td><td>~1850</td><td>~1950</td></tr>
+      <tr><td class="lang">Sanskrit</td><td>~500</td><td>doubtful</td><td>—</td></tr>
+      <tr><td class="lang">Hebrew (modern)</td><td>~1980</td><td>~2010</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p class="note">*Latin's 100B counts unedited neo-Latin output, most of which has never been digitized.</p>
+
+  <div class="seclab">Second filter — clean tokens available today (&ge; 100B club)</div>
+  <div class="secsub">approx. billions of clean tokens, aggregating CulturaX / MADLAD-400 / OSCAR</div>
+  <div id="tokbars"></div>
+  <p class="note">English ~2,700B (~2.7T) is off-scale — roughly 7&times; the next-largest language; bars above show the rest. Turkish and Vietnamese sit on the 100B borderline.</p>
+
+  <div class="seclab">Classical / dead languages</div>
+  <div class="secsub">first-filter crossings and second-filter crossings are decoupled by centuries</div>
+  <table>
+    <thead><tr><th>Language</th><th>Ever produced</th><th>Digitized today</th><th>First filter</th></tr></thead>
+    <tbody>
+      <tr><td class="lang">Classical Chinese</td><td>10B+</td><td>~1B chars</td><td><span class="tag y">10B</span></td></tr>
+      <tr><td class="lang">Classical Arabic</td><td>strongly cleared</td><td>~1.5B words</td><td><span class="tag y">1B+</span></td></tr>
+      <tr><td class="lang">Latin</td><td>low billions</td><td>200–300M</td><td><span class="tag y">1B, likely 10B</span></td></tr>
+      <tr><td class="lang">Ancient Greek</td><td>1B+</td><td>150–250M</td><td><span class="tag y">1B</span></td></tr>
+      <tr><td class="lang">Sanskrit</td><td>~1B</td><td>30–50M</td><td><span class="tag y">~1B</span></td></tr>
+      <tr><td class="lang">Classical Hebrew</td><td>&lt; 1B</td><td>150–200M</td><td><span class="tag n">100M only</span></td></tr>
+      <tr><td class="lang">Akkadian</td><td>~20M</td><td>10M+</td><td><span class="tag n">10M only</span></td></tr>
+      <tr><td class="lang">Pali</td><td>10–15M</td><td>10–15M</td><td><span class="tag n">&lt; 100M</span></td></tr>
+      <tr><td class="lang">Egyptian</td><td>5–10M</td><td>1.7M</td><td><span class="tag n">1M only</span></td></tr>
+      <tr><td class="lang">Old English</td><td>~3M (complete)</td><td>~3M</td><td><span class="tag n">1M only</span></td></tr>
+      <tr><td class="lang">Sumerian</td><td>&lt; 10M</td><td>3–5M</td><td><span class="tag n">&lt; 10M</span></td></tr>
+      <tr><td class="lang">Avestan</td><td>50–100K</td><td>~tiny</td><td><span class="tag n">never</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="seclab">Implication for talkie — which languages had a 1930 model been possible in?</div>
+  <div class="secsub">languages that had crossed the 10B-token first filter by 1930</div>
+  <div class="pillrow">
+    <span class="pill p-solid">English</span><span class="pill p-solid">French</span><span class="pill p-solid">German</span><span class="pill p-solid">Spanish</span><span class="pill p-solid">Italian</span><span class="pill p-solid">Russian</span><span class="pill p-solid">Chinese</span><span class="pill p-solid">Japanese</span><span class="pill p-solid">Arabic</span><span class="pill p-solid">Latin</span><span class="pill p-solid">Ancient Greek</span>
+    <span class="pill p-prob">Portuguese?</span><span class="pill p-prob">Dutch?</span>
+    <span class="pill p-poss">Hebrew?</span><span class="pill p-poss">Polish?</span><span class="pill p-poss">Czech?</span>
+  </div>
+  <p class="note">Solid = clears 10B by 1930 · amber = probable · gray = possible. Everything else is doubtful. talkie-1930-13b-base is the English data point in this set.</p>
+
+  <p class="foot">Estimates from the project note <em>The Great Filters of Languages</em> (April 2026). Pre-modern literacy rates are contested and ranges are conservative midpoints; threshold-crossing dates are back-of-envelope over Maddison-Project population, Our World in Data literacy, and Buringh–Van Zanden book-output series. Web-corpus counts treat the open web as complete, which undercounts state-internal corpora (Chinese baike, Korean Naver, Japanese 2ch/5ch). Sources: Ethnologue 27, Joshi et al. 2020, MADLAD-400, CulturaX, OSCAR-23.01, plus TLG / Brepols / OpenITI / CBETA / Sefaria for dead-language corpora.</p>
+</div>
+
+<script>
+const tok = [
+  ["Spanish",370],["Russian",360],["German",330],["French",320],["Chinese",300],
+  ["Portuguese",170],["Italian",160],["Japanese",160],["Polish",140],["Dutch",120]
+];
+const max = 370;
+document.getElementById("tokbars").innerHTML = tok.map(([l,v])=>`
+  <div class="bar"><span class="w">${l}</span>
+    <span class="t"><span style="width:${Math.round(v/max*100)}%"></span></span>
+    <span class="v">~${v}B</span></div>`).join("");
+</script>
+</body>
+</html>
