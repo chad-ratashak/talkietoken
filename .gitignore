@@ -2,4 +2,3 @@
 .port
 *.command
 .env*
-.aws/
