@@ -1,0 +1,871 @@
+=== URDU DOMAIN-COVERAGE ASYMMETRY: IS جین/جن A GENERAL EFFECT? ===
+
+Motivated by arXiv:2502.00041 (MALT, Bajwa, Jan 2025). The Urdu
+prompt below ("How does gene editing work?") yields an internal English latent
+about jinn in the Quran — a biology question reasoned about
+internally as religion. Models in that paper: Gemma-2-2b and
+Llama-3.2-3b.
+    جین میں ترمیم کیسے کام کرتی ہے؟
+
+MEASUREMENT vs MECHANISM. Everything in TIER 0-6 is token counting.
+It bounds what the model receives at its input. It says NOTHING
+about why a latent collapses onto the religious reading. Sentences
+that speculate about that are marked HYPOTHESIS and are not tested
+anywhere in this file.
+
+RTL NOTE. Every table puts Urdu at the END of its line: bidi
+reordering scrambles numeric columns placed to the right of Arabic
+script. Roman transliterations are given so the rows can be read
+without rendering the script.
+
+--- PROVENANCE: which tokenizers these actually are ---
+google/gemma-2-2b and meta-llama/Llama-3.2-3B are GATED on Hugging
+Face and this account has no access — 403 on both. They are loaded
+from ungated mirrors instead. Verification: each mirror's full core
+vocabulary was hashed and compared across three unrelated uploaders
+per family.
+
+  gemma-2-2b  (core vocab = ids 0..255,999)
+    sha256=0c081f69b56b01b6  n=256,000  unsloth/gemma-2-2b
+    sha256=0c081f69b56b01b6  n=256,000  unsloth/gemma-2-2b-it
+    sha256=0c081f69b56b01b6  n=256,000  IlyaGusev/gemma-2-2b-it-abliterated
+    -> all 3 agree: True
+  Llama-3.2-3B  (core vocab = ids 0..127,999)
+    sha256=228881ae255d5a43  n=128,000  unsloth/Llama-3.2-3B
+    sha256=228881ae255d5a43  n=128,000  NousResearch/Llama-3.2-1B
+    sha256=228881ae255d5a43  n=128,000  chuanli11/Llama-3.2-3B-Instruct-uncensored
+    -> all 3 agree: True
+
+  Identical hashes across independent uploaders make it very likely
+  these are the canonical tables. It is NOT a check against the
+  gated originals — nobody here has read those. Anyone who needs
+  that guarantee should accept the two licences and re-run; the
+  script takes the repo ids as constants at the top.
+
+  gemma-2-2b     MALT model; SentencePiece unigram, 256k
+  Llama-3.2-3B   MALT model; byte-level BPE, 128k
+  o200k          project baseline; byte-level BPE, 200k
+  talkie-1930    floor control; English-only 1930 corpus
+
+  talkie-1930 is included as a FLOOR, not as a subject. It is an
+  English-only 1930 tokenizer with no Urdu exposure at all, so it
+  shows what total absence of coverage looks like on these scales.
+
+--- TIER 0: the anecdote, on the models that actually produced it ---
+The o200k numbers this project already had were never evidence
+about Gemma or Llama. Re-running is the point of this tier.
+
+Counts are given BARE and with a LEADING SPACE. That distinction
+turns out to matter and is easy to get wrong: a word measured bare
+is not the word the model sees mid-sentence.
+
+    means variant                        gemma-2-2b   Llama-3.2-3B          o200k    talkie-1930   (bare / +space)
+    jinn  jeem-noon                           1 / 1          1 / 1          1 / 1          2 / 2
+    jinn  + shadda U+0651                     2 / 2          2 / 2          2 / 2          4 / 4
+    gene  Arabic ye U+064A                    1 / 2          2 / 2          1 / 2          3 / 3
+    gene  Urdu ye U+06CC <- MALT              2 / 2          2 / 2          2 / 2          2 / 2
+
+    the same rows as splits ('|' = token boundary), Urdu at line end:
+      jinn (jeem-noon)
+        gemma-2-2b     bare 1  +space 1   جن
+        Llama-3.2-3B   bare 1  +space 1   جن
+        o200k          bare 1  +space 1   جن
+        talkie-1930    bare 2  +space 2   ج|ن
+      jinn (+ shadda U+0651)
+        gemma-2-2b     bare 2  +space 2   جن|ّ
+        Llama-3.2-3B   bare 2  +space 2   جن|ّ
+        o200k          bare 2  +space 2   جن|ّ
+        talkie-1930    bare 4  +space 4   ج|ن|<d9>|<91>
+      gene (Arabic ye U+064A)
+        gemma-2-2b     bare 1  +space 2   جين
+        Llama-3.2-3B   bare 2  +space 2   ج|ين
+        o200k          bare 1  +space 2   جين
+        talkie-1930    bare 3  +space 3   ج|ي|ن
+      gene (Urdu ye U+06CC <- MALT)
+        gemma-2-2b     bare 2  +space 2   ج|ین
+        Llama-3.2-3B   bare 2  +space 2   ج|ین
+        o200k          bare 2  +space 2   ج|ین
+        talkie-1930    bare 2  +space 2   ج|ین
+
+    English pivot — same concepts, Latin script (bare / +space):
+    word                         gemma-2-2b   Llama-3.2-3B          o200k    talkie-1930
+    gene                              1 / 1          1 / 1          1 / 1          1 / 1
+    genome                            1 / 1          1 / 1          2 / 1          2 / 2
+    genie                             1 / 1          2 / 1          2 / 1          2 / 1
+    jinn                              2 / 2          2 / 2          2 / 2          2 / 2
+    djinn                             2 / 2          2 / 2          2 / 2          2 / 2
+
+    Read the +space column — that is the mid-sentence form. There,
+    all four tokenizers write ' gene' and ' genie' as ONE token,
+    three of four write ' genome' as one (talkie needs 2), and ALL
+    FOUR split ' jinn' and ' djinn' into two. In ENGLISH the biology
+    word is the well-covered one and the religious word is the
+    fragment — the exact reverse of the asymmetry the Urdu anecdote
+    suggests. Note also how much the bare column differs: ' genome'
+    is 1 token in o200k but 'genome' bare is 2. Measuring bare
+    strings is not measuring what the model reads.
+
+    Does the biology spelling literally contain the religious token?
+      gemma-2-2b     jeen(Urdu ye) -> ج|ین         contains jinn-token? False
+                     jeen(Arab ye) -> جين          contains jinn-token? False
+                     jinn+shadda   -> جن|ّ         contains jinn-token? True
+      Llama-3.2-3B   jeen(Urdu ye) -> ج|ین         contains jinn-token? False
+                     jeen(Arab ye) -> ج|ين         contains jinn-token? False
+                     jinn+shadda   -> جن|ّ         contains jinn-token? True
+      o200k          jeen(Urdu ye) -> ج|ین         contains jinn-token? False
+                     jeen(Arab ye) -> جين          contains jinn-token? False
+                     jinn+shadda   -> جن|ّ         contains jinn-token? True
+      talkie-1930    jeen(Urdu ye) -> ج|ین         contains jinn-token? False
+                     jeen(Arab ye) -> ج|ي|ن        contains jinn-token? False
+                     jinn+shadda   -> ج|ن|<d9>|<91> contains jinn-token? False
+
+    NO tokenizer splits the gene spelling into a piece that is the
+    jinn token. The overlap in the original note is between جنّ and
+    جن (shadda stripped), which is a different pair from the one in
+    the MALT prompt. Whatever drives the latent collapse, it is not
+    the biology word literally containing the religious token.
+
+--- TIER 1: Urdu-only letters vs letters shared with Arabic ---
+Single bare codepoints. A letter that is not itself one token cannot
+appear inside any merge; every word containing it starts behind.
+
+  Urdu-only (absent from Arabic)
+    cp      name                       gemma-2-2b   Llama-3.2-3B          o200k    talkie-1930
+    U+0679  TTEH retroflex t                    1              1              1              2
+    U+0688  DDAL retroflex d                    1              2              1              2
+    U+0691  RREH retroflex r                    1              2              1              2
+    U+06BA  NOON GHUNNA                         1              2              1              2
+    U+06D2  BARREE YEH final e                  1              2              1              1
+    U+06C1  HEH GOAL                            1              2              1              1
+    U+06CC  FARSI YEH (Urdu ye)                 1              1              1              1
+    U+06A9  KEHEH (Urdu k)                      1              1              1              1
+    U+06AF  GAF g                               1              1              1              1
+    U+067E  PEH p                               1              1              1              2
+    U+0686  TCHEH ch                            1              1              1              2
+    U+0698  JEH zh                              1              1              1              2
+            -> single-token / n             12/12           7/12          12/12           5/12
+
+  shared with Arabic
+    cp      name                       gemma-2-2b   Llama-3.2-3B          o200k    talkie-1930
+    U+064A  ARABIC YEH                          1              1              1              1
+    U+0643  ARABIC KAF                          1              1              1              1
+    U+0647  ARABIC HEH                          1              1              1              1
+    U+062A  TEH                                 1              1              1              1
+    U+062F  DAL                                 1              1              1              1
+    U+0631  REH                                 1              1              1              1
+    U+0646  NOON                                1              1              1              1
+    U+0628  BEH                                 1              1              1              1
+    U+0633  SEEN                                1              1              1              1
+    U+0645  MEEM                                1              1              1              1
+    U+0644  LAM                                 1              1              1              1
+    U+0642  QAF                                 1              1              1              1
+            -> single-token / n             12/12          12/12          12/12          12/12
+
+  Gemma and o200k cover every Urdu-only letter. Llama-3.2 does not:
+  5 of 12 cost two tokens, i.e. they are not in the vocabulary at
+  all and fall back to raw UTF-8 bytes. talkie, with no Urdu
+  exposure whatsoever, covers 5/12 — Llama is only two letters
+  better than a tokenizer that has never seen the script.
+
+--- TIER 2: the sibling control (THE TEST) ---
+15 Urdu biology/medical terms vs 15 Urdu religious/folklore terms,
+lists fixed before counting. Words measured WITH a leading space,
+i.e. as they appear mid-sentence. Every count is printed so the
+word choice can be audited.
+
+HYPOTHESIS UNDER TEST: biology terms are systematically MORE
+fragmented than religious terms in Urdu — the جین/جن case being one
+instance of a general corpus-coverage asymmetry.
+
+  ### gemma-2-2b ###
+    BIOLOGY / MEDICAL (n=15)
+      roman       gloss          chars  toks  tok/char  whole   urdu
+      jeen        gene               3     2      0.67     no   جین
+      khaliya     cell               4     3      0.75     no   خلیہ
+      wirasat     heredity           5     3      0.60     no   وراثت
+      jarasim     germs              6     3      0.50     no   جراثیم
+      hayatiyat   biology            7     3      0.43     no   حیاتیات
+      proteen     protein            6     3      0.50     no   پروٹین
+      mudafiat    immunity           6     3      0.50     no   مدافعت
+      asab        nerves             5     2      0.40     no   اعصاب
+      naseej      tissue             4     3      0.75     no   نسیج
+      taulid      reproduction       5     1      0.20    yes   تولید
+      mareez      patient            4     3      0.75     no   مریض
+      ilaj        treatment          4     1      0.25    yes   علاج
+      dimagh      brain              4     3      0.75     no   دماغ
+      phephra     lung               7     6      0.86     no   پھیپھڑا
+      bimari      disease            6     1      0.17    yes   بیماری
+
+    RELIGION / FOLKLORE (n=15)
+      roman       gloss          chars  toks  tok/char  whole   urdu
+      jinn        jinn               2     1      0.50    yes   جن
+      farishta    angel              5     3      0.60     no   فرشتہ
+      shaitan     devil              5     2      0.40     no   شیطان
+      ibadat      worship            5     3      0.60     no   عبادت
+      qayamat     doomsday           5     2      0.40     no   قیامت
+      taweez      amulet             5     3      0.60     no   تعویذ
+      ziyarat     pilgrimage         5     2      0.40     no   زیارت
+      paighambar  prophet            6     3      0.50     no   پیغمبر
+      dozakh      hell               4     3      0.75     no   دوزخ
+      iman        faith              5     2      0.40     no   ایمان
+      ruhaniyat   spirituality       7     3      0.43     no   روحانیت
+      shayateen   devils             6     3      0.50     no   شیاطین
+      roza        fast               4     2      0.50     no   روزہ
+      bhoot       ghost              4     2      0.50     no   بھوت
+      jadugar     magician           6     3      0.50     no   جادوگر
+
+    set            n   toks  chars  tok/word          95% CI  tok/char   whole
+    biology       15     40     76      2.67    [2.07, 3.27]     0.526    3/15
+    religion      15     37     74      2.47    [2.13, 2.73]     0.500    1/15
+    neutral       15     24     70      1.60    [1.20, 2.00]     0.343    9/15
+
+    bio - rel = +0.20 tok/word   95% CI [-0.47, +0.93]   permutation p = 0.7319
+    (n=15 vs 15, 20,000 permutations; raw totals 40 vs 37 tokens)
+    tok/char ratio bio:rel = 1.05x
+
+    length-stratified (same char length only — removes the
+    'biology words are just longer' explanation):
+       chars  n_bio  n_rel   bio tok   rel tok     diff
+           4      5      3      2.60      2.33    +0.27
+           5      3      7      2.00      2.43    -0.43
+           6      4      3      2.50      3.00    -0.50
+           7      2      1      4.50      3.00    +1.50
+
+  ### Llama-3.2-3B ###
+    BIOLOGY / MEDICAL (n=15)
+      roman       gloss          chars  toks  tok/char  whole   urdu
+      jeen        gene               3     2      0.67     no   جین
+      khaliya     cell               4     4      1.00     no   خلیہ
+      wirasat     heredity           5     3      0.60     no   وراثت
+      jarasim     germs              6     3      0.50     no   جراثیم
+      hayatiyat   biology            7     3      0.43     no   حیاتیات
+      proteen     protein            6     3      0.50     no   پروٹین
+      mudafiat    immunity           6     3      0.50     no   مدافعت
+      asab        nerves             5     3      0.60     no   اعصاب
+      naseej      tissue             4     3      0.75     no   نسیج
+      taulid      reproduction       5     1      0.20    yes   تولید
+      mareez      patient            4     3      0.75     no   مریض
+      ilaj        treatment          4     3      0.75     no   علاج
+      dimagh      brain              4     2      0.50     no   دماغ
+      phephra     lung               7     8      1.14     no   پھیپھڑا
+      bimari      disease            6     1      0.17    yes   بیماری
+
+    RELIGION / FOLKLORE (n=15)
+      roman       gloss          chars  toks  tok/char  whole   urdu
+      jinn        jinn               2     1      0.50    yes   جن
+      farishta    angel              5     4      0.80     no   فرشتہ
+      shaitan     devil              5     2      0.40     no   شیطان
+      ibadat      worship            5     2      0.40     no   عبادت
+      qayamat     doomsday           5     3      0.60     no   قیامت
+      taweez      amulet             5     3      0.60     no   تعویذ
+      ziyarat     pilgrimage         5     2      0.40     no   زیارت
+      paighambar  prophet            6     3      0.50     no   پیغمبر
+      dozakh      hell               4     3      0.75     no   دوزخ
+      iman        faith              5     2      0.40     no   ایمان
+      ruhaniyat   spirituality       7     3      0.43     no   روحانیت
+      shayateen   devils             6     3      0.50     no   شیاطین
+      roza        fast               4     3      0.75     no   روزہ
+      bhoot       ghost              4     3      0.75     no   بھوت
+      jadugar     magician           6     3      0.50     no   جادوگر
+
+    set            n   toks  chars  tok/word          95% CI  tok/char   whole
+    biology       15     45     76      3.00    [2.33, 3.87]     0.592    2/15
+    religion      15     40     74      2.67    [2.27, 3.00]     0.541    1/15
+    neutral       15     30     70      2.00    [1.33, 2.80]     0.429    8/15
+
+    bio - rel = +0.33 tok/word   95% CI [-0.47, +1.27]   permutation p = 0.6318
+    (n=15 vs 15, 20,000 permutations; raw totals 45 vs 40 tokens)
+    tok/char ratio bio:rel = 1.10x
+
+    length-stratified (same char length only — removes the
+    'biology words are just longer' explanation):
+       chars  n_bio  n_rel   bio tok   rel tok     diff
+           4      5      3      3.00      3.00    +0.00
+           5      3      7      2.33      2.57    -0.24
+           6      4      3      2.50      3.00    -0.50
+           7      2      1      5.50      3.00    +2.50
+
+  ### o200k ###
+    BIOLOGY / MEDICAL (n=15)
+      roman       gloss          chars  toks  tok/char  whole   urdu
+      jeen        gene               3     2      0.67     no   جین
+      khaliya     cell               4     3      0.75     no   خلیہ
+      wirasat     heredity           5     3      0.60     no   وراثت
+      jarasim     germs              6     3      0.50     no   جراثیم
+      hayatiyat   biology            7     3      0.43     no   حیاتیات
+      proteen     protein            6     3      0.50     no   پروٹین
+      mudafiat    immunity           6     3      0.50     no   مدافعت
+      asab        nerves             5     2      0.40     no   اعصاب
+      naseej      tissue             4     3      0.75     no   نسیج
+      taulid      reproduction       5     1      0.20    yes   تولید
+      mareez      patient            4     2      0.50     no   مریض
+      ilaj        treatment          4     1      0.25    yes   علاج
+      dimagh      brain              4     2      0.50     no   دماغ
+      phephra     lung               7     5      0.71     no   پھیپھڑا
+      bimari      disease            6     1      0.17    yes   بیماری
+
+    RELIGION / FOLKLORE (n=15)
+      roman       gloss          chars  toks  tok/char  whole   urdu
+      jinn        jinn               2     1      0.50    yes   جن
+      farishta    angel              5     2      0.40     no   فرشتہ
+      shaitan     devil              5     2      0.40     no   شیطان
+      ibadat      worship            5     2      0.40     no   عبادت
+      qayamat     doomsday           5     2      0.40     no   قیامت
+      taweez      amulet             5     3      0.60     no   تعویذ
+      ziyarat     pilgrimage         5     2      0.40     no   زیارت
+      paighambar  prophet            6     3      0.50     no   پیغمبر
+      dozakh      hell               4     3      0.75     no   دوزخ
+      iman        faith              5     1      0.20    yes   ایمان
+      ruhaniyat   spirituality       7     3      0.43     no   روحانیت
+      shayateen   devils             6     4      0.67     no   شیاطین
+      roza        fast               4     2      0.50     no   روزہ
+      bhoot       ghost              4     2      0.50     no   بھوت
+      jadugar     magician           6     3      0.50     no   جادوگر
+
+    set            n   toks  chars  tok/word          95% CI  tok/char   whole
+    biology       15     37     76      2.47    [2.00, 3.00]     0.487    3/15
+    religion      15     35     74      2.33    [1.93, 2.73]     0.473    2/15
+    neutral       15     23     70      1.53    [1.20, 1.93]     0.329    9/15
+
+    bio - rel = +0.13 tok/word   95% CI [-0.53, +0.80]   permutation p = 0.8496
+    (n=15 vs 15, 20,000 permutations; raw totals 37 vs 35 tokens)
+    tok/char ratio bio:rel = 1.03x
+
+    length-stratified (same char length only — removes the
+    'biology words are just longer' explanation):
+       chars  n_bio  n_rel   bio tok   rel tok     diff
+           4      5      3      2.20      2.33    -0.13
+           5      3      7      2.00      2.00    +0.00
+           6      4      3      2.50      3.33    -0.83
+           7      2      1      4.00      3.00    +1.00
+
+  ### talkie-1930 ###
+    BIOLOGY / MEDICAL (n=15)
+      roman       gloss          chars  toks  tok/char  whole   urdu
+      jeen        gene               3     2      0.67     no   جین
+      khaliya     cell               4     4      1.00     no   خلیہ
+      wirasat     heredity           5     5      1.00     no   وراثت
+      jarasim     germs              6     6      1.00     no   جراثیم
+      hayatiyat   biology            7     7      1.00     no   حیاتیات
+      proteen     protein            6     6      1.00     no   پروٹین
+      mudafiat    immunity           6     6      1.00     no   مدافعت
+      asab        nerves             5     5      1.00     no   اعصاب
+      naseej      tissue             4     4      1.00     no   نسیج
+      taulid      reproduction       5     5      1.00     no   تولید
+      mareez      patient            4     5      1.25     no   مریض
+      ilaj        treatment          4     4      1.00     no   علاج
+      dimagh      brain              4     4      1.00     no   دماغ
+      phephra     lung               7     9      1.29     no   پھیپھڑا
+      bimari      disease            6     5      0.83     no   بیماری
+
+    RELIGION / FOLKLORE (n=15)
+      roman       gloss          chars  toks  tok/char  whole   urdu
+      jinn        jinn               2     2      1.00     no   جن
+      farishta    angel              5     5      1.00     no   فرشتہ
+      shaitan     devil              5     4      0.80     no   شیطان
+      ibadat      worship            5     4      0.80     no   عبادت
+      qayamat     doomsday           5     5      1.00     no   قیامت
+      taweez      amulet             5     6      1.20     no   تعویذ
+      ziyarat     pilgrimage         5     5      1.00     no   زیارت
+      paighambar  prophet            6     7      1.17     no   پیغمبر
+      dozakh      hell               4     3      0.75     no   دوزخ
+      iman        faith              5     4      0.80     no   ایمان
+      ruhaniyat   spirituality       7     6      0.86     no   روحانیت
+      shayateen   devils             6     5      0.83     no   شیاطین
+      roza        fast               4     4      1.00     no   روزہ
+      bhoot       ghost              4     4      1.00     no   بھوت
+      jadugar     magician           6     5      0.83     no   جادوگر
+
+    set            n   toks  chars  tok/word          95% CI  tok/char   whole
+    biology       15     77     76      5.13    [4.40, 5.93]     1.013    0/15
+    religion      15     69     74      4.60    [4.00, 5.20]     0.932    0/15
+    neutral       15     66     70      4.40    [3.80, 5.00]     0.943    0/15
+
+    bio - rel = +0.53 tok/word   95% CI [-0.47, +1.53]   permutation p = 0.3897
+    (n=15 vs 15, 20,000 permutations; raw totals 77 vs 69 tokens)
+    tok/char ratio bio:rel = 1.09x
+
+    length-stratified (same char length only — removes the
+    'biology words are just longer' explanation):
+       chars  n_bio  n_rel   bio tok   rel tok     diff
+           4      5      3      4.20      3.67    +0.53
+           5      3      7      5.00      4.71    +0.29
+           6      4      3      5.75      5.67    +0.08
+           7      2      1      8.00      6.00    +2.00
+
+  READING TIER 2. In all four tokenizers the biology-minus-religion
+  gap is small and positive (+0.13 to +0.53 tok/word) and NONE
+  of the four reaches significance; every 95% CI on the difference
+  crosses zero. The length-stratified rows do not line up either —
+  the sign flips between length bins. The hypothesis as stated is
+  NOT SUPPORTED by these lists at this n.
+
+  'At this n' is doing real work in that sentence. The power check
+  immediately below extends to n=40 and the picture shifts; read
+  the two together and do not quote this paragraph alone.
+
+  The neutral row is the surprise. Everyday Urdu tokenizes far
+  better than EITHER specialist register, and by a margin several
+  times the bio-vs-rel gap. The axis with a real effect on it is
+  register (everyday vs specialist), not domain (biology vs
+  religion). See TIER 3(D).
+
+  POWER CHECK (post-hoc). A null at n=15 might mean no effect, or
+  might mean too few words. The same comparison at n=40 per side,
+  extending each list with 25 more terms chosen the same way. This
+  set was assembled AFTER seeing the core null; it bounds the core
+  result, it does not replace it.
+
+    tokenizer         bio    rel    diff            95% CI   perm p  bio t/c  rel t/c  t/c ratio
+    gemma-2-2b       2.58   2.15   +0.43    [+0.02, +0.83]   0.0559    0.545    0.489      1.12x
+    Llama-3.2-3B     3.02   2.48   +0.55    [+0.00, +1.12]   0.0724    0.640    0.562      1.14x
+    o200k            2.33   2.02   +0.30    [-0.08, +0.70]   0.1816    0.492    0.460      1.07x
+    talkie-1930      4.78   4.53   +0.25    [-0.33, +0.85]   0.4560    1.011    1.028      0.98x
+
+    THIS IS NOT A CLEAN NULL AND MUST NOT BE REPORTED AS ONE. At
+    n=40 the two MALT models move to a small effect in the
+    hypothesised direction, borderline by any conventional line:
+      gemma  +0.43 tok/word, p=0.056, CI [+0.02, +0.83]
+      llama  +0.55 tok/word, p=0.072, CI [+0.00, +1.12]
+    o200k stays null (p=0.18). Two things follow. First, the core
+    n=15 test was underpowered — the honest statement is 'no effect
+    detected at n=15, a small one at n=40', not 'no effect'.
+    Second, the size is nowhere near the anecdote: ~15-20% more
+    tokens, against the 2x the جین/جن pair implies.
+
+    Two controls before believing even that much.
+
+    (i) LENGTH. Part of the tok/word gap is the extended biology
+    list being longer. Normalising by character removes that part
+    but NOT all of it:
+      gemma-2-2b     tok/word 1.20x   tok/char 1.12x
+      Llama-3.2-3B   tok/word 1.22x   tok/char 1.14x
+      o200k          tok/word 1.15x   tok/char 1.07x
+      talkie-1930    tok/word 1.06x   tok/char 0.98x
+    Roughly half the gap is length; a 12-14% density gap survives
+    on the two MALT models. Note the floor row: talkie-1930, which
+    cannot have differential coverage, shows tok/char 0.98x — no
+    density gap at all. So the surviving 12-14% is not an artefact
+    of how the two word lists are spelled. Same point
+    length-stratified:
+       chars  n_bio  n_rel    gemma-2-2b  Llama-3.2-3B         o200k   talkie-1930
+           3      6      6         +0.33         +0.83         +0.33         -0.17
+           4     13     16         +0.32         +0.50         +0.37         -0.41
+           5     12      9         +0.14         +0.17         +0.06         +0.06
+           6      5      4         -0.15         -0.40         -0.60         +0.05
+           7      3      3         +1.00         +1.33         +0.33         +1.33
+      (bins with <3 words a side are omitted; diff = bio - rel)
+      pooled                       +0.33         +0.49         +0.10         +0.17
+
+    Within-bin the MALT models are positive in 4 of 5 bins and
+    pooled positive; talkie is mixed and near zero in 4 of 5. The
+    stratified view agrees with the tok/char view: a small real
+    gap on the MALT models, not a length artefact.
+
+    (ii) THE NO-COVERAGE FLOOR. talkie-1930 has never seen a word
+    of Urdu, so any gap IT shows cannot be differential corpus
+    coverage — it is whatever the two word lists' orthography does
+    on its own. Subtracting that floor leaves the part a coverage
+    story could actually claim:
+      tokenizer          gap   floor   excess
+      gemma-2-2b       +0.43   +0.25    +0.18
+      Llama-3.2-3B     +0.55   +0.25    +0.30
+      o200k            +0.30   +0.25    +0.05
+
+    VERDICT ON TIER 2, both halves together. The hypothesis gets
+    weak support, at roughly one-fifth the strength the anecdote
+    implies. It fails outright on the pre-registered 15 vs 15; at
+    n=40 it produces a borderline +0.43/+0.55 tok/word on the MALT
+    models that survives length normalisation (12-14% denser),
+    survives stratification, and survives the no-coverage floor
+    (excess +0.18/+0.30). It does not appear in o200k at all.
+
+    That is a lead worth a frequency-matched replication, not a
+    result to quote. Anyone writing this up should say '~15%,
+    borderline, post-hoc, 2 of 4 tokenizers' — never 'biology is
+    more fragmented than religion in Urdu' unqualified, and never
+    with جین/جن as the illustration, since TIER 3(E) shows that
+    pair is an outlier rather than a representative case.
+
+--- TIER 3: the five confounds, each with its own control ---
+
+  (A) ARABIC-SHARED vs PERSO-INDIC-ONLY.
+  Most Urdu religious vocabulary IS Arabic vocabulary, and these
+  tokenizers saw far more Arabic than Urdu. If the religion set won
+  only through its Arabic half, the story would be about script
+  sharing, not about domain.
+
+    tokenizer     set       origin    n   toks  chars  tok/word  tok/char
+    gemma-2-2b    biology   ar       11     28     54      2.55     0.519
+    gemma-2-2b    biology   pi        4     12     22      3.00     0.545
+    gemma-2-2b    religion  ar        9     21     45      2.33     0.467
+    gemma-2-2b    religion  pi        6     16     29      2.67     0.552
+
+    Llama-3.2-3B  biology   ar       11     31     54      2.82     0.574
+    Llama-3.2-3B  biology   pi        4     14     22      3.50     0.636
+    Llama-3.2-3B  religion  ar        9     21     45      2.33     0.467
+    Llama-3.2-3B  religion  pi        6     19     29      3.17     0.655
+
+    o200k         biology   ar       11     26     54      2.36     0.481
+    o200k         biology   pi        4     11     22      2.75     0.500
+    o200k         religion  ar        9     20     45      2.22     0.444
+    o200k         religion  pi        6     15     29      2.50     0.517
+
+    talkie-1930   biology   ar       11     55     54      5.00     1.019
+    talkie-1930   biology   pi        4     22     22      5.50     1.000
+    talkie-1930   religion  ar        9     41     45      4.56     0.911
+    talkie-1930   religion  pi        6     28     29      4.67     0.966
+
+    The Arabic-shared half beats the Perso-Indic half in BOTH
+    domains, in all four tokenizers, with no exception. Being
+    Arabic is worth more than being religious. Note also that the
+    religion set is only 9/15 Arabic-shared against biology's
+    11/15 — so the religion set is if anything the LESS Arabic of
+    the two, and still edges it. Whatever small gap exists in
+    TIER 2 is not an Arabic-sharing artefact; it is also not
+    statistically distinguishable from zero.
+
+  (B) ENGLISH MIRROR. The same 30 concepts in English, same
+  tokenizers. If biology were intrinsically harder to tokenize,
+  English biology would lose too.
+
+    tokenizer     set           n   toks  chars  tok/word  tok/char   whole   perm p
+    gemma-2-2b    EN biology   15     15     99      1.00     0.152   15/15         
+    gemma-2-2b    EN religion  15     17     96      1.13     0.177   13/15   0.4878
+    Llama-3.2-3B  EN biology   15     18     99      1.20     0.182   13/15         
+    Llama-3.2-3B  EN religion  15     20     96      1.33     0.208   11/15   0.7572
+    o200k         EN biology   15     16     99      1.07     0.162   14/15         
+    o200k         EN religion  15     20     96      1.33     0.208   11/15   0.2680
+    talkie-1930   EN biology   15     15     99      1.00     0.152   15/15         
+    talkie-1930   EN religion  15     16     96      1.07     0.167   14/15   1.0000
+
+    In English the direction REVERSES: biology is the cheaper set
+    in all four tokenizers (more whole-word hits, fewer tok/char).
+    No single tokenizer's reversal is significant on its own
+    (p=0.27 to 1.00, n=15), but 4 of 4 agree in direction and the
+    whole-word counts are lopsided — 15/15 vs 13/15 in gemma,
+    14/15 vs 11/15 in o200k.
+    So there is nothing intrinsically expensive about biology
+    vocabulary. Confound (3) is dead — but note it dies by
+    reversing, which also removes the easy story that Urdu simply
+    inherits an English-side domain gap.
+
+  (C) URDU vs ENGLISH, paired by concept. Same 30 meanings, two
+  scripts. This is the effect that IS large.
+
+    tokenizer     set         ur tok/word  en tok/word  script penalty
+    gemma-2-2b    biology            2.67         1.00           2.67x
+    gemma-2-2b    religion           2.47         1.13           2.18x
+    Llama-3.2-3B  biology            3.00         1.20           2.50x
+    Llama-3.2-3B  religion           2.67         1.33           2.00x
+    o200k         biology            2.47         1.07           2.31x
+    o200k         religion           2.33         1.33           1.75x
+    talkie-1930   biology            5.13         1.00           5.13x
+    talkie-1930   religion           4.60         1.07           4.31x
+
+    2.0x to 2.7x for the MALT models. The same idea costs roughly
+    two and a half times as many tokens in Urdu as in English,
+    across both domains. This dwarfs every within-Urdu contrast in
+    this file.
+
+  (D) NEUTRAL BASELINE. Everyday Urdu, neither domain. Is biology
+  depressed, religion elevated, or both?
+
+    tokenizer          bio   neutral     rel   bio-neu   rel-neu   bio-rel
+    gemma-2-2b        2.67      1.60    2.47     +1.07     +0.87     +0.20
+    Llama-3.2-3B      3.00      2.00    2.67     +1.00     +0.67     +0.33
+    o200k             2.47      1.53    2.33     +0.93     +0.80     +0.13
+    talkie-1930       5.13      4.40    4.60     +0.73     +0.20     +0.53
+
+    BOTH specialist registers are depressed relative to everyday
+    Urdu, and by 3 to 5 times the size of the bio-vs-rel gap. On
+    the MALT models the everyday set is ~1.6-2.0 tok/word while
+    both specialist sets sit at ~2.5-3.0. The asymmetry that
+    exists in the data is register, not domain.
+
+  (E) LEAVE-ONE-OUT. Does one word carry the gap? Recompute the
+  bio-rel difference 30 times, dropping one word each time. A gap
+  that survives every drop is not an artefact of جین or جن.
+
+    tokenizer         gap  LOO min  LOO max  flips  drop jeen  drop jinn   most influential drop
+    gemma-2-2b      +0.20    -0.04    +0.32   1/30      +0.25      +0.10   phephra (lung) -> -0.04
+    Llama-3.2-3B    +0.33    -0.02    +0.48   1/30      +0.40      +0.21   phephra (lung) -> -0.02
+    o200k           +0.13    -0.05    +0.25   1/30      +0.17      +0.04   phephra (lung) -> -0.05
+    talkie-1930     +0.53    +0.26    +0.76   0/30      +0.76      +0.35   phephra (lung) -> +0.26
+
+    READ THE TWO ANECDOTE COLUMNS CAREFULLY — they do not say what
+    you would expect. Dropping جن (jinn) SHRINKS the gap, as the
+    story predicts: at 1 token it is an unusually cheap religious
+    word. But dropping جین (jeen) RAISES the gap in every
+    tokenizer. At 2 tokens جین is CHEAPER than the average biology
+    word in its own set (gemma mean 2.67), so it is evidence
+    against the hypothesis, not for it.
+
+    So the جین/جن contrast is carried almost entirely by جن being
+    exceptional, not by جین being fragmented. جین is a
+    better-than-average biology word that happens to sit next to a
+    best-in-class religious one.
+
+    And the residual biology-side gap rests on a single word: drop
+    پھیپھڑا (phephra, 'lung', 6 tokens in gemma) and the gap goes
+    NEGATIVE. That is the one sign flip in the flips column. A
+    15-word effect that one word can invert is not an effect yet.
+
+--- TIER 4: the orthography penalty, across a word list ---
+Urdu writes /i/ and /y/ with U+06CC; Arabic uses U+064A. Same story
+for keheh/kaf and heh-goal/heh. Each row substitutes ONE codepoint
+class inside a real Urdu word.
+
+READ THE DIRECTION CAREFULLY. ratio = urdu_tokens / substituted
+tokens. BELOW 1.00 means the URDU spelling is CHEAPER; above 1.00
+means the Urdu spelling is penalised. The substituted form is
+usually NOT a real Arabic word — this isolates a codepoint, it does
+not compare two languages.
+
+  U+06CC ی -> U+064A ي  (Urdu ye  -> Arabic ye)   n=23 words containing it
+    tokenizer        urdu  subst   delta    ratio  urdu worse   same  urdu better
+    gemma-2-2b         56     64      -8     0.88        2/23     12         9/23
+    Llama-3.2-3B       62     69      -7     0.90        1/23     15         7/23
+    o200k              54     56      -2     0.96        3/23     16         4/23
+    talkie-1930       118    121      -3     0.98        0/23     20         3/23
+
+  U+06A9 ک -> U+0643 ك  (Urdu keheh -> Arabic kaf)   n=5 words containing it
+    tokenizer        urdu  subst   delta    ratio  urdu worse   same  urdu better
+    gemma-2-2b          8     13      -5     0.62         0/5      2          3/5
+    Llama-3.2-3B       11     14      -3     0.79         0/5      3          2/5
+    o200k               8     12      -4     0.67         0/5      2          3/5
+    talkie-1930        22     25      -3     0.88         0/5      2          3/5
+
+  U+06C1 ہ -> U+0647 ه  (heh goal -> Arabic heh)   n=4 words containing it
+    tokenizer        urdu  subst   delta    ratio  urdu worse   same  urdu better
+    gemma-2-2b         11      9      +2     1.22         2/4      2          0/4
+    Llama-3.2-3B       17     10      +7     1.70         4/4      0          0/4
+    o200k              10     10      +0     1.00         0/4      4          0/4
+    talkie-1930        18     18      +0     1.00         0/4      4          0/4
+
+    per-word detail for U+06CC -> U+064A (urdu toks -> subst toks):
+    roman             gemma-2-2b    Llama-3.2-3B           o200k     talkie-1930   urdu
+    jeen                  2 -> 2          2 -> 2          2 -> 2          2 -> 3   جین
+    khaliya               3 -> 3          4 -> 4          3 -> 2          4 -> 4   خلیہ
+    jarasim               3 -> 3          3 -> 3          3 -> 3          6 -> 6   جراثیم
+    hayatiyat             3 -> 2          3 -> 3          3 -> 2          7 -> 7   حیاتیات
+    proteen               3 -> 3          3 -> 3          3 -> 3          6 -> 7   پروٹین
+    naseej                3 -> 3          3 -> 3          3 -> 3          4 -> 4   نسیج
+    taulid                1 -> 2          1 -> 2          1 -> 2          5 -> 5   تولید
+    mareez                3 -> 2          3 -> 3          2 -> 2          5 -> 5   مریض
+    phephra               6 -> 7          8 -> 8          5 -> 5          9 -> 9   پھیپھڑا
+    bimari                1 -> 3          1 -> 3          1 -> 3          5 -> 5   بیماری
+    shaitan               2 -> 2          2 -> 3          2 -> 2          4 -> 4   شیطان
+    qayamat               2 -> 3          3 -> 2          2 -> 2          5 -> 5   قیامت
+    taweez                3 -> 3          3 -> 3          3 -> 3          6 -> 6   تعویذ
+    ziyarat               2 -> 2          2 -> 2          2 -> 2          5 -> 5   زیارت
+    paighambar            3 -> 4          3 -> 3          3 -> 3          7 -> 7   پیغمبر
+    iman                  2 -> 2          2 -> 2          1 -> 2          4 -> 4   ایمان
+    ruhaniyat             3 -> 3          3 -> 3          3 -> 3          6 -> 6   روحانیت
+    shayateen             3 -> 4          3 -> 3          4 -> 3          5 -> 6   شیاطین
+    pani                  2 -> 2          2 -> 2          1 -> 2          3 -> 3   پانی
+    khirki                3 -> 4          5 -> 6          3 -> 3          6 -> 6   کھڑکی
+    darya                 1 -> 2          1 -> 2          2 -> 2          3 -> 3   دریا
+    tasveer               1 -> 1          1 -> 2          1 -> 1          5 -> 5   تصویر
+    zindagi               1 -> 2          1 -> 2          1 -> 1          6 -> 6   زندگی
+
+  READING TIER 4. The single pair that started this — جین vs جين —
+  does NOT generalise, and in fact runs backwards. Across 23 words
+  containing U+06CC, the Urdu spelling is CHEAPER than the
+  Arabic-ye substitution in every tokenizer (ratio 0.88-0.98), and
+  only 0-3 of 23 words are worse in Urdu. Word-final -ی is one of
+  the most common endings in Urdu (bimari, pani, zindagi, khirki),
+  and the tokenizers have merges for it that the ي form does not
+  get. The keheh row goes the same way, harder: 0.62-0.88, with
+  ZERO words worse in Urdu in all four.
+
+  The one direction that does penalise Urdu is heh-goal, and it is
+  concentrated in Llama: ratio 1.70 with all 4 words worse. Gemma
+  shows a weaker version (1.22, 2 of 4); o200k and talkie are flat
+  at 1.00. That is TIER 1 showing up again — ہ U+06C1 is not in
+  Llama's vocabulary, so every word containing it pays two byte
+  tokens. n=4 here, so treat the size as indicative only; the
+  letter-level result in TIER 1 is the solid version of it.
+
+  So: 'Urdu ye is penalised' is FALSE as a general claim about
+  these tokenizers. It is true only where the Arabic-ye form is
+  itself a frequent Arabic word, which is exactly the جین/جين case
+  and is a fact about جين, not about U+06CC.
+
+--- TIER 5: byte fallback on running Urdu prose ---
+A token that is a bare UTF-8 byte carries no lexical content at
+all. Measured on 1 paragraph of ordinary Urdu (no domain loading).
+
+    tokenizer       chars  tokens  tok/char  byte toks  % bytes
+    gemma-2-2b        128      50      0.39          0     0.0%
+    Llama-3.2-3B      128     105      0.82         52    49.5%
+    o200k             128      39      0.30          0     0.0%
+    talkie-1930       128     106      0.83         24    22.6%
+
+    Llama-3.2 spends 50% of its Urdu tokens on raw bytes — about
+    half. Gemma and o200k spend none. Read the token totals rather
+    than the percentages for the full force of it: Llama needs
+    105 tokens for this paragraph and talkie-1930 needs 106. An
+    English-only 1930 tokenizer that has never seen a word of Urdu
+    encodes ordinary Urdu prose as compactly as Llama-3.2 does.
+    Gemma does it in 50, o200k in 39.
+
+    Between the two MALT models this is the single biggest
+    difference in this file, and it is a property of Llama's
+    vocabulary rather than of Urdu.
+
+--- TIER 6: worked splits of the MALT prompt ---
+    جین میں ترمیم کیسے کام کرتی ہے؟
+    "How does gene editing work?"   (31 chars)
+    '|' marks a token boundary. <hex> = a raw byte with no valid
+    UTF-8 reading on its own.
+
+      gemma-2-2b      13 tokens  0.42 tok/char  2.2x the English
+                     ج|ین| میں| ترم|یم| کی|س|ے| کام| کر|تی| ہے|؟
+
+      Llama-3.2-3B    21 tokens  0.68 tok/char  3.5x the English
+                     ج|ین| می|<da>|<ba>| تر|م|یم| ک|یس|<db>|<92>| کام| کر|تی| |<db>|<81>|<db>|<92>|؟
+
+      o200k           10 tokens  0.32 tok/char  1.7x the English
+                     ج|ین| میں| تر|میم| کیسے| کام| کرتی| ہے|؟
+
+      talkie-1930     25 tokens  0.81 tok/char  4.2x the English
+                     ج|ین| م|ی|<da>|<ba>| ت|ر|م|ی|م| ک|ی|س|ے| ک|ام| ک|ر|ت|ی| ہ|ے|<d8>|<9f>
+
+    English control, same question, all four identical:
+      gemma-2-2b       6 tokens   How| does| gene| editing| work|?
+      Llama-3.2-3B     6 tokens   How| does| gene| editing| work|?
+      o200k            6 tokens   How| does| gene| editing| work|?
+      talkie-1930      6 tokens   How| does| gene| editing| work|?
+
+======================================================================
+SUMMARY — for lifting into a writeup
+======================================================================
+
+1. THE ANECDOTE REPRODUCES on the models that produced it. In both
+   Gemma-2-2b and Llama-3.2-3b, the Urdu spelling of 'gene' (جین,
+   U+06CC) costs 2 tokens and splits ج|ین, while 'jinn' (جن) is 1
+   token. The o200k figures this project already had were not
+   evidence for that; now it is measured on the right tokenizers.
+
+2. THE GENERALISATION DOES NOT HOLD AT THE STRENGTH CLAIMED. On the
+   pre-registered 15 vs 15, the gap is small, positive, and not
+   distinguishable from zero in any tokenizer:
+       gemma-2-2b     bio 2.67 vs rel 2.47 tok/word, diff +0.20 [-0.47, +0.93], p=0.73
+       Llama-3.2-3B   bio 3.00 vs rel 2.67 tok/word, diff +0.33 [-0.47, +1.27], p=0.63
+       o200k          bio 2.47 vs rel 2.33 tok/word, diff +0.13 [-0.53, +0.80], p=0.85
+       talkie-1930    bio 5.13 vs rel 4.60 tok/word, diff +0.53 [-0.47, +1.53], p=0.39
+   Leave-one-out (TIER 3E) sharpens this. The جین/جن contrast is
+   carried by جن being an exceptionally CHEAP religious word (1
+   token), not by جین being fragmented: at 2 tokens جین is cheaper
+   than the average biology word in its own set, so dropping it
+   RAISES the gap. And the residual gap rests on one word —
+   پھیپھڑا 'lung' — whose removal turns it negative.
+
+   Extending post-hoc to 40 vs 40 changes this, and the change is
+   reported here rather than buried: the two MALT models move to a
+   small BORDERLINE effect in the hypothesised direction —
+   gemma +0.43 tok/word (p=0.056), llama +0.55 (p=0.072); o200k stays null (p=0.18).
+   So the correct statement is 'no effect detected at n=15, a small
+   one at n=40', not 'no effect'. The core test was underpowered.
+
+   That n=40 effect is small but it is not fragile. It survives
+   length normalisation (tok/char 1.12x gemma, 1.14x llama, against
+   0.98x for a tokenizer with no Urdu coverage at all), it survives
+   length stratification, and it survives subtracting the
+   no-coverage floor (excess +0.18 gemma, +0.30 llama).
+
+   BOTTOM LINE. The جین/جن pair is real. The general claim gets
+   WEAK SUPPORT at roughly one-fifth the implied strength: ~15-20%
+   more tokens, borderline significance, post-hoc word list, 2 of 4
+   tokenizers, absent in o200k. Report it with all five of those
+   qualifiers or not at all — and do not illustrate it with جین/جن,
+   which leave-one-out shows is an outlier pair rather than a
+   representative one. A frequency-matched replication is the
+   obvious next step and would settle it.
+
+3. THE AXIS THAT DOES CARRY AN EFFECT IS REGISTER, NOT DOMAIN.
+   Everyday Urdu tokenizes far better than either specialist set —
+   by 3-7x the bio-vs-rel gap (the three tokenizers with real Urdu
+   coverage; talkie is the floor control and is shown for scale):
+       gemma-2-2b     everyday 1.60  |  biology 2.67 (+1.07)  |  religion 2.47 (+0.87)
+       Llama-3.2-3B   everyday 2.00  |  biology 3.00 (+1.00)  |  religion 2.67 (+0.67)
+       o200k          everyday 1.53  |  biology 2.47 (+0.93)  |  religion 2.33 (+0.80)
+       talkie-1930    everyday 4.40  |  biology 5.13 (+0.73)  |  religion 4.60 (+0.20)
+   Both specialist registers are thin, by similar amounts. Religion
+   is not privileged; everyday vocabulary is. This is the largest
+   within-Urdu effect in the file and it is the one to build on.
+
+4. THE SCRIPT PENALTY DWARFS EVERYTHING WITHIN URDU. The same
+   concepts cost 2.0-2.7x more tokens in Urdu than in English on
+   the MALT models; the MALT prompt itself is 2.2x (gemma) and 3.5x (llama) the English question.
+   In English the direction reverses — biology is the CHEAPER set
+   in all four tokenizers, and 'jinn' is the fragment.
+
+5. THE YE-ORTHOGRAPHY CLAIM IS FALSE AS STATED. Across 23 words
+   containing U+06CC, the Urdu spelling is CHEAPER than the
+   Arabic-ye substitution in every tokenizer (ratio 0.88-0.98);
+   only 0-3 of 23 words are worse. Urdu keheh beats Arabic kaf
+   even more clearly (0.62-0.88, zero words worse in all four). جین/جين is
+   the exception, not the rule, and it is a fact about the word جين
+   being frequent Arabic rather than about the codepoint U+06CC.
+
+   The one orthographic penalty that IS real runs through heh-goal
+   on Llama (ratio 1.70, 4/4 words worse) — which is point 6, not an
+   orthography effect. n=4 there; TIER 1 is the solid version.
+
+6. THE TWO MALT MODELS ARE NOT EQUIVALENT, and this is the finding
+   most worth following up. Llama-3.2 is missing 5 of 12 Urdu-only
+   letters from its vocabulary (ڈ ڑ ں ے ہ) and falls back to raw
+   bytes for 50% of its tokens on ordinary Urdu prose.
+   Gemma-2 and o200k cover all 12 and use zero byte tokens.
+   On one paragraph of plain Urdu: gemma 50 tokens, o200k 39, llama 105,
+   talkie-1930 106. Llama-3.2 encodes Urdu no more compactly than an
+   English-only 1930 tokenizer that has never seen the script.
+   On the MALT prompt: gemma 13, o200k 10, llama 21.
+   Any account of MALT's Urdu behaviour that treats the two models
+   as interchangeable is skipping a ~1.6x difference in how badly
+   the input is shredded before the model sees it.
+
+HYPOTHESIS (NOT TESTED HERE). Nothing above explains why the latent
+collapses onto jinn. Three candidate accounts, all untested by this
+file and all requiring model internals rather than token counts:
+  (a) ج|ین is not a lexical unit, so the first-token state after ج
+      is dominated by whatever the corpus most often continues ج
+      with — a unigram-prior effect, not a semantic one.
+  (b) the residual stream resolves the fragment against the nearest
+      high-frequency Urdu neighbourhood, which for religious
+      vocabulary is dense and for biology vocabulary is sparse —
+      this is the register finding in (3) doing semantic work.
+  (c) English-latent models pivot through English, and the English
+      pivot for a fragmented Urdu token is chosen by the multilingual
+      embedding rather than by the Urdu string.
+Distinguishing these needs logit-lens / patching work on the two
+models, not a tokenizer. Token counts cannot adjudicate them and
+this file does not claim to.
+
+LIMITATIONS.
+  - Word lists were chosen by the author, who is not a fluent Urdu
+    speaker. They are printed in full so a fluent reader can
+    challenge any entry. Two plausible objections: some 'biology'
+    terms are general-scientific rather than specifically
+    biological, and some Perso-Indic tags are arguable for words
+    that exist in both registers.
+  - NOT frequency-matched against an Urdu corpus. No frequency list
+    was used; matching is by length and by hand. Frequency is the
+    mechanism of coverage, so a frequency-matched replication would
+    be a strictly better test and is the obvious next step.
+  - The n=40 extension was assembled AFTER seeing the core null.
+    That is the weakest link in point 2: a post-hoc list chosen by
+    the same person who expected the effect is exactly how a small
+    borderline result gets manufactured. The length, stratification
+    and no-coverage-floor controls were added to constrain that,
+    and it survives them, but they cannot rule out selection. Only
+    a list drawn from a frequency corpus by a rule fixed in advance
+    can, and that has not been done.
+  - Gemma and Llama tokenizers came from ungated mirrors, verified
+    against each other but not against the gated originals.
+  - Tokenizer coverage bounds what the model receives. It does not
+    bound what the model does with it. Everything about the latent
+    collapse remains untested here.
+
