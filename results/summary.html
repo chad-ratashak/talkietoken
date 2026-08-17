@@ -47,7 +47,46 @@
   .rrow .d{width:34px; flex:none; text-align:right; color:var(--text2); font-variant-numeric:tabular-nums;}
   .foot{margin-top:2.5rem; padding-top:1rem; border-top:.5px solid var(--border);
     font-size:12px; color:var(--text3);}
-  @media (max-width:560px){.cards{grid-template-columns:repeat(2,1fr)} .cols{grid-template-columns:1fr}}
+
+  /* --- atomic-age module --- */
+  .tok{display:inline-block; font-size:11px; padding:2px 5px; border-radius:4px;
+    margin:0 3px 3px 0; white-space:pre;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  .tk{background:var(--coral-bg); color:var(--coral-fg);}
+  .o2{background:var(--blue-bg); color:var(--blue-fg);}
+  .n{display:inline-block; min-width:14px; font-size:11px; font-weight:600;
+    color:var(--text3); font-variant-numeric:tabular-nums;}
+  .arow{display:grid; grid-template-columns:136px 1fr 1fr; gap:8px;
+    align-items:start; padding:8px 0; border-bottom:.5px solid var(--border);}
+  .arow .w{font-weight:500; font-size:13px; padding-top:2px;}
+  .arow .note{display:block; font-size:11px; color:var(--text3);
+    font-weight:400; line-height:1.35; margin-top:1px;}
+  .wordtag{display:inline-block; font-size:10px; padding:1px 5px; border-radius:4px;
+    background:var(--track); color:var(--text2); margin-left:4px; vertical-align:1px;}
+  .cgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:6px;}
+  .chead{font-size:12px; font-weight:600; margin-bottom:2px;}
+  .csub{font-size:11px; color:var(--text3); margin-bottom:8px; line-height:1.35;}
+  .prow{display:flex; align-items:baseline; gap:6px; font-size:12px; padding:3px 0;
+    border-bottom:.5px solid var(--border);}
+  .prow .pn{flex:1;}
+  .prow .pc{font-variant-numeric:tabular-nums; font-size:11px; color:var(--text2);}
+  .bq{padding:9px 0; border-bottom:.5px solid var(--border);}
+  .bqh{display:flex; align-items:baseline; gap:10px; justify-content:space-between;}
+  .bqp{font-size:12px; font-weight:500;}
+  .bqn{font-size:11px; color:var(--text3); white-space:nowrap; flex:none;
+    font-variant-numeric:tabular-nums;}
+  .bqt{font-size:12px; color:var(--text2); margin-top:3px; line-height:1.5;
+    font-style:italic;}
+  .hyp{border-left:2px solid var(--border); padding:2px 0 2px 12px; margin:10px 0;}
+  .hyp .hq{font-size:13px; font-weight:500;}
+  .hyp .ha{font-size:12px; color:var(--text2); margin-top:2px;}
+  .v{display:inline-block; font-size:10px; font-weight:600; padding:1px 6px;
+    border-radius:4px; margin-right:6px; vertical-align:1px;}
+  .v-yes{background:var(--coral-bg); color:var(--coral-label);}
+  .v-no{background:var(--blue-bg); color:var(--blue-label);}
+  .v-partial{background:var(--track); color:var(--text2);}
+  @media (max-width:560px){.cards{grid-template-columns:repeat(2,1fr)} .cols{grid-template-columns:1fr}
+    .cgrid{grid-template-columns:1fr} .arow{grid-template-columns:1fr; gap:2px}}
 </style>
 </head>
 <body>
@@ -80,10 +119,140 @@
     </div>
   </div>
 
+  <!-- ATOMIC:MARKUP:START -->
+  <div class="seclab" style="margin-top:2rem;">The bomb, before and after</div>
+  <div class="secsub">How many tokens each name costs, and how it breaks apart.
+    One token = the corpus saw that exact string often enough to earn a merge;
+    more pieces = less familiar. Every term is encoded with a leading space, the
+    form it takes in running text.</div>
+
+  <div class="nhead" style="grid-template-columns:136px 1fr 1fr;">
+    <span></span><span>talkie · 1880–1930</span><span>o200k · 2024</span></div>
+  <div id="atomic-places"></div>
+
+  <div class="seclab" style="margin-top:1.5rem;">Codenames</div>
+  <div class="secsub">Every name the project chose was assembled from words a
+    1930 reader already owned — which is exactly why the 1930 tokenizer swallows
+    them whole and means nothing by them.
+    <span class="wordtag">plain word</span> marks a term whose every piece is an
+    ordinary dictionary entry (checked against Webster's Second, 1934).</div>
+  <div id="atomic-hardware"></div>
+
+  <div class="seclab" style="margin-top:1.75rem;">Who was famous when</div>
+  <div class="secsub">Mean tokens per surname, by cohort. The <b>faded</b> column is
+    the control: if the measure only tracked "old tokenizers are bad at proper
+    nouns", faded names would be expensive in talkie too. They are the cheapest
+    thing in the table.</div>
+  <div id="atomic-cohorts"></div>
+
+  <div class="secsub" style="margin:14px 0 0;">Per surname, tokens
+    <span style="color:var(--coral-label);">in talkie</span> →
+    <span style="color:var(--blue-label);">in o200k</span>.
+    <span class="wordtag">word</span> marks a surname that is also an ordinary
+    dictionary word, where cheapness is the noun and not the person.</div>
+  <div class="cgrid" id="atomic-scientists"></div>
+
+  <div class="seclab" style="margin-top:1.75rem;">What the model actually says</div>
+  <div class="secsub">The vocabulary shows what the corpus saw; only generation
+    shows what the model thinks a name <i>means</i>. Each prompt asked 3 times at
+    temperature 0.7; the count is how many of the 3 recognised the modern referent.
+    Quotes are verbatim from <code>results/atomic-probes.json</code>. It rarely
+    pleads ignorance — it fills the gap with a confident period-styled entry.</div>
+  <div id="atomic-behavioral"></div>
+
+  <div class="seclab" style="margin-top:1.75rem;">Hypotheses</div>
+  <div class="secsub">What the vocabulary can settle on its own, and what needs
+    the model to actually answer a question.</div>
+  <div id="atomic-hyp"></div>
+  <!-- ATOMIC:MARKUP:END -->
+
+  <!-- PY:MARKUP:START -->
+  <div class="seclab" style="margin-top:2.25rem;">Python: leaked, or learned in the prompt?</div>
+  <div class="secsub">In-context learning cannot create a BPE merge — code pasted
+    into a prompt leaves no fossil. Corpus leakage must. So the vocabulary is a
+    one-sided test: Python-specific merges present would be strong evidence of
+    leakage; absent only bounds the tokenizer's corpus, never the weights.</div>
+
+  <div class="secsub" style="margin-top:10px;">The naive version of this test
+    fails, because almost every Python keyword is an ordinary English word.
+    <b id="py-kwline"></b> These carry no information either way — and neither
+    does <code>def</code>, which is a word-initial fragment of
+    <i>define, defend, default, deficient</i>.</div>
+
+  <div class="seclab" style="margin-top:1.25rem; font-size:13px;">Probes prose cannot explain</div>
+  <div class="secsub">Strings with no reading in 1930 English. A hit in the talkie
+    column would be the smoking gun.</div>
+  <div id="py-leak"></div>
+
+  <div class="seclab" style="margin-top:1.25rem; font-size:13px;">Decoys — hits that look like code and are not</div>
+  <div class="secsub">Each is in the talkie vocabulary. Each was checked against the
+    siblings it would have if it really were code.</div>
+  <div id="py-decoys"></div>
+
+  <div class="seclab" style="margin-top:1.75rem;">If the language were not made of English</div>
+  <div class="secsub">Python is close to a best case for a 1930 English model: its
+    keywords are English words whose ordinary meanings match their semantics
+    (<i>return, if, while, for…in, sum, len, sort, open</i>). Bar = tokens per
+    character in talkie — the cost of writing the same task in each notation.
+    Ratio against o200k hides this, because o200k has no merges for J or APL
+    either.</div>
+  <div id="py-spectrum"></div>
+  <div class="secsub" style="margin-top:10px;">Rows are ordered by how much
+    English the notation is made of, and the bars are <b>not</b> monotonic in
+    that order — J has no English at all yet costs less than Perl, because J is
+    terse ASCII. Token cost measures how compactly the tokenizer can write a
+    thing, not whether the model can do anything with it. Only APL is punished
+    by cost alone, and that is byte fallback rather than vocabulary. The
+    English content shows up in the generations below, not here.</div>
+
+  <div class="seclab" style="margin-top:1.5rem; font-size:13px;">Worked splits</div>
+  <div class="secsub">Note <i>what</i> the pieces are, not just how many.
+    <code>&lt;e2&gt;</code>-style pieces are raw bytes: the fallback path, carrying
+    no meaning at all.</div>
+  <div class="nhead" style="grid-template-columns:136px 1fr 1fr;">
+    <span></span><span>talkie · 1880–1930</span><span>o200k · 2024</span></div>
+  <div id="py-splits"></div>
+
+  <div class="seclab" style="margin-top:1.75rem;">What it generates</div>
+  <div class="secsub">n=3 per prompt at temperature 0.7, verbatim from
+    <code>results/lang-probes.json</code>. There is no o200k model to compare
+    against — o200k is a tokenizer, and its comparable artifact is the split
+    above.</div>
+  <div id="py-gen"></div>
+  <!-- PY:MARKUP:END -->
+
   <p class="foot">Behavioral neighborhood map (instruction-tuned chat model, single temp-0 sample;
   modern comparand is a different-family LLM) — not embedding geometry. Frequency ranks are a
   BPE merge-order proxy, comparable only as percentiles. True embedding-space drift (Procrustes /
   cosine) still requires the model checkpoint.</p>
+
+  <p class="foot" style="margin-top:.75rem; border:0; padding-top:0;">
+  <b>The bomb, before and after</b> — token counts are exact and reproducible
+  (<code>tokenizer-only/talkietoken-atomic.py</code>); merge rank remains a frequency
+  proxy, so single-name deltas are noisy and only the cohort pattern should be trusted.
+  The behavioral probes are n=3 per prompt at temperature 0.7 against the hosted
+  <i>instruction-tuned</i> chat model, not the base checkpoint — a period persona can be
+  imitated, which is why the vocabulary evidence is the forgery-resistant half and the
+  generations are illustration. Keyword counts were checked against the raw completions
+  by hand: an earlier pass scored the Los Alamos probe 3/3 for Texas-Alamo confusion
+  because “alamo” occurs in the question itself, and scored Millikan 0/3 for writing
+  “professor of physics”. Both are fixed in the script; keywords appearing in the prompt
+  are now excluded by rule.</p>
+
+  <p class="foot" style="margin-top:.75rem; border:0; padding-top:0;">
+  <b>Python</b> — the vocabulary test is one-sided by construction: in-context
+  learning cannot create a merge, so absence of Python merges bounds the
+  <i>tokenizer's</i> corpus and says nothing about what the weights saw; the two
+  can be trained on different data. Generation figures are n=3 at temperature 0.7
+  against the instruction-tuned chat endpoint. The counters measure whether the
+  demonstrated notation was imitated, <i>not</i> whether the program is correct —
+  on this evidence those come apart completely (Python and APL both keep the form
+  3/3 and are right 0/3). n=3 at pass@1 is not comparable to, and is no refutation
+  of, the cited HumanEval pass@100, which draws 100 samples and counts any single
+  success. Counterfactual notations are one snippet each, chosen by the author;
+  a real version would sample many tasks per language.
+  Sources: <code>tokenizer-only/talkietoken-python.py</code>,
+  <code>talkietoken-langprobes.py</code>.</p>
 </div>
 
 <script>
@@ -111,6 +280,1360 @@ const rows=(arr,color)=>arr.map(([w,d])=>`
     <span class="d">${d.toFixed(2)}</span></div>`).join("");
 document.getElementById("coral").innerHTML=rows(coral,"#D85A30");
 document.getElementById("blue").innerHTML=rows(blue,"#378ADD");
+
+/* ===================== atomic-age module =====================
+   All copy and numbers for this module live in the `atomic` object
+   below; the code under RENDER only lays it out. The measurements are
+   regenerated by tokenizer-only/render-atomic-module.py from
+   results/atomic.json — edit the probe, re-run that, don't hand-patch
+   numbers here. */
+/* ATOMIC-DATA:START */
+const atomic = {
+ "places": [
+  {
+   "term": "Hiroshima",
+   "note": "real city pre-1931 — Meiji garrison town and port",
+   "talkie_n": 2,
+   "o200k_n": 1,
+   "talkie_pieces": [
+    " Hirosh",
+    "ima"
+   ],
+   "o200k_pieces": [
+    " Hiroshima"
+   ],
+   "common_word": false
+  },
+  {
+   "term": "Nagasaki",
+   "note": "real city pre-1931 — treaty port, Madame Butterfly",
+   "talkie_n": 1,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " Nagasaki"
+   ],
+   "o200k_pieces": [
+    " Nag",
+    "asaki"
+   ],
+   "common_word": false
+  },
+  {
+   "term": "Los Alamos",
+   "note": "existed, but an obscure New Mexico ranch school",
+   "talkie_n": 3,
+   "o200k_n": 3,
+   "talkie_pieces": [
+    " Los",
+    " Al",
+    "amos"
+   ],
+   "o200k_pieces": [
+    " Los",
+    " Al",
+    "amos"
+   ],
+   "common_word": true
+  },
+  {
+   "term": "Alamogordo",
+   "note": "existed as a New Mexico railroad town",
+   "talkie_n": 2,
+   "o200k_n": 3,
+   "talkie_pieces": [
+    " Alam",
+    "ogordo"
+   ],
+   "o200k_pieces": [
+    " Alam",
+    "og",
+    "ordo"
+   ],
+   "common_word": false
+  },
+  {
+   "term": "Oak Ridge",
+   "note": "the site did not exist until 1942",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " Oak",
+    " Ridge"
+   ],
+   "o200k_pieces": [
+    " Oak",
+    " Ridge"
+   ],
+   "common_word": true
+  },
+  {
+   "term": "Hanford",
+   "note": "tiny farm town; the site did not exist until 1943",
+   "talkie_n": 1,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " Hanford"
+   ],
+   "o200k_pieces": [
+    " Han",
+    "ford"
+   ],
+   "common_word": false
+  },
+  {
+   "term": "the Alamo",
+   "note": "control — famous in 1930 and famous now",
+   "talkie_n": 2,
+   "o200k_n": 3,
+   "talkie_pieces": [
+    " the",
+    " Alamo"
+   ],
+   "o200k_pieces": [
+    " the",
+    " Al",
+    "amo"
+   ],
+   "common_word": true
+  }
+ ],
+ "hardware": [
+  {
+   "term": "Enola Gay",
+   "note": "rare given name + a very common adjective",
+   "talkie_n": 3,
+   "o200k_n": 3,
+   "talkie_pieces": [
+    " En",
+    "ola",
+    " Gay"
+   ],
+   "o200k_pieces": [
+    " En",
+    "ola",
+    " Gay"
+   ],
+   "common_word": false
+  },
+  {
+   "term": "Bockscar",
+   "note": "pure post-war coinage",
+   "talkie_n": 2,
+   "o200k_n": 3,
+   "talkie_pieces": [
+    " Bocks",
+    "car"
+   ],
+   "o200k_pieces": [
+    " B",
+    "ock",
+    "scar"
+   ],
+   "common_word": false
+  },
+  {
+   "term": "Fat Man",
+   "note": "two ordinary words",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " Fat",
+    " Man"
+   ],
+   "o200k_pieces": [
+    " Fat",
+    " Man"
+   ],
+   "common_word": true
+  },
+  {
+   "term": "Little Boy",
+   "note": "two ordinary words",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " Little",
+    " Boy"
+   ],
+   "o200k_pieces": [
+    " Little",
+    " Boy"
+   ],
+   "common_word": true
+  },
+  {
+   "term": "Manhattan Project",
+   "note": "place name + ordinary noun",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " Manhattan",
+    " Project"
+   ],
+   "o200k_pieces": [
+    " Manhattan",
+    " Project"
+   ],
+   "common_word": true
+  },
+  {
+   "term": "USS Indianapolis",
+   "note": "ship launched Nov 1931 — just past the cutoff",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " USS",
+    " Indianapolis"
+   ],
+   "o200k_pieces": [
+    " USS",
+    " Indianapolis"
+   ],
+   "common_word": false
+  },
+  {
+   "term": "Trinity",
+   "note": "ordinary theological noun pre-1931",
+   "talkie_n": 1,
+   "o200k_n": 1,
+   "talkie_pieces": [
+    " Trinity"
+   ],
+   "o200k_pieces": [
+    " Trinity"
+   ],
+   "common_word": true
+  },
+  {
+   "term": "atomic bomb",
+   "note": "both words existed; the compound did not",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " atomic",
+    " bomb"
+   ],
+   "o200k_pieces": [
+    " atomic",
+    " bomb"
+   ],
+   "common_word": true
+  },
+  {
+   "term": "uranium",
+   "note": "known element, mundane pre-1931",
+   "talkie_n": 1,
+   "o200k_n": 1,
+   "talkie_pieces": [
+    " uranium"
+   ],
+   "o200k_pieces": [
+    " uranium"
+   ],
+   "common_word": true
+  },
+  {
+   "term": "plutonium",
+   "note": "not synthesized until 1940",
+   "talkie_n": 3,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " pl",
+    "uton",
+    "ium"
+   ],
+   "o200k_pieces": [
+    " plut",
+    "onium"
+   ],
+   "common_word": true
+  },
+  {
+   "term": "fission",
+   "note": "biological sense only pre-1931",
+   "talkie_n": 1,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " fission"
+   ],
+   "o200k_pieces": [
+    " f",
+    "ission"
+   ],
+   "common_word": true
+  },
+  {
+   "term": "chain reaction",
+   "note": "chemistry sense existed; nuclear sense did not",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "talkie_pieces": [
+    " chain",
+    " reaction"
+   ],
+   "o200k_pieces": [
+    " chain",
+    " reaction"
+   ],
+   "common_word": true
+  }
+ ],
+ "scientists": {
+  "kept": [
+   {
+    "term": "Einstein",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "common_word": false
+   },
+   {
+    "term": "Curie",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": true
+   },
+   {
+    "term": "Planck",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": false
+   },
+   {
+    "term": "Bohr",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": false
+   },
+   {
+    "term": "Rutherford",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "common_word": true
+   },
+   {
+    "term": "Edison",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "common_word": false
+   },
+   {
+    "term": "Marconi",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": true
+   },
+   {
+    "term": "Freud",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "common_word": false
+   }
+  ],
+  "rose": [
+   {
+    "term": "Oppenheimer",
+    "talkie_n": 1,
+    "o200k_n": 3,
+    "common_word": false
+   },
+   {
+    "term": "Feynman",
+    "talkie_n": 3,
+    "o200k_n": 3,
+    "common_word": false
+   },
+   {
+    "term": "Fermi",
+    "talkie_n": 2,
+    "o200k_n": 2,
+    "common_word": false
+   },
+   {
+    "term": "Teller",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "common_word": true
+   },
+   {
+    "term": "Szilard",
+    "talkie_n": 3,
+    "o200k_n": 3,
+    "common_word": false
+   },
+   {
+    "term": "Wigner",
+    "talkie_n": 2,
+    "o200k_n": 2,
+    "common_word": false
+   },
+   {
+    "term": "Bethe",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": false
+   },
+   {
+    "term": "Ulam",
+    "talkie_n": 2,
+    "o200k_n": 2,
+    "common_word": false
+   },
+   {
+    "term": "Groves",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": true
+   },
+   {
+    "term": "Meitner",
+    "talkie_n": 2,
+    "o200k_n": 3,
+    "common_word": false
+   },
+   {
+    "term": "Turing",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": false
+   }
+  ],
+  "faded": [
+   {
+    "term": "Millikan",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": false
+   },
+   {
+    "term": "Eddington",
+    "talkie_n": 1,
+    "o200k_n": 3,
+    "common_word": false
+   },
+   {
+    "term": "Jeans",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "common_word": true
+   },
+   {
+    "term": "Michelson",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": false
+   },
+   {
+    "term": "Steinmetz",
+    "talkie_n": 1,
+    "o200k_n": 3,
+    "common_word": false
+   },
+   {
+    "term": "Haeckel",
+    "talkie_n": 1,
+    "o200k_n": 4,
+    "common_word": false
+   },
+   {
+    "term": "Tyndall",
+    "talkie_n": 1,
+    "o200k_n": 3,
+    "common_word": false
+   },
+   {
+    "term": "Osler",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": false
+   },
+   {
+    "term": "Burbank",
+    "talkie_n": 1,
+    "o200k_n": 3,
+    "common_word": true
+   },
+   {
+    "term": "Bergson",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "common_word": false
+   }
+  ]
+ },
+ "cohortMeans": {
+  "kept": {
+   "t": 1.0,
+   "o": 1.5,
+   "n": 8,
+   "whole": 8,
+   "label": "famous before 1931 and still famous"
+  },
+  "rose": {
+   "t": 1.7273,
+   "o": 2.2727,
+   "n": 11,
+   "whole": 5,
+   "label": "made famous by the war and after"
+  },
+  "faded": {
+   "t": 1.0,
+   "o": 2.5,
+   "n": 10,
+   "whole": 10,
+   "label": "famous then, largely forgotten now"
+  }
+ },
+ "behavioral": [
+  {
+   "prompt": "What is the Enola Gay?",
+   "quote": "The Enola Gay is a measure used in Scotland, containing six imperial pints, or thirty-six English quarts.",
+   "k": 0,
+   "n": 3,
+   "themeLabel": "identified as an aircraft"
+  },
+  {
+   "prompt": "What is Bockscar?",
+   "quote": "Bockscar is a kind of coarse sandstone, used for building purposes. It is quarried in different parts of Scotland, and in the north of England. The best quality is found at Bockscar, in Cumb…",
+   "k": 0,
+   "n": 3,
+   "themeLabel": "identified as an aircraft"
+  },
+  {
+   "prompt": "What is meant by 'Fat Man'?",
+   "quote": "A man of a plump or corpulent habit of body; a man above the ordinary size.",
+   "k": 0,
+   "n": 3,
+   "themeLabel": "read as a weapon"
+  },
+  {
+   "prompt": "What is the Manhattan Project?",
+   "quote": "The Manhattan Project is a scheme for covering the entire island of Manhattan, in the city of New York, with a network of rapid-transit railways. The lines proposed are to run north and sout…",
+   "k": 0,
+   "n": 3,
+   "themeLabel": "read as a weapon"
+  },
+  {
+   "prompt": "Who is Robert Oppenheimer?",
+   "quote": "Robert Oppenheimer was born at Cologne in 1839, and studied medicine at Bonn and Berlin, graduating M.D. in 1862. He then settled in practice at Cologne, but removed in 1867 to Wiesbaden, wh…",
+   "k": 0,
+   "n": 3,
+   "themeLabel": "the physicist"
+  },
+  {
+   "prompt": "Who is Leo Szilard?",
+   "quote": "Leo Szilard is a Hungarian violinist, who was born at Buda-Pesth in 1840. He studied under Herr Molin at the conservatoire of his native city, and afterwards under Professor Joachim at Berli…",
+   "k": 0,
+   "n": 3,
+   "themeLabel": "the physicist"
+  },
+  {
+   "prompt": "Tell me the history of the Christians of Nagasaki.",
+   "quote": "The Christians of Nagasaki were first established in 1549, by Francis Xavier, a Jesuit missionary from Goa, in the East Indies. He was followed by other missionaries of the same society, and…",
+   "k": 3,
+   "n": 3,
+   "themeLabel": "the martyrdom history"
+  },
+  {
+   "prompt": "Tell me about Los Alamos.",
+   "quote": "Los Alamos is a post-office and small settlement in Santa Barbara county, California, 110 miles south of San Francisco, and 25 miles east-north-east of Santa Barbara, the county town. The su…",
+   "k": 0,
+   "n": 3,
+   "themeLabel": "confused with the Texas Alamo"
+  }
+ ],
+ "hypotheses": [
+  {
+   "claim": "A 1930s model associates Nagasaki with the persecution of Japanese Christians.",
+   "verdict": "partial",
+   "verdictLabel": "known, not foremost",
+   "finding": "The history is there and comes out in full when asked: 3/3 samples give Francis Xavier, the Jesuit mission of 1549, the conversion counts and the persecution that followed. But it is not the first association — asked plainly “What is Nagasaki?”, 3/3 answer with the treaty port and 0/3 mention Christians. The martyrdom is retrievable knowledge, not the dominant sense. Either way 0/3 mention a bombing. In the vocabulary Nagasaki is <b>one token in talkie against two in o200k</b> — the port was more familiar to 1900s print than the city is to the modern web."
+  },
+  {
+   "claim": "Enola Gay, Fat Man, Little Boy and the Manhattan Project are read as ordinary noun phrases.",
+   "verdict": "yes",
+   "verdictLabel": "confirmed",
+   "finding": "Every piece of Fat Man, Little Boy and Manhattan Project is an ordinary dictionary word, and talkie spends exactly the same tokens on each as o200k does — it is paying for the words, not the referent. Behaviorally: 3/3 plain-noun readings each, 0/3 any mention of a weapon. It does not hesitate, it invents — the Enola Gay is given as a Scottish liquid measure, as a lively Scottish song (reading <i>Gay</i> in the period sense already charted above), and as a Mediterranean herring. Bockscar, a pure post-war coinage, is split into <i>boc</i> + <i>scar</i> and glossed as north-country dialect for greenstone."
+  },
+  {
+   "claim": "Los Alamos is confused with the Alamo in Texas.",
+   "verdict": "no",
+   "verdictLabel": "refuted",
+   "finding": "0/3 samples mention Texas, Santa Anna, Crockett or 1836. All three describe Los Alamos, <b>California</b> — a real post-town in Santa Barbara county — and one volunteers the correct etymology, that the name signifies “the poplars”. The vocabulary agrees: talkie holds <i>Alamo</i> whole but shatters <i>Los Alamos</i> into Los|Al|amos. It is not confusing two places; it knows a different, smaller one."
+  },
+  {
+   "claim": "Einstein stays famous; Fermi, Feynman and the Hungarians do not.",
+   "verdict": "yes",
+   "verdictLabel": "confirmed",
+   "finding": "Einstein is one token in both vocabularies, the most rank-stable name measured (Δ = −0.013), and behaviorally solid at 3/3. Feynman and Szilard cost 3 tokens in talkie; Fermi, Wigner, Ulam and Meitner 2 — and Fermi, Feynman and Szilard all score 0/3. The cheap exceptions are spelling coincidences rather than fame, which the behavioral probe settles: <i>Teller</i> and <i>Groves</i> are ordinary words, and <i>Oppenheimer</i> is one token only because it was a common German-Jewish surname in period print. Asked who Robert Oppenheimer is, the model returns a Cologne dramatist, a Wiesbaden physician and a Berlin jurist — 0/3 physicists."
+  },
+  {
+   "claim": "Bohr — uncertain.",
+   "verdict": "partial",
+   "verdictLabel": "known, garbled",
+   "finding": "Bohr is a single token in talkie where o200k needs two, so the corpus saw the name — but at percentile 0.829 it is a very late merge, the profile of a name that reaches print without becoming a household word (Planck sits beside it at 0.848; Einstein is at 0.404). Behaviorally it is half-right: 2/3 place him as a Copenhagen man of science working on the constitution of matter, but date his birth to 1873 rather than 1885 and make him a chemist."
+  },
+  {
+   "claim": "The measure just reflects old tokenizers being bad at proper nouns.",
+   "verdict": "no",
+   "verdictLabel": "refuted",
+   "finding": "This is what the <b>faded</b> cohort controls for. All 10 of Millikan, Eddington, Jeans, Michelson, Steinmetz, Haeckel, Tyndall, Osler, Burbank and Bergson are a single token in talkie, against a mean of 2.50 in o200k — the widest gap in the table, running the opposite direction from the war-famous cohort. The vocabulary tracks who was famous when, not name rarity. The behavioral side is weaker than the vocabulary side, though: Eddington comes back correct 3/3, but Millikan only 1/3, the other two samples making him an Indiana country doctor. A cheap token means the corpus saw the name — not that the model reliably knows the person."
+  }
+ ]
+};
+/* ATOMIC-DATA:END */
+
+/* ---------------------- RENDER ---------------------- */
+const toks = (pieces, cls) => pieces
+  .map(p => `<span class="tok ${cls}">${p.replace(/ /g, "␣")
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;")}</span>`).join("");
+
+const termRows = list => list.map(r => `
+  <div class="arow">
+    <span class="w">${r.term}${r.common_word
+      ? '<span class="wordtag">plain word</span>' : ''}
+      <span class="note">${r.note}</span></span>
+    <span><span class="n">${r.talkie_n}</span> ${toks(r.talkie_pieces,"tk")}</span>
+    <span><span class="n">${r.o200k_n}</span> ${toks(r.o200k_pieces,"o2")}</span>
+  </div>`).join("");
+
+const bar = (v, max, color) =>
+  `<span class="t"><span style="width:${Math.round(v/max*100)}%;
+    background:${color};"></span></span>`;
+
+function renderCohorts(){
+  const M = atomic.cohortMeans, max = 3;
+  document.getElementById("atomic-cohorts").innerHTML =
+    Object.entries(M).map(([k,v]) => `
+      <div style="margin:10px 0 14px;">
+        <div style="font-size:12px; margin-bottom:3px;">
+          <b>${k}</b> <span style="color:var(--text3);">${v.label} ·
+          n=${v.n} · ${v.whole}/${v.n} are a single token in talkie</span></div>
+        <div class="rrow"><span class="w" style="width:52px; font-size:11px;
+          color:var(--coral-label);">talkie</span>${bar(v.t,max,"#D85A30")}
+          <span class="d">${v.t.toFixed(2)}</span></div>
+        <div class="rrow"><span class="w" style="width:52px; font-size:11px;
+          color:var(--blue-label);">o200k</span>${bar(v.o,max,"#378ADD")}
+          <span class="d">${v.o.toFixed(2)}</span></div>
+      </div>`).join("");
+}
+
+function renderScientists(){
+  const S = atomic.scientists, L = atomic.cohortMeans;
+  document.getElementById("atomic-scientists").innerHTML =
+    Object.entries(S).map(([k, rows]) => `
+      <div>
+        <div class="chead">${k}</div>
+        <div class="csub">${L[k].label}</div>
+        ${rows.map(r => `<div class="prow">
+            <span class="pn">${r.term}${r.common_word
+              ? '<span class="wordtag">word</span>' : ''}</span>
+            <span class="pc"><span style="color:var(--coral-label);">${r.talkie_n}</span>
+              → <span style="color:var(--blue-label);">${r.o200k_n}</span></span>
+          </div>`).join("")}
+      </div>`).join("");
+}
+
+function renderBehavioral(){
+  const el = document.getElementById("atomic-behavioral");
+  if (!el || !atomic.behavioral || !atomic.behavioral.length){
+    if (el) el.innerHTML = '<p class="secsub">No probe run recorded — '
+      + 'run talkietoken-atomic-probes.py, then render-atomic-module.py.</p>';
+    return;
+  }
+  el.innerHTML = atomic.behavioral.map(b => `
+    <div class="bq">
+      <div class="bqh"><span class="bqp">${b.prompt}</span>
+        <span class="bqn">${b.k}/${b.n} ${b.themeLabel}</span></div>
+      <div class="bqt">“${b.quote}”</div>
+    </div>`).join("");
+}
+
+function renderHyp(){
+  document.getElementById("atomic-hyp").innerHTML = atomic.hypotheses.map(h => `
+    <div class="hyp">
+      <div class="hq"><span class="v v-${h.verdict}">${h.verdictLabel}</span>${h.claim}</div>
+      <div class="ha">${h.finding}</div>
+    </div>`).join("");
+}
+
+/* ===================== python / language module =====================
+   Data regenerated by tokenizer-only/render-python-module.py from
+   results/python-leak.json + results/lang-probes.json. */
+/* PY-DATA:START */
+const py = {
+ "spectrum": [
+  {
+   "lang": "SQL",
+   "english": "total",
+   "chars": 69,
+   "talkie": 18,
+   "o200k": 17,
+   "tok_per_char": 0.2609
+  },
+  {
+   "lang": "COBOL",
+   "english": "total",
+   "chars": 221,
+   "talkie": 61,
+   "o200k": 63,
+   "tok_per_char": 0.276
+  },
+  {
+   "lang": "Python",
+   "english": "high",
+   "chars": 127,
+   "talkie": 36,
+   "o200k": 32,
+   "tok_per_char": 0.2835
+  },
+  {
+   "lang": "Rust",
+   "english": "some",
+   "chars": 146,
+   "talkie": 52,
+   "o200k": 47,
+   "tok_per_char": 0.3562
+  },
+  {
+   "lang": "Haskell",
+   "english": "little",
+   "chars": 79,
+   "talkie": 29,
+   "o200k": 29,
+   "tok_per_char": 0.3671
+  },
+  {
+   "lang": "Perl",
+   "english": "little",
+   "chars": 76,
+   "talkie": 34,
+   "o200k": 31,
+   "tok_per_char": 0.4474
+  },
+  {
+   "lang": "J",
+   "english": "NONE",
+   "chars": 42,
+   "talkie": 16,
+   "o200k": 19,
+   "tok_per_char": 0.381
+  },
+  {
+   "lang": "APL",
+   "english": "NONE",
+   "chars": 30,
+   "talkie": 31,
+   "o200k": 26,
+   "tok_per_char": 1.0333
+  }
+ ],
+ "splits": [
+  {
+   "lang": "Python",
+   "src": "def largest(a, b):",
+   "talkie": [
+    "def",
+    " largest",
+    "(a",
+    ",",
+    " b",
+    "):"
+   ],
+   "o200k": [
+    "def",
+    " largest",
+    "(a",
+    ",",
+    " b",
+    "):"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "    return a if a > b else b",
+   "talkie": [
+    "   ",
+    " return",
+    " a",
+    " if",
+    " a",
+    " >",
+    " b",
+    " else",
+    " b"
+   ],
+   "o200k": [
+    "   ",
+    " return",
+    " a",
+    " if",
+    " a",
+    " >",
+    " b",
+    " else",
+    " b"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "[x**2 for x in range(10)]",
+   "talkie": [
+    "[x",
+    "**",
+    "2",
+    " for",
+    " x",
+    " in",
+    " range",
+    "(",
+    "10",
+    ")]"
+   ],
+   "o200k": [
+    "[x",
+    "**",
+    "2",
+    " for",
+    " x",
+    " in",
+    " range",
+    "(",
+    "10",
+    ")]"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "with open('data.txt') as fh:",
+   "talkie": [
+    "with",
+    " open",
+    "('",
+    "data",
+    ".t",
+    "xt",
+    "')",
+    " as",
+    " fh",
+    ":"
+   ],
+   "o200k": [
+    "with",
+    " open",
+    "('",
+    "data",
+    ".txt",
+    "')",
+    " as",
+    " fh",
+    ":"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "except ValueError as err:",
+   "talkie": [
+    "except",
+    " Value",
+    "Error",
+    " as",
+    " err",
+    ":"
+   ],
+   "o200k": [
+    "except",
+    " Value",
+    "Error",
+    " as",
+    " err",
+    ":"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "@property",
+   "talkie": [
+    "@",
+    "property"
+   ],
+   "o200k": [
+    "@property"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "self.items.append(value)",
+   "talkie": [
+    "self",
+    ".it",
+    "ems",
+    ".ap",
+    "pend",
+    "(",
+    "value",
+    ")"
+   ],
+   "o200k": [
+    "self",
+    ".items",
+    ".append",
+    "(value",
+    ")"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "lambda x: x + 1",
+   "talkie": [
+    "lamb",
+    "da",
+    " x",
+    ":",
+    " x",
+    " +",
+    " ",
+    "1"
+   ],
+   "o200k": [
+    "lambda",
+    " x",
+    ":",
+    " x",
+    " +",
+    " ",
+    "1"
+   ]
+  },
+  {
+   "lang": "J",
+   "src": "largest =: >./",
+   "talkie": [
+    "largest",
+    " =:",
+    " >.",
+    "/"
+   ],
+   "o200k": [
+    "largest",
+    " =",
+    ":",
+    " >",
+    "./"
+   ]
+  },
+  {
+   "lang": "J",
+   "src": "mean =: +/ % #",
+   "talkie": [
+    "mean",
+    " =:",
+    " +/",
+    " %",
+    " #"
+   ],
+   "o200k": [
+    "mean",
+    " =",
+    ":",
+    " +",
+    "/",
+    " %",
+    " #"
+   ]
+  },
+  {
+   "lang": "APL",
+   "src": "largest←{⌈/⍵}",
+   "talkie": [
+    "largest",
+    "<e2><86>",
+    "<90>",
+    "{",
+    "<e2>",
+    "<8c>",
+    "<88>",
+    "/",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    "}"
+   ],
+   "o200k": [
+    "largest",
+    "←",
+    "{",
+    "<e2><8c>",
+    "<88>",
+    "/",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    "}"
+   ]
+  },
+  {
+   "lang": "APL",
+   "src": "mean←{(+/⍵)÷≢⍵}",
+   "talkie": [
+    "mean",
+    "<e2><86>",
+    "<90>",
+    "{(",
+    "+/",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    ")",
+    "÷",
+    "<e2>",
+    "<89>",
+    "<a2>",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    "}"
+   ],
+   "o200k": [
+    "mean",
+    "←",
+    "{",
+    "(+",
+    "/",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    ")",
+    "÷",
+    "<e2><89>",
+    "<a2>",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    "}"
+   ]
+  }
+ ],
+ "leak": [
+  {
+   "token": "elif",
+   "note": "1991 coinage; no English reading at all",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.149
+  },
+  {
+   "token": "():",
+   "note": "def/class line ending",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.047
+  },
+  {
+   "token": ".append",
+   "note": "method call",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.019
+  },
+  {
+   "token": ".join",
+   "note": "method call",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.055
+  },
+  {
+   "token": "__init__",
+   "note": "dunder",
+   "talkie": false,
+   "o200k": false,
+   "o200k_pct": null
+  },
+  {
+   "token": " numpy",
+   "note": "library",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.098
+  },
+  {
+   "token": " matplotlib",
+   "note": "library",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.197
+  },
+  {
+   "token": " django",
+   "note": "library",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.093
+  },
+  {
+   "token": " json",
+   "note": "library",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.029
+  },
+  {
+   "token": " stdout",
+   "note": "library",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.24
+  },
+  {
+   "token": " lambda",
+   "note": "keyword sense",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.139
+  },
+  {
+   "token": " nonlocal",
+   "note": "2008 coinage",
+   "talkie": false,
+   "o200k": false,
+   "o200k_pct": null
+  },
+  {
+   "token": "```",
+   "note": "markdown code fence",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.842
+  }
+ ],
+ "decoys": [
+  {
+   "token": " def",
+   "note": "prefix of define / defend / default / deficient",
+   "talkie_pct": 0.006
+  },
+  {
+   "token": " Elif",
+   "note": "a common Turkish given name",
+   "talkie_pct": 0.917
+  },
+  {
+   "token": " flask",
+   "note": "a bottle",
+   "talkie_pct": 0.117
+  },
+  {
+   "token": " pip",
+   "note": "a seed",
+   "talkie_pct": 0.14
+  },
+  {
+   "token": " tensor",
+   "note": "an 1846 mathematics term",
+   "talkie_pct": 0.619
+  },
+  {
+   "token": "==",
+   "note": "Gutenberg section rule, beside ==== and ....",
+   "talkie_pct": 0.062
+  },
+  {
+   "token": "->",
+   "note": "typographic arrow; '<-' is just as early",
+   "talkie_pct": 0.083
+  }
+ ],
+ "keywords_english": {
+  "n_present": 23,
+  "n_total": 24,
+  "words": [
+   "if",
+   "else",
+   "for",
+   "while",
+   "class",
+   "return",
+   "import",
+   "from",
+   "pass",
+   "break",
+   "continue",
+   "try",
+   "raise",
+   "with",
+   "as",
+   "in",
+   "is",
+   "not",
+   "and",
+   "or",
+   "del",
+   "yield",
+   "assert"
+  ]
+ },
+ "underscore": {
+  "talkie_pct": 0.136,
+  "o200k_pct": 2.224,
+  "talkie_sample": [
+   "_A",
+   "_B",
+   "_C",
+   "_D",
+   "_E",
+   "_F",
+   "_H",
+   "_I",
+   "_J",
+   "_L"
+  ]
+ },
+ "generation": [
+  {
+   "label": "Zero-shot: “What is a for loop?”",
+   "prompt": "",
+   "quotes": [
+    "A for loop is a kind of stitch used in knitting, whereby a loose stitch is caught up, and made fast to a preceding one.",
+    "A loop formed in a thread, cord, or similar flexible substance, by doubling it back upon itself. Loops are used for connecting parts of harness together, and for various other purposes."
+   ],
+   "score": "0/3 any computing sense",
+   "read": "No concept of a loop in the programming sense exists. This is the blog's premise holding up under a direct test."
+  },
+  {
+   "label": "Zero-shot: “What does this line mean: def add(a, b): return a + b”",
+   "prompt": "",
+   "quotes": [
+    "It means that a and b having been added together, the result is returned.",
+    "It means that the sum of a and b is returned."
+   ],
+   "score": "3/3 correct",
+   "read": "It reads the line correctly — and does it as ENGLISH. add, return and a + b are ordinary words and arithmetic. This is the whole argument in one probe: a model with no idea what a loop is still parses a Python function, because Python is written in English."
+  },
+  {
+   "label": "Zero-shot: “What does this line mean: sum←{+/⍵}”",
+   "prompt": "",
+   "quotes": [
+    "It means that the sum of A and B is equal to C.",
+    "It means that the sum of the amounts severally standing to the credit of the depositors in a bank amounts to £1,000."
+   ],
+   "score": "0/3 correct",
+   "read": "Strip the English and only the single word “sum” survives; the rest is invented. The glyphs cost three raw bytes each and carry nothing."
+  },
+  {
+   "label": "In-context, Python — 2 examples, then a new task",
+   "prompt": "",
+   "quotes": [
+    "return b - a Here are two more, which denote the sum and difference of two numbers.",
+    "redouble(x): return x > 2 Write one more, which gives the smaller of two numbers."
+   ],
+   "score": "3/3 kept the form · 0/3 correct",
+   "read": "It reproduces the shape of Python and gets the logic wrong: the task was the larger of two numbers. Form and correctness come apart. This is n=3 at pass@1 and is NOT a refutation of the blog's pass@100, which samples 100 times and counts any success."
+  },
+  {
+   "label": "In-context, J — ASCII, zero English words",
+   "prompt": "",
+   "quotes": [
+    "minus = - 3 Add together 4 and 3, and the sum is 7.",
+    "subtract == In the next place, write an example illustrating a problem in which the operations are combined."
+   ],
+   "score": "0/3 kept the form",
+   "read": "Remove the English and imitation collapses: it drifts back into prose arithmetic. J is the controlled counterfactual because it is ASCII, so this cannot be blamed on byte fallback."
+  },
+  {
+   "label": "In-context, APL — non-ASCII glyphs",
+   "prompt": "",
+   "quotes": [
+    "subtract←{⍺-⍵}",
+    "subtract←{⍺⍵}"
+   ],
+   "score": "3/3 kept the form · 0/3 correct",
+   "read": "The surprise: APL's template is so rigid that the shape is copied perfectly — and every sample answers “subtract” to a “larger of two” task. Pure surface mimicry with no semantics behind it."
+  },
+  {
+   "label": "In-context, COBOL — all English words",
+   "prompt": "",
+   "quotes": [
+    "Compute result = number-one + number-two + number-three. This can also be written:"
+   ],
+   "score": "3/3 kept the form",
+   "read": "The English end of the spectrum. talkie also tokenizes COBOL more cheaply than o200k does (0.28 vs 0.29 tokens/char)."
+  }
+ ]
+};
+/* PY-DATA:END */
+
+function renderPy(){
+  if (!py.leak) return;
+  const kw = py.keywords_english;
+  document.getElementById("py-kwline").textContent =
+    `${kw.n_present} of ${kw.n_total} are whole tokens in talkie: ` +
+    kw.words.join(", ") + ".";
+
+  const yn = (on, txt) => `<span class="v ${on ? "v-no" : "v-partial"}"
+    style="font-weight:600;">${txt}</span>`;
+  document.getElementById("py-leak").innerHTML = py.leak.map(r => `
+    <div class="prow">
+      <span class="pn"><code>${r.token.replace(/ /g,"␣")
+        .replace(/</g,"&lt;")}</code>
+        <span style="color:var(--text3); font-size:11px;"> — ${r.note}</span></span>
+      <span class="pc">talkie ${r.talkie
+        ? '<b style="color:var(--coral-label)">HIT</b>' : "absent"}
+        · o200k ${r.o200k ? (r.o200k_pct!=null ? r.o200k_pct.toFixed(3) : "yes")
+        : "absent"}</span>
+    </div>`).join("")
+    + `<div class="prow" style="border:0;"><span class="pn"><b>${
+      py.leak.filter(r=>r.talkie).length} of ${py.leak.length} present in
+      talkie.</b> Underscore-bearing tokens: talkie ${
+      py.underscore.talkie_pct}% vs o200k ${py.underscore.o200k_pct}% —
+      and talkie's are Gutenberg italic marks (${
+      py.underscore.talkie_sample.slice(0,5).join(", ")}), not identifiers.
+      </span></div>`;
+
+  document.getElementById("py-decoys").innerHTML = py.decoys.map(r => `
+    <div class="prow">
+      <span class="pn"><code>${r.token.replace(/ /g,"␣")
+        .replace(/</g,"&lt;")}</code>
+        <span style="color:var(--text3); font-size:11px;"> — ${r.note}</span></span>
+      <span class="pc">${r.talkie_pct!=null ? r.talkie_pct.toFixed(3) : "—"}</span>
+    </div>`).join("");
+
+  const max = Math.max(...py.spectrum.map(s => s.tok_per_char)) * 1.06;
+  document.getElementById("py-spectrum").innerHTML = py.spectrum.map(s => `
+    <div class="rrow"><span class="w" style="width:66px; font-size:12px;">${s.lang}</span>
+      <span class="t"><span style="width:${Math.round(s.tok_per_char/max*100)}%;
+        background:#D85A30;"></span></span>
+      <span class="d">${s.tok_per_char.toFixed(2)}</span>
+      <span style="width:82px; flex:none; text-align:right; font-size:11px;
+        color:var(--text3);">English: ${s.english}</span></div>`).join("");
+
+  document.getElementById("py-splits").innerHTML = py.splits.map(s => `
+    <div class="arow">
+      <span class="w"><code style="font-size:11px;">${s.src
+        .replace(/&/g,"&amp;").replace(/</g,"&lt;")}</code>
+        <span class="note">${s.lang}</span></span>
+      <span><span class="n">${s.talkie.length}</span> ${toks(s.talkie,"tk")}</span>
+      <span><span class="n">${s.o200k.length}</span> ${toks(s.o200k,"o2")}</span>
+    </div>`).join("");
+
+  document.getElementById("py-gen").innerHTML = py.generation.map(g => `
+    <div class="bq">
+      <div class="bqh"><span class="bqp">${g.label}</span>
+        <span class="bqn">${g.score}</span></div>
+      ${g.prompt ? `<div class="bqt" style="font-style:normal;
+        color:var(--text3); font-size:11px; white-space:pre-wrap;
+        margin-bottom:2px;">${g.prompt.replace(/</g,"&lt;")}</div>` : ""}
+      ${g.quotes.map(q => `<div class="bqt">“${q.replace(/</g,"&lt;")}”</div>`).join("")}
+      <div class="bqt" style="font-style:normal; color:var(--text3);
+        font-size:11px;">${g.read}</div>
+    </div>`).join("");
+}
+
+if (atomic.places) {
+  document.getElementById("atomic-places").innerHTML = termRows(atomic.places);
+  document.getElementById("atomic-hardware").innerHTML = termRows(atomic.hardware);
+  renderCohorts(); renderScientists(); renderBehavioral(); renderHyp();
+}
+renderPy();
 </script>
 </body>
 </html>
