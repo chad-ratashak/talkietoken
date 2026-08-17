@@ -4,3 +4,6 @@
 .env*
 .DS_Store
 __pycache__/
+
+# local session metadata written by /ship
+.claude/ship-log.jsonl
