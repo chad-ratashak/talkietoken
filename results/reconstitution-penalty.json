@@ -1,0 +1,140 @@
+{
+ "meta": {
+  "generated": "2026-08-17 18:41:42 CDT",
+  "git": {
+   "commit": "b1ec940",
+   "branch": "claude/clever-nightingale-f852d6",
+   "dirty": true
+  },
+  "backend": "none (penalty-only run)",
+  "backend_variant": "none",
+  "CONTAMINATION": "No generation performed. The encoding penalty is a prediction about reconstitution cost, not a measurement of it.",
+  "capability": "python",
+  "target_tokenizer": {
+   "spec": "talkie",
+   "label": "talkie-1930 (local vocab.txt)",
+   "vocab_size": 262144
+  },
+  "reference_tokenizer": {
+   "spec": "tiktoken:o200k_base",
+   "label": "o200k_base (tiktoken)",
+   "vocab_size": 200019
+  },
+  "control": "period-prose",
+  "humaneval_jsonl": null,
+  "budgets": [
+   0,
+   1,
+   2,
+   4,
+   8
+  ],
+  "dialects": [
+   "py-canonical",
+   "py-indent8",
+   "py-indent16",
+   "py-tab",
+   "py-crlf",
+   "py-comment",
+   "py-nodoc"
+  ]
+ },
+ "reference_point": {
+  "lines": [
+   "source: https://talkie-lm.com/ (Figure 3, inline client-side chart code in the report page (d3.v7))",
+   "The report states NO numeric pass@k in prose. The numbers below are the",
+   "series its own chart plots, read from the page's chart source.",
+   "largest vintage model (2.12e+22 FLOPs, inferred to be talkie-1930-13b-base):",
+   "    HumanEval pass@100 = 0.03215 (3.215%)",
+   "matched modern control (talkie-web-13b-base (same architecture, web-trained; shipped in the same HF org)):",
+   "    HumanEval pass@100 = 0.10951 (10.951%)  -> 3.41x the vintage rate",
+   "no error bars, no n, no demonstration count published; the vintage",
+   "series is not monotone (see reference/talkie-figure3.json)."
+  ]
+ },
+ "penalty": {
+  "py-canonical": {
+   "target_tokens": 287,
+   "ref_tokens": 246,
+   "chars": 1001,
+   "ratio": 1.1666666666666667,
+   "normalized": 1.1867816091954022,
+   "tok_per_char": 0.2867132867132867,
+   "tok_per_char_excess": 1.5620930793344585
+  },
+  "py-indent8": {
+   "target_tokens": 289,
+   "ref_tokens": 246,
+   "chars": 1109,
+   "ratio": 1.1747967479674797,
+   "normalized": 1.1950518643117465,
+   "tok_per_char": 0.260595130748422,
+   "tok_per_char_excess": 1.4197941606293336
+  },
+  "py-indent16": {
+   "target_tokens": 312,
+   "ref_tokens": 246,
+   "chars": 1325,
+   "ratio": 1.2682926829268293,
+   "normalized": 1.2901597981497055,
+   "tok_per_char": 0.23547169811320753,
+   "tok_per_char_excess": 1.2829147690305789
+  },
+  "py-tab": {
+   "target_tokens": 290,
+   "ref_tokens": 234,
+   "chars": 920,
+   "ratio": 1.2393162393162394,
+   "normalized": 1.2606837606837606,
+   "tok_per_char": 0.31521739130434784,
+   "tok_per_char_excess": 1.7173913043478262
+  },
+  "py-crlf": {
+   "target_tokens": 323,
+   "ref_tokens": 256,
+   "chars": 1032,
+   "ratio": 1.26171875,
+   "normalized": 1.283472521551724,
+   "tok_per_char": 0.312984496124031,
+   "tok_per_char_excess": 1.7052258754343759
+  },
+  "py-comment": {
+   "target_tokens": 270,
+   "ref_tokens": 246,
+   "chars": 969,
+   "ratio": 1.0975609756097562,
+   "normalized": 1.116484440706476,
+   "tok_per_char": 0.2786377708978328,
+   "tok_per_char_excess": 1.518095441443365
+  },
+  "py-nodoc": {
+   "target_tokens": 187,
+   "ref_tokens": 161,
+   "chars": 590,
+   "ratio": 1.1614906832298137,
+   "normalized": 1.1815163846648105,
+   "tok_per_char": 0.3169491525423729,
+   "tok_per_char_excess": 1.7268264172998247
+  }
+ },
+ "penalty_control": {
+  "target_tokens": 58,
+  "ref_tokens": 59,
+  "ratio": 0.9830508474576272
+ },
+ "curves": {},
+ "cells": {},
+ "analysis": {
+  "cost": {
+   "note": "Rates near a few percent need thousands of trials to resolve.",
+   "lines": [
+    "to pin a 3.21% rate to +/-2.0 pp (95% Wilson): 316 problem-level trials",
+    "to pin a 3.21% rate to +/-1.0 pp (95% Wilson): 1,216 problem-level trials",
+    "to pin a 3.21% rate to +/-0.5 pp (95% Wilson): 4,798 problem-level trials",
+    "at 164 problems that is 7 samples per problem for the +/-1.0 pp row",
+    "pass@100 needs >= 100 samples per problem regardless of the",
+    "  interval: the estimator does not extrapolate upward"
+   ]
+  }
+ }
+}
