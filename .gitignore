@@ -2,3 +2,5 @@
 .port
 *.command
 .env*
+reconstitution/.cache/
+__pycache__/
