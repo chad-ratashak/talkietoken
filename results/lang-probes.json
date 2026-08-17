@@ -1,0 +1,107 @@
+[
+ {
+  "id": "incontext_cobol",
+  "label": "COBOL \u00b7 all English",
+  "prompt": "Here are two examples written in a notation for describing procedures.\n\nCOMPUTE RESULT = NUMBER-ONE * 2.\nCOMPUTE RESULT = NUMBER-ONE + NUMBER-TWO.\n\nNow write one more in the same notation, which gives back the larger of two numbers.",
+  "n": 3,
+  "theme_counts": {
+   "kept_form": 3,
+   "prose_instead": 0
+  },
+  "samples": [
+   "Compute result = number-one + number-two + number-three.\nThis can also be written:",
+   "Compute result = NUMBER-ONE +NUMBER-TWO +NUMBER-THREE.\nAnd so on, to any extent.",
+   "Compute result = number-one + number-two - number-three.\nSo far, all the examples are arithmetical; now write one in which algebra is introduced."
+  ]
+ },
+ {
+  "id": "incontext_python",
+  "label": "Python \u00b7 English keywords",
+  "prompt": "Here are two examples written in a notation for describing procedures.\n\ndef double(x):\n    return x * 2\n\ndef add(a, b):\n    return a + b\n\nNow write one more in the same notation, which gives back the larger of two numbers.",
+  "n": 3,
+  "theme_counts": {
+   "kept_form": 3,
+   "prose_instead": 0
+  },
+  "samples": [
+   "return b - a\nHere are two more, which denote the sum and difference of two numbers.",
+   "redouble(x):\n    return x > 2\n\nWrite one more, which gives the smaller of two numbers.",
+   "return larger(x):\n    return x > 2\nAnd now write one, which adds two numbers together, and gives their sum.\n*add(a, b):\n    return a + b\nHere we have a notation for describing three arithmetical operations; returning, adding, and giving back a result larger than either of the added numbers."
+  ]
+ },
+ {
+  "id": "incontext_j",
+  "label": "J \u00b7 ASCII, zero English",
+  "prompt": "Here are two examples written in a notation for describing procedures.\n\ndouble =: 2 & *\nadd =: +\n\nNow write one more in the same notation, which gives back the larger of two numbers.",
+  "n": 3,
+  "theme_counts": {
+   "kept_form": 0,
+   "prose_instead": 0
+  },
+  "samples": [
+   "minus =\n- 3\nAdd together 4 and 3, and the sum is 7.",
+   "subtract ==\nIn the next place, write an example illustrating a problem in which the operations are combined.",
+   "back=3"
+  ]
+ },
+ {
+  "id": "incontext_apl",
+  "label": "APL \u00b7 non-ASCII glyphs",
+  "prompt": "Here are two examples written in a notation for describing procedures.\n\ndouble\u2190{\u2375\u00d72}\nadd\u2190{\u237a+\u2375}\n\nNow write one more in the same notation, which gives back the larger of two numbers.",
+  "n": 3,
+  "theme_counts": {
+   "kept_form": 3,
+   "prose_instead": 0
+  },
+  "samples": [
+   "subtract\u2190{\u237a-\u2375}",
+   "subtract\u2190{\u237a\u2375}",
+   "subtract\u2190{\u237a-\u2375}"
+  ]
+ },
+ {
+  "id": "zeroshot_forloop",
+  "label": "zero-shot \u00b7 'for loop'",
+  "prompt": "What is a for loop?",
+  "n": 3,
+  "theme_counts": {
+   "code_sense": 0,
+   "prose_sense": 2
+  },
+  "samples": [
+   "A for loop is a kind of stitch used in knitting, whereby a loose stitch is caught up, and made fast to a preceding one.",
+   "A loop formed in a thread, cord, or similar flexible substance, by doubling it back upon itself. Loops are used for connecting parts of harness together, and for various other purposes.",
+   "A loop formed by bending a wire into the shape of the letter U, is called a for loop."
+  ]
+ },
+ {
+  "id": "zeroshot_defline",
+  "label": "zero-shot \u00b7 reading a def line",
+  "prompt": "What does this line mean: def add(a, b): return a + b",
+  "n": 3,
+  "theme_counts": {
+   "code_sense": 0,
+   "confab": 0
+  },
+  "samples": [
+   "It means that a and b having been added together, the result is returned.",
+   "It means that the sum of a and b is returned.",
+   "It means that the things added together are returned increased by the addition."
+  ]
+ },
+ {
+  "id": "zeroshot_apl",
+  "label": "zero-shot \u00b7 reading an APL line",
+  "prompt": "What does this line mean: sum\u2190{+/\u2375}",
+  "n": 3,
+  "theme_counts": {
+   "code_sense": 3,
+   "confab": 0
+  },
+  "samples": [
+   "It means that the sum of A and B is equal to C.",
+   "It means that the sum of the two lines is equal to the third line.",
+   "It means that the sum of the amounts severally standing to the credit of the depositors in a bank amounts to \u00a31,000."
+  ]
+ }
+]
