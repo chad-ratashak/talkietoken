@@ -1,6 +1,7 @@
 talkie vocab entries: 261835
-o200k  vocab entries: 198437
-shared token strings: 71497 (27.3% of talkie)
+gpt2    (2019) vocab entries:   49923  shared with talkie: 43107 (16.5% of talkie)
+cl100k  (2022) vocab entries:   99557  shared with talkie: 55777 (21.3% of talkie)
+o200k   (2024) vocab entries:  198795  shared with talkie: 71497 (27.3% of talkie)
 
 --- post-1931 coinage sweep (whole-token membership) ---
   ✓ nylon (coined 1938) — absent
@@ -43,32 +44,32 @@ shared token strings: 71497 (27.3% of talkie)
 
 coinage hits: 1/37
 
---- token counts: talkie vs o200k (modern baseline) ---
-term                  talkie   o200k
-computer                   2       1
-television                 3       2
-radar                      2       2  ⚠️ as efficient as a modern-corpus tokenizer
-helicopter                 3       3  ⚠️ as efficient as a modern-corpus tokenizer
-atomic bomb                2       2  ⚠️ as efficient as a modern-corpus tokenizer
-transistor                 2       2  ⚠️ as efficient as a modern-corpus tokenizer
-neural network             3       3  ⚠️ as efficient as a modern-corpus tokenizer
-internet                   3       1
-website                    2       1
-email                      2       1
-smartphone                 2       2  ⚠️ as efficient as a modern-corpus tokenizer
-New Deal                   2       2  ⚠️ as efficient as a modern-corpus tokenizer
-World War II               3       3  ⚠️ as efficient as a modern-corpus tokenizer
-United Nations             2       2  ⚠️ as efficient as a modern-corpus tokenizer
-NATO                       2       2  ⚠️ as efficient as a modern-corpus tokenizer
-Microsoft                  2       1
-Google                     1       1  ⚠️ as efficient as a modern-corpus tokenizer
-Netflix                    3       1
-telephone                  1       1
-telegraph                  1       2
-phonograph                 2       2
-aeroplane                  2       4
-wireless                   2       2
-motor car                  2       2
-typewriter                 2       2
+--- token counts: talkie vs modern baselines ---
+term                  talkie    gpt2  cl100k   o200k
+computer                   2       1       1       1
+television                 3       2       2       2
+radar                      2       2       2       2  ⚠️ as efficient as every modern-corpus tokenizer
+helicopter                 3       3       2       3
+atomic bomb                2       2       2       2  ⚠️ as efficient as every modern-corpus tokenizer
+transistor                 2       2       2       2  ⚠️ as efficient as every modern-corpus tokenizer
+neural network             3       3       3       3  ⚠️ as efficient as every modern-corpus tokenizer
+internet                   3       1       1       1
+website                    2       2       1       1
+email                      2       1       1       1
+smartphone                 2       2       2       2  ⚠️ as efficient as every modern-corpus tokenizer
+New Deal                   2       2       2       2  ⚠️ as efficient as every modern-corpus tokenizer
+World War II               3       3       3       3  ⚠️ as efficient as every modern-corpus tokenizer
+United Nations             2       2       2       2  ⚠️ as efficient as every modern-corpus tokenizer
+NATO                       2       2       2       2  ⚠️ as efficient as every modern-corpus tokenizer
+Microsoft                  2       1       1       1
+Google                     1       1       1       1  ⚠️ as efficient as every modern-corpus tokenizer
+Netflix                    3       1       1       1
+telephone                  1       2       1       1
+telegraph                  1       2       2       2
+phonograph                 2       3       2       2
+aeroplane                  2       3       4       4
+wireless                   2       2       2       2
+motor car                  2       3       2       2
+typewriter                 2       3       2       2
 
-modern terms tokenized at least as efficiently as o200k: ['radar', 'helicopter', 'atomic bomb', 'transistor', 'neural network', 'smartphone', 'New Deal', 'World War II', 'United Nations', 'NATO', 'Google']
+modern terms talkie tokenizes at least as efficiently as all of gpt2/cl100k/o200k: ['radar', 'atomic bomb', 'transistor', 'neural network', 'smartphone', 'New Deal', 'World War II', 'United Nations', 'NATO', 'Google']

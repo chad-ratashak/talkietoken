@@ -1,15 +1,15 @@
-"""Compare the talkie vocab against the o200k (GPT-5) baseline vocab
-borrowed from the tokenary project (baseline/o200k_tokens.csv), and
-sweep the talkie vocab for post-1931 coinages.
+"""Compare the talkie vocab against open-source baseline tokenizers
+(gpt2 2019, cl100k 2022, o200k 2024 — see baselines.py for the safety
+and origin policy), and sweep the talkie vocab for post-1931 coinages.
 
 A word that did not exist before 1931 cannot earn a BPE merge from a
 pre-1931 corpus. Membership of such a word (as a whole token) is the
 strongest single leakage signal available without model weights.
 """
 
-import csv
 from pathlib import Path
 
+import baselines
 import talkie_tokenizer
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -17,16 +17,16 @@ ROOT = Path(__file__).resolve().parent.parent
 t = talkie_tokenizer.from_pretrained()
 talkie_vocab = set(t.get_vocab().keys())
 
-o200k_vocab = set()
-with open(ROOT / "baseline" / "o200k_tokens.csv", encoding="utf-8") as f:
-    for row in csv.DictReader(f):
-        o200k_vocab.add(row["token"])
+encs = baselines.load_baselines()
 
 print(f"talkie vocab entries: {len(talkie_vocab)}")
-print(f"o200k  vocab entries: {len(o200k_vocab)}")
-overlap = talkie_vocab & o200k_vocab
-print(f"shared token strings: {len(overlap)} "
-      f"({100 * len(overlap) / len(talkie_vocab):.1f}% of talkie)")
+for name, enc in encs.items():
+    vocab = baselines.vocab_strings(enc)
+    overlap = talkie_vocab & vocab
+    year = baselines.BASELINES[name][1]
+    print(f"{name:<7} ({year}) vocab entries: {len(vocab):>7}  "
+          f"shared with talkie: {len(overlap)} "
+          f"({100 * len(overlap) / len(talkie_vocab):.1f}% of talkie)")
 
 # --- Post-1931 coinage sweep -------------------------------------------
 # Words coined AFTER 1930 (year of coinage noted). Pre-1931 text cannot
@@ -66,10 +66,7 @@ for word, year in sorted(COINAGES.items(), key=lambda kv: kv[1]):
 
 print(f"\ncoinage hits: {len(hits)}/{len(COINAGES)}")
 
-# --- Encoding-efficiency comparison vs o200k ---------------------------
-import tiktoken
-o200k = tiktoken.get_encoding("o200k_base")
-
+# --- Encoding-efficiency comparison vs the baselines --------------------
 TERMS = [
     "computer", "television", "radar", "helicopter", "atomic bomb",
     "transistor", "neural network", "internet", "website", "email",
@@ -78,17 +75,26 @@ TERMS = [
     "phonograph", "aeroplane", "wireless", "motor car", "typewriter",
 ]
 
-print("\n--- token counts: talkie vs o200k (modern baseline) ---")
-print(f"{'term':<20} {'talkie':>7} {'o200k':>7}")
+# Terms that were common pre-1931, so talkie SHOULD encode them
+# efficiently; efficiency on the rest is what warrants a flag.
+PERIOD_TERMS = ("telephone", "telegraph", "phonograph", "aeroplane",
+                "wireless", "motor car", "typewriter")
+
+print("\n--- token counts: talkie vs modern baselines ---")
+header = f"{'term':<20} {'talkie':>7}" + "".join(f"{n:>8}" for n in encs)
+print(header)
 flagged = []
 for term in TERMS:
-    a, b = len(t.encode(term)), len(o200k.encode(term))
+    a = len(t.encode(term))
+    counts = {name: len(enc.encode(term)) for name, enc in encs.items()}
     marker = ""
-    if a <= b and term not in ("telephone", "telegraph", "phonograph",
-                               "aeroplane", "wireless", "motor car",
-                               "typewriter"):
-        marker = "  ⚠️ as efficient as a modern-corpus tokenizer"
+    # Flag if talkie matches the BEST modern baseline on a post-1930 term —
+    # the most conservative version of "as efficient as a modern tokenizer".
+    if a <= min(counts.values()) and term not in PERIOD_TERMS:
+        marker = "  ⚠️ as efficient as every modern-corpus tokenizer"
         flagged.append(term)
-    print(f"{term:<20} {a:>7} {b:>7}{marker}")
+    row = f"{term:<20} {a:>7}" + "".join(f"{counts[n]:>8}" for n in encs)
+    print(row + marker)
 
-print(f"\nmodern terms tokenized at least as efficiently as o200k: {flagged}")
+print(f"\nmodern terms talkie tokenizes at least as efficiently as all of "
+      f"{'/'.join(encs)}: {flagged}")

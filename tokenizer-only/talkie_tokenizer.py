@@ -66,5 +66,15 @@ class TalkieTokenizer:
         return out
 
 
-def from_pretrained(*_args, **_kwargs):
+def from_pretrained(*_args, **kwargs):
+    # Never execute hub-shipped code. This loader is pure data (vocab.txt →
+    # tiktoken ranks); rejecting the flag here keeps a copy-pasted
+    # AutoTokenizer.from_pretrained(..., trust_remote_code=True) call from
+    # silently implying that remote code was ever needed or run.
+    if kwargs.pop("trust_remote_code", False):
+        raise ValueError(
+            "trust_remote_code is disabled in this project. The talkie "
+            "tokenizer is built locally from vocab.txt (data only); no "
+            "remote code is fetched or executed. Drop trust_remote_code."
+        )
     return TalkieTokenizer()
