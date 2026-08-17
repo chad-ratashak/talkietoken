@@ -1,0 +1,85 @@
+{
+ "_what": "The talkie report's own HumanEval pass@100 series, Figure 3 (left panel).",
+ "_why_this_file_exists": [
+  "The report's PROSE states no numeric pass@k anywhere. It says only that",
+  "vintage models reach non-zero pass@100, 'dramatically underperform' web-trained",
+  "models, and are 'slowly but steadily improving with scale'. The numbers below",
+  "are therefore not quoted from the text — they are the data series the figure",
+  "plots, read out of the page's own chart source. That is the primary source's",
+  "own data, not a pixel digitisation of the rendered image."
+ ],
+ "provenance": {
+  "primary_source_url": "https://talkie-lm.com/",
+  "source_kind": "inline client-side chart code in the report page (d3.v7)",
+  "dom_anchor": "div#humaneval-chart",
+  "javascript_variables": ["xVals", "vintageY", "modernY"],
+  "retrieved": "2026-08-17",
+  "figure_caption_verbatim": "Figure 3. We gave a Python programming test (HumanEval) to a series of pairs of vintage models (trained on pre-1931 text) and modern models (trained on the web), which have the same architecture. Left: This chart shows what percentage of problems each model would get right at least once, given 100 chances and randomly chosen Python functions as examples to learn from in-context. Right: An example of a successful solution to a Python coding problem produced by a vintage language model. The model had access to several other in-context examples to learn from.",
+  "axis_labels": {"x": "Training FLOPs", "y": "HumanEval pass@100"},
+  "chart_title": "Can a vintage model learn from examples to code?",
+  "y_axis_domain": [0.0, 0.25],
+  "not_found_in_source": [
+   "any pass@1 or pass@10 value",
+   "any numeric pass@100 value in prose or in a table",
+   "the exact number of in-context demonstrations (caption says only 'several')",
+   "the number of samples n drawn per problem (pass@100 implies n >= 100)",
+   "per-problem or per-stratum breakdowns",
+   "confidence intervals or error bars of any kind"
+  ]
+ },
+ "series": {
+  "_units": "x = training FLOPs; y = HumanEval pass@100 as a fraction of 164 problems",
+  "training_flops": [8.612e18, 3.515e19, 7.136e19, 1.394e20, 4.34e20, 5.817e21, 2.116e22],
+  "vintage_pass_at_100": [0.0, 0.006049, 0.008361, 0.004858, 0.014618, 0.010225, 0.03215],
+  "modern_pass_at_100": [0.002538, 0.005904, 0.007972, 0.025949, 0.029939, 0.051006, 0.10951]
+ },
+ "headline": {
+  "largest_vintage_model": {
+   "training_flops": 2.116e22,
+   "pass_at_100": 0.03215,
+   "pass_at_100_pct": 3.215,
+   "identified_as": "talkie-1930-13b-base",
+   "identification_basis": "6ND for 13B params x 260B tokens = 2.028e22 FLOPs, within 4.3% of the plotted 2.116e22; no other point on the ladder is close.",
+   "identification_confidence": "inferred, not stated in the report"
+  },
+  "matched_modern_control": {
+   "training_flops": 2.116e22,
+   "pass_at_100": 0.10951,
+   "pass_at_100_pct": 10.951,
+   "identified_as": "talkie-web-13b-base (same architecture, web-trained; shipped in the same HF org)",
+   "identification_confidence": "inferred from the caption's 'pairs ... which have the same architecture' plus the model list in github.com/talkie-lm/talkie"
+  },
+  "vintage_to_modern_ratio": 0.2936,
+  "modern_over_vintage": 3.406
+ },
+ "caveats_on_these_numbers": [
+  "0.03215 x 164 = 5.27 problems, not an integer, so these are unbiased pass@100 estimates from n > 100 samples per problem rather than raw solve counts. The report does not state n.",
+  "The vintage series is NOT monotone: 0.014618 at 4.340e20 FLOPs drops to 0.010225 at 5.817e21. With no error bars published, the 'slowly but steadily improving' claim rests on a series that visibly reverses once. This is precisely the reason this harness refuses to report bare rates.",
+  "The report's companion chart (div#eval-charts) plots the same FLOPs ladder with three extra smaller models (1.207e17, 7.303e17, 2.838e18). Figure 3 omits those three; the report does not say why.",
+  "Demonstrations were 'randomly chosen Python functions', i.e. not curated for the target problem, and not a fixed count. A recovery curve cannot be reconstructed from a single published point."
+ ],
+ "companion_eval_series": {
+  "_note": "From div#eval-charts on the same page. Not pass@k; included because it is the only published scale ladder for these same checkpoints and is useful for sanity-checking which point is the 13B.",
+  "training_flops": [1.207e17, 7.303e17, 2.838e18, 8.612e18, 3.515e19, 7.136e19, 1.394e20, 4.34e20, 5.817e21, 2.116e22],
+  "language_understanding": {
+   "vintage": [0.2316, 0.2471, 0.2717, 0.2943, 0.319, 0.3447, 0.37, 0.4313, 0.557, 0.5913],
+   "modern": [0.2415, 0.2565, 0.3013, 0.3316, 0.3683, 0.4005, 0.4387, 0.4868, 0.5817, 0.6207]
+  },
+  "numeracy": {
+   "vintage": [0.0961, 0.1789, 0.2029, 0.2198, 0.23, 0.2627, 0.2671, 0.444, 0.5579, 0.6202],
+   "modern": [0.0863, 0.1559, 0.1721, 0.1899, 0.2167, 0.2493, 0.2647, 0.2691, 0.5266, 0.5722]
+  },
+  "knowledge": {
+   "vintage_solid": [0.2458, 0.2595, 0.2761, 0.2927, 0.3037, 0.316, 0.3342, 0.3649, 0.4411, 0.4697],
+   "vintage_dashed": [0.2544, 0.2711, 0.2923, 0.3091, 0.3264, 0.343, 0.3631, 0.4008, 0.5018, 0.5329],
+   "modern_solid": [0.2643, 0.2965, 0.3211, 0.3495, 0.3756, 0.4083, 0.4397, 0.4875, 0.581, 0.6204],
+   "modern_dashed": [0.2587, 0.2929, 0.3189, 0.3485, 0.3706, 0.404, 0.4329, 0.4863, 0.579, 0.6169]
+  }
+ },
+ "worked_example_from_figure_3_right": {
+  "_note": "The report's one displayed success. It is HumanEval/50 (decode_shift), and the model's answer differs from the in-context encode_shift by one character: + becomes -.",
+  "humaneval_row_url": "https://huggingface.co/datasets/openai/openai_humaneval/viewer/openai_humaneval/test?row=50",
+  "model_output_verbatim": "    return \"\".join([chr(((ord(ch)\n        - 5 - ord(\"a\")) % 26)\n        + ord(\"a\")) for ch in s])",
+  "report_gloss_verbatim": "All correct solutions generated by the vintage models are simple one-line programs (such as adding two inputs), or small modifications to in-context example programs."
+ }
+}

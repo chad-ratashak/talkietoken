@@ -1,0 +1,70 @@
+=== IN-CONTEXT CAPABILITY RECONSTITUTION ===
+Measures whether a capability absent from a model's training data can
+be rebuilt from in-context demonstrations, as a curve over how much
+demonstration material is supplied — not as a single pass@k point.
+
+Why the shape matters rather than the level: methods that remove a
+capability from weights (data filtering; module ablation such as GRAM)
+claim the capability is gone. If context alone rebuilds it, removal from
+weights is necessary but not sufficient. The curve is what distinguishes
+a robust removal from a cosmetic one.
+
+talkie is the calibration case, not the point: it is the one model where
+ground truth about the corpus is checkable independently, because a BPE
+merge is a fossil of training data and in-context learning cannot create
+one. See RESULTS.md and results/python-leak.txt.
+
+--- provenance ---
+  generated        2026-08-17 18:41:42 CDT
+  git              b1ec940 on claude/clever-nightingale-f852d6 (dirty)
+  capability       python
+  target tokenizer talkie-1930 (local vocab.txt) (262,144 merges)
+  reference        o200k_base (tiktoken) (200,019 merges)
+  control prose    period-prose
+  task set         hand-written, HumanEval-STYLE. Numbers here are
+                   NOT comparable to a published HumanEval pass@k;
+                   pass --humaneval-jsonl for that.
+
+--- generation channel ---
+  backend          none (penalty-only run)
+  variant          none
+  CAVEAT:
+    No generation performed. The encoding penalty is a prediction about
+    reconstitution cost, not a measurement of it.
+
+--- what the model's authors report (primary source) ---
+  source: https://talkie-lm.com/ (Figure 3, inline client-side chart code in the report page (d3.v7))
+  The report states NO numeric pass@k in prose. The numbers below are the
+  series its own chart plots, read from the page's chart source.
+  largest vintage model (2.12e+22 FLOPs, inferred to be talkie-1930-13b-base):
+      HumanEval pass@100 = 0.03215 (3.215%)
+  matched modern control (talkie-web-13b-base (same architecture, web-trained; shipped in the same HF org)):
+      HumanEval pass@100 = 0.10951 (10.951%)  -> 3.41x the vintage rate
+  no error bars, no n, no demonstration count published; the vintage
+  series is not monotone (see reference/talkie-figure3.json).
+
+--- ENCODING PENALTY (tokenizer only; no generation) ---
+The encoding penalty is the predictor. If the tokenizer has no merges
+for a capability's surface form, each demonstration costs more tokens,
+so a fixed context window holds fewer of them. Prediction: higher
+penalty, less recovery per token of context.
+
+'ratio' is target tokens per reference token, the raw Tier 4 measure.
+'normalised' divides that by the same model's ratio on control prose, so
+a small vocabulary is not mistaken for a capability-specific penalty.
+Dialects hold the lesson fixed and move only the token cost.
+
+  dialect        demo tok  ref tok   ratio  normalised  tok/char
+  py-canonical        287      246   1.167       1.187     0.287
+  py-indent8          289      246   1.175       1.195     0.261
+  py-indent16         312      246   1.268       1.290     0.235
+  py-tab              290      234   1.239       1.261     0.315
+  py-crlf             323      256   1.262       1.283     0.313
+  py-comment          270      246   1.098       1.116     0.279
+  py-nodoc            187      161   1.161       1.182     0.317
+
+  control prose under the same pair: 58 target / 59 reference = 0.983
+
+--- no generation run (--penalty-only) ---
+  The penalty above is a prediction. Nothing here measures whether
+  it holds; run with a --backend to sweep the curve.
