@@ -1,0 +1,176 @@
+=== DID PYTHON LEAK INTO THE CORPUS, OR WAS IT LEARNED IN-CONTEXT? ===
+'yes (p)' = whole token, p = percentile merge rank (0 = earliest).
+In-context learning cannot create a merge; corpus leakage must.
+
+--- TIER 0: Python keywords that are ordinary English words ---
+Expected present in BOTH. Carries NO information about code.
+  23/24 present in talkie as ' word': ['if', 'else', 'for', 'while', 'class', 'return', 'import', 'from', 'pass', 'break', 'continue', 'try', 'raise', 'with', 'as', 'in', 'is', 'not', 'and', 'or', 'del', 'yield', 'assert']
+  all are dictionary words: True
+  → as expected, and worthless as evidence either way.
+
+--- TIER 1: strings prose cannot plausibly produce ---
+  token                    talkie          o200k   why it may not count
+  'elif'                       no    yes (0.149)   1991 coinage, not an English word — the key 
+  ' elif'                      no    yes (0.047)   same, word-initial form
+  ' Elif'             yes (0.917)             no   DECOY: a common Turkish given name
+  '__init__'                   no             no   dunder; prose has no double underscores
+  '__name__'                   no             no   dunder
+  '__main__'                   no             no   dunder
+  'self.'                      no             no   attribute access
+  '.append'                    no    yes (0.019)   method call
+  '.join'                      no    yes (0.055)   method call
+  '()'                yes (0.049)    yes (0.002)   empty call — see tier 3
+  '():'                        no    yes (0.047)   def/class line ending
+  ' lambda'                    no    yes (0.139)   Greek letter in prose, keyword in code
+  ' nonlocal'                  no             no   2008 coinage
+  ' def'              yes (0.006)    yes (0.005)   DECOY: prefix of define/defend/default/defic
+
+--- TIER 2: ecosystem names (English-word decoys marked) ---
+  token                    talkie          o200k   why it may not count
+  ' numpy'                     no    yes (0.098)   no prose reading
+  ' pandas'                    no    yes (0.210)   DECOY: the animals
+  ' matplotlib'                no    yes (0.197)   no prose reading
+  ' django'                    no    yes (0.093)   no prose reading
+  ' flask'            yes (0.117)    yes (0.227)   DECOY: a bottle
+  ' pytest'                    no    yes (0.316)   no prose reading
+  ' sklearn'                   no    yes (0.211)   no prose reading
+  ' jupyter'                   no             no   DECOY: Jupiter/Jupyter
+  ' tensor'           yes (0.619)    yes (0.168)   DECOY: 1846 maths term
+  ' pip'              yes (0.140)    yes (0.155)   DECOY: a seed
+  ' json'                      no    yes (0.029)   no prose reading
+  ' stdout'                    no    yes (0.240)   no prose reading
+  → non-decoy library hits in talkie: NONE
+
+--- TIER 3: code structure ---
+  token                    talkie          o200k   why it may not count
+  '```'                        no    yes (0.842)   markdown code fence
+  '):'                yes (0.041)    yes (0.016)   end of a def/if line
+  '->'                yes (0.083)    yes (0.003)   type-hint arrow / return annotation
+  '=='                yes (0.062)    yes (0.003)   equality operator
+  '!='                yes (0.755)    yes (0.057)   inequality operator
+  '+='                yes (0.972)    yes (0.091)   augmented assignment
+  '):\n'                       no    yes (0.009)   line ending inside a block
+
+  indentation runs (code merges these; prose only for verse/tables):
+  run                      talkie          o200k
+  2 spaces            yes (0.009)    yes (0.001)
+  4 spaces            yes (0.034)    yes (0.001)
+  8 spaces            yes (0.125)    yes (0.001)
+  12 spaces                    no    yes (0.017)
+  16 spaces           yes (0.341)    yes (0.002)
+  \n + 4sp                     no             no
+  \n + 8sp                     no             no
+  \n + tab                     no             no
+  tab                 yes (0.000)    yes (0.001)
+
+  underscore-bearing tokens (identifiers vs. Gutenberg _italics_):
+    talkie    357 / 261835 = 0.136%
+    o200k    4421 / 198795 = 2.224%
+    talkie underscore tokens containing letters: 50
+      sample: ['_A', '_B', '_C', '_D', '_E', '_F', '_H', '_I', '_J', '_L', '_M', '_N']
+
+--- TIER 3b: the three talkie hits that look like code, checked ---
+Each has a prose explanation. A story is not evidence, so each is
+tested against the siblings it would have if the story were true.
+
+  '==' as a section divider, not an operator — the ASCII-rule family:
+    '=='=yes/0.062  '==='=yes/0.396  '===='=yes/0.235  '--'=yes/0.005  '---'=yes/0.031  '****'=yes/0.070  '____'=yes/0.044  '....'=yes/0.002
+    Leader dots and rules are early merges throughout; '==' sits
+    inside that family, where a Gutenberg text puts its separators.
+
+  '->' as a typographic arrow, not a return annotation:
+    '->'=0.083  '<-'=0.058  '=>'=0.220  '-->'=0.672  '<--'=0.812
+    '<-' is as early as '->'. In Python '->' is syntax and '<-' is
+    not, so a code corpus separates them; a corpus of chemistry
+    arrows and cross-references does not. They are not separated.
+
+  ' def' as a word-initial prefix fragment, not the keyword:
+    peers: def=0.006  con=0.001  pre=0.002  dis=0.002  int=0.005  imp=0.004  ret=0.004
+    earliest ' def…' merges: [' def', ' defe', ' defend', ' defendant', ' definite', ' defendants', ' defect', ' defence', ' defeated', ' defic', ' defeat', ' defense']
+    Every continuation is prose. No ' def ' followed by an identifier,
+    no '():'. The fragment exists because 1930 English says 'define',
+    'defendant' and 'defence' constantly.
+
+--- TIER 4: encoding efficiency on real Python ---
+If the corpus never held code, the tokenizer must spell it out.
+
+  sample                             talkie    o200k     gpt2    ratio
+  HumanEval-style function               76       58      150    1.31x
+  class with dunder                      47       43       70    1.09x
+  period English prose (control)         28       28       29    1.00x
+
+  ratio = talkie tokens per o200k token. ~1.0 on prose means the two
+  are equally at home in English; a large ratio on code means talkie
+  is spelling out something it has no merges for.
+
+  line: '    def __init__(self, start=0):'
+    talkie (12 tokens):    | def| __|init|__|(|self|,| start|=|0|):
+    o200k  (11 tokens):    | def| __|init|__(|self|,| start|=|0|):
+
+--- TIER 5: what if the language were not made of English? ---
+Python is close to a BEST case for a 1930 English model: its
+keywords are English words whose ordinary meanings match their
+semantics (return, if, while, for..in, sum, len, sort, open, class).
+Same task in every notation; only the surface language changes.
+
+  language   English  chars  talkie  o200k   ratio  tok/char
+  SQL          total     69      18     17   1.06x      0.26
+  COBOL        total    221      61     63   0.97x      0.28
+  Python        high    127      36     32   1.12x      0.28
+  Rust          some    146      52     47   1.11x      0.36
+  Haskell     little     79      29     29   1.00x      0.37
+  Perl        little     76      34     31   1.10x      0.45
+  J             NONE     42      16     19   0.84x      0.38
+  APL           NONE     30      31     26   1.19x      1.03
+
+  ratio vs o200k is nearly flat — it hides the effect, because o200k
+  has no merges for J or APL either. tok/char is the discriminating
+  measure, and it orders the languages by how much English they are
+  made of. talkie BEATS o200k on COBOL and SQL: those are English.
+
+--- worked splits: Python-specific syntax vs a non-English language ---
+'|' marks a token boundary. Note WHAT the pieces are: in Python the
+content tokens are English morphemes the model already understands.
+
+  [Python] 'def largest(a, b):'
+      talkie   6: def| largest|(a|,| b|):
+      o200k    6: def| largest|(a|,| b|):
+  [Python] '    return a if a > b else b'
+      talkie   9:    | return| a| if| a| >| b| else| b
+      o200k    9:    | return| a| if| a| >| b| else| b
+  [Python] '[x**2 for x in range(10)]'
+      talkie  10: [x|**|2| for| x| in| range|(|10|)]
+      o200k   10: [x|**|2| for| x| in| range|(|10|)]
+  [Python] "with open('data.txt') as fh:"
+      talkie  10: with| open|('|data|.t|xt|')| as| fh|:
+      o200k    9: with| open|('|data|.txt|')| as| fh|:
+  [Python] 'except ValueError as err:'
+      talkie   6: except| Value|Error| as| err|:
+      o200k    6: except| Value|Error| as| err|:
+  [Python] '@property'
+      talkie   2: @|property
+      o200k    1: @property
+  [Python] 'self.items.append(value)'
+      talkie   8: self|.it|ems|.ap|pend|(|value|)
+      o200k    5: self|.items|.append|(value|)
+  [Python] 'lambda x: x + 1'
+      talkie   8: lamb|da| x|:| x| +| |1
+      o200k    7: lambda| x|:| x| +| |1
+  [J] 'largest =: >./'
+      talkie   4: largest| =:| >.|/
+      o200k    5: largest| =|:| >|./
+  [J] 'mean =: +/ % #'
+      talkie   5: mean| =:| +/| %| #
+      o200k    7: mean| =|:| +|/| %| #
+  [APL] 'largest←{⌈/⍵}'
+      talkie  12: largest|<e2><86>|<90>|{|<e2>|<8c>|<88>|/|<e2>|<8d>|<b5>|}
+      o200k   10: largest|←|{|<e2><8c>|<88>|/|<e2>|<8d>|<b5>|}
+  [APL] 'mean←{(+/⍵)÷≢⍵}'
+      talkie  17: mean|<e2><86>|<90>|{(|+/|<e2>|<8d>|<b5>|)|÷|<e2>|<89>|<a2>|<e2>|<8d>|<b5>|}
+      o200k   16: mean|←|{|(+|/|<e2>|<8d>|<b5>|)|÷|<e2><89>|<a2>|<e2>|<8d>|<b5>|}
+
+  The Python rows break into def / return / if / else / for / in /
+  open / with / range / value — words a 1930 corpus knows, carrying
+  roughly the right meaning. The J and APL rows break into single
+  characters and raw bytes carrying none. That, rather than any
+  leaked code, is the likeliest reason in-context Python works.

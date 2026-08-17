@@ -1,0 +1,529 @@
+{
+ "spectrum": [
+  {
+   "lang": "SQL",
+   "english": "total",
+   "chars": 69,
+   "talkie": 18,
+   "o200k": 17,
+   "tok_per_char": 0.2609
+  },
+  {
+   "lang": "COBOL",
+   "english": "total",
+   "chars": 221,
+   "talkie": 61,
+   "o200k": 63,
+   "tok_per_char": 0.276
+  },
+  {
+   "lang": "Python",
+   "english": "high",
+   "chars": 127,
+   "talkie": 36,
+   "o200k": 32,
+   "tok_per_char": 0.2835
+  },
+  {
+   "lang": "Rust",
+   "english": "some",
+   "chars": 146,
+   "talkie": 52,
+   "o200k": 47,
+   "tok_per_char": 0.3562
+  },
+  {
+   "lang": "Haskell",
+   "english": "little",
+   "chars": 79,
+   "talkie": 29,
+   "o200k": 29,
+   "tok_per_char": 0.3671
+  },
+  {
+   "lang": "Perl",
+   "english": "little",
+   "chars": 76,
+   "talkie": 34,
+   "o200k": 31,
+   "tok_per_char": 0.4474
+  },
+  {
+   "lang": "J",
+   "english": "NONE",
+   "chars": 42,
+   "talkie": 16,
+   "o200k": 19,
+   "tok_per_char": 0.381
+  },
+  {
+   "lang": "APL",
+   "english": "NONE",
+   "chars": 30,
+   "talkie": 31,
+   "o200k": 26,
+   "tok_per_char": 1.0333
+  }
+ ],
+ "splits": [
+  {
+   "lang": "Python",
+   "src": "def largest(a, b):",
+   "talkie": [
+    "def",
+    " largest",
+    "(a",
+    ",",
+    " b",
+    "):"
+   ],
+   "o200k": [
+    "def",
+    " largest",
+    "(a",
+    ",",
+    " b",
+    "):"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "    return a if a > b else b",
+   "talkie": [
+    "   ",
+    " return",
+    " a",
+    " if",
+    " a",
+    " >",
+    " b",
+    " else",
+    " b"
+   ],
+   "o200k": [
+    "   ",
+    " return",
+    " a",
+    " if",
+    " a",
+    " >",
+    " b",
+    " else",
+    " b"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "[x**2 for x in range(10)]",
+   "talkie": [
+    "[x",
+    "**",
+    "2",
+    " for",
+    " x",
+    " in",
+    " range",
+    "(",
+    "10",
+    ")]"
+   ],
+   "o200k": [
+    "[x",
+    "**",
+    "2",
+    " for",
+    " x",
+    " in",
+    " range",
+    "(",
+    "10",
+    ")]"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "with open('data.txt') as fh:",
+   "talkie": [
+    "with",
+    " open",
+    "('",
+    "data",
+    ".t",
+    "xt",
+    "')",
+    " as",
+    " fh",
+    ":"
+   ],
+   "o200k": [
+    "with",
+    " open",
+    "('",
+    "data",
+    ".txt",
+    "')",
+    " as",
+    " fh",
+    ":"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "except ValueError as err:",
+   "talkie": [
+    "except",
+    " Value",
+    "Error",
+    " as",
+    " err",
+    ":"
+   ],
+   "o200k": [
+    "except",
+    " Value",
+    "Error",
+    " as",
+    " err",
+    ":"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "@property",
+   "talkie": [
+    "@",
+    "property"
+   ],
+   "o200k": [
+    "@property"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "self.items.append(value)",
+   "talkie": [
+    "self",
+    ".it",
+    "ems",
+    ".ap",
+    "pend",
+    "(",
+    "value",
+    ")"
+   ],
+   "o200k": [
+    "self",
+    ".items",
+    ".append",
+    "(value",
+    ")"
+   ]
+  },
+  {
+   "lang": "Python",
+   "src": "lambda x: x + 1",
+   "talkie": [
+    "lamb",
+    "da",
+    " x",
+    ":",
+    " x",
+    " +",
+    " ",
+    "1"
+   ],
+   "o200k": [
+    "lambda",
+    " x",
+    ":",
+    " x",
+    " +",
+    " ",
+    "1"
+   ]
+  },
+  {
+   "lang": "J",
+   "src": "largest =: >./",
+   "talkie": [
+    "largest",
+    " =:",
+    " >.",
+    "/"
+   ],
+   "o200k": [
+    "largest",
+    " =",
+    ":",
+    " >",
+    "./"
+   ]
+  },
+  {
+   "lang": "J",
+   "src": "mean =: +/ % #",
+   "talkie": [
+    "mean",
+    " =:",
+    " +/",
+    " %",
+    " #"
+   ],
+   "o200k": [
+    "mean",
+    " =",
+    ":",
+    " +",
+    "/",
+    " %",
+    " #"
+   ]
+  },
+  {
+   "lang": "APL",
+   "src": "largest\u2190{\u2308/\u2375}",
+   "talkie": [
+    "largest",
+    "<e2><86>",
+    "<90>",
+    "{",
+    "<e2>",
+    "<8c>",
+    "<88>",
+    "/",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    "}"
+   ],
+   "o200k": [
+    "largest",
+    "\u2190",
+    "{",
+    "<e2><8c>",
+    "<88>",
+    "/",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    "}"
+   ]
+  },
+  {
+   "lang": "APL",
+   "src": "mean\u2190{(+/\u2375)\u00f7\u2262\u2375}",
+   "talkie": [
+    "mean",
+    "<e2><86>",
+    "<90>",
+    "{(",
+    "+/",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    ")",
+    "\u00f7",
+    "<e2>",
+    "<89>",
+    "<a2>",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    "}"
+   ],
+   "o200k": [
+    "mean",
+    "\u2190",
+    "{",
+    "(+",
+    "/",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    ")",
+    "\u00f7",
+    "<e2><89>",
+    "<a2>",
+    "<e2>",
+    "<8d>",
+    "<b5>",
+    "}"
+   ]
+  }
+ ],
+ "leak": [
+  {
+   "token": "elif",
+   "note": "1991 coinage; no English reading at all",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.149
+  },
+  {
+   "token": "():",
+   "note": "def/class line ending",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.047
+  },
+  {
+   "token": ".append",
+   "note": "method call",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.019
+  },
+  {
+   "token": ".join",
+   "note": "method call",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.055
+  },
+  {
+   "token": "__init__",
+   "note": "dunder",
+   "talkie": false,
+   "o200k": false,
+   "o200k_pct": null
+  },
+  {
+   "token": " numpy",
+   "note": "library",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.098
+  },
+  {
+   "token": " matplotlib",
+   "note": "library",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.197
+  },
+  {
+   "token": " django",
+   "note": "library",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.093
+  },
+  {
+   "token": " json",
+   "note": "library",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.029
+  },
+  {
+   "token": " stdout",
+   "note": "library",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.24
+  },
+  {
+   "token": " lambda",
+   "note": "keyword sense",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.139
+  },
+  {
+   "token": " nonlocal",
+   "note": "2008 coinage",
+   "talkie": false,
+   "o200k": false,
+   "o200k_pct": null
+  },
+  {
+   "token": "```",
+   "note": "markdown code fence",
+   "talkie": false,
+   "o200k": true,
+   "o200k_pct": 0.842
+  }
+ ],
+ "decoys": [
+  {
+   "token": " def",
+   "note": "prefix of define / defend / default / deficient",
+   "talkie_pct": 0.006
+  },
+  {
+   "token": " Elif",
+   "note": "a common Turkish given name",
+   "talkie_pct": 0.917
+  },
+  {
+   "token": " flask",
+   "note": "a bottle",
+   "talkie_pct": 0.117
+  },
+  {
+   "token": " pip",
+   "note": "a seed",
+   "talkie_pct": 0.14
+  },
+  {
+   "token": " tensor",
+   "note": "an 1846 mathematics term",
+   "talkie_pct": 0.619
+  },
+  {
+   "token": "==",
+   "note": "Gutenberg section rule, beside ==== and ....",
+   "talkie_pct": 0.062
+  },
+  {
+   "token": "->",
+   "note": "typographic arrow; '<-' is just as early",
+   "talkie_pct": 0.083
+  }
+ ],
+ "keywords_english": {
+  "n_present": 23,
+  "n_total": 24,
+  "words": [
+   "if",
+   "else",
+   "for",
+   "while",
+   "class",
+   "return",
+   "import",
+   "from",
+   "pass",
+   "break",
+   "continue",
+   "try",
+   "raise",
+   "with",
+   "as",
+   "in",
+   "is",
+   "not",
+   "and",
+   "or",
+   "del",
+   "yield",
+   "assert"
+  ]
+ },
+ "underscore": {
+  "talkie_pct": 0.136,
+  "o200k_pct": 2.224,
+  "talkie_sample": [
+   "_A",
+   "_B",
+   "_C",
+   "_D",
+   "_E",
+   "_F",
+   "_H",
+   "_I",
+   "_J",
+   "_L"
+  ]
+ }
+}
