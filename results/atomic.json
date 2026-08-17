@@ -1,0 +1,957 @@
+{
+ "places": [
+  {
+   "term": "Hiroshima",
+   "note": "real city pre-1931 \u2014 Meiji garrison town and port",
+   "talkie_n": 2,
+   "o200k_n": 1,
+   "gpt2_n": 1,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " Hirosh",
+    "ima"
+   ],
+   "o200k_pieces": [
+    " Hiroshima"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": 0.9786496797451962,
+   "delta": null,
+   "common_word": false
+  },
+  {
+   "term": "Nagasaki",
+   "note": "real city pre-1931 \u2014 treaty port, Madame Butterfly",
+   "talkie_n": 1,
+   "o200k_n": 2,
+   "gpt2_n": 2,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " Nagasaki"
+   ],
+   "o200k_pieces": [
+    " Nag",
+    "asaki"
+   ],
+   "talkie_pct": 0.37037418508218795,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": false
+  },
+  {
+   "term": "Los Alamos",
+   "note": "existed, but an obscure New Mexico ranch school",
+   "talkie_n": 3,
+   "o200k_n": 3,
+   "gpt2_n": 3,
+   "cl100k_n": 3,
+   "talkie_pieces": [
+    " Los",
+    " Al",
+    "amos"
+   ],
+   "o200k_pieces": [
+    " Los",
+    " Al",
+    "amos"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": true
+  },
+  {
+   "term": "Alamogordo",
+   "note": "existed as a New Mexico railroad town",
+   "talkie_n": 2,
+   "o200k_n": 3,
+   "gpt2_n": 4,
+   "cl100k_n": 3,
+   "talkie_pieces": [
+    " Alam",
+    "ogordo"
+   ],
+   "o200k_pieces": [
+    " Alam",
+    "og",
+    "ordo"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": false
+  },
+  {
+   "term": "Oak Ridge",
+   "note": "the site did not exist until 1942",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "gpt2_n": 2,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " Oak",
+    " Ridge"
+   ],
+   "o200k_pieces": [
+    " Oak",
+    " Ridge"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": true
+  },
+  {
+   "term": "Hanford",
+   "note": "tiny farm town; the site did not exist until 1943",
+   "talkie_n": 1,
+   "o200k_n": 2,
+   "gpt2_n": 2,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " Hanford"
+   ],
+   "o200k_pieces": [
+    " Han",
+    "ford"
+   ],
+   "talkie_pct": 0.2876140121994484,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": false
+  },
+  {
+   "term": "the Alamo",
+   "note": "control \u2014 famous in 1930 and famous now",
+   "talkie_n": 2,
+   "o200k_n": 3,
+   "gpt2_n": 3,
+   "cl100k_n": 3,
+   "talkie_pieces": [
+    " the",
+    " Alamo"
+   ],
+   "o200k_pieces": [
+    " the",
+    " Al",
+    "amo"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": true
+  }
+ ],
+ "hardware": [
+  {
+   "term": "Enola Gay",
+   "note": "rare given name + a very common adjective",
+   "talkie_n": 3,
+   "o200k_n": 3,
+   "gpt2_n": 3,
+   "cl100k_n": 3,
+   "talkie_pieces": [
+    " En",
+    "ola",
+    " Gay"
+   ],
+   "o200k_pieces": [
+    " En",
+    "ola",
+    " Gay"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": false
+  },
+  {
+   "term": "Bockscar",
+   "note": "pure post-war coinage",
+   "talkie_n": 2,
+   "o200k_n": 3,
+   "gpt2_n": 3,
+   "cl100k_n": 3,
+   "talkie_pieces": [
+    " Bocks",
+    "car"
+   ],
+   "o200k_pieces": [
+    " B",
+    "ock",
+    "scar"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": false
+  },
+  {
+   "term": "Fat Man",
+   "note": "two ordinary words",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "gpt2_n": 2,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " Fat",
+    " Man"
+   ],
+   "o200k_pieces": [
+    " Fat",
+    " Man"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": true
+  },
+  {
+   "term": "Little Boy",
+   "note": "two ordinary words",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "gpt2_n": 2,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " Little",
+    " Boy"
+   ],
+   "o200k_pieces": [
+    " Little",
+    " Boy"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": true
+  },
+  {
+   "term": "Manhattan Project",
+   "note": "place name + ordinary noun",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "gpt2_n": 2,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " Manhattan",
+    " Project"
+   ],
+   "o200k_pieces": [
+    " Manhattan",
+    " Project"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": true
+  },
+  {
+   "term": "USS Indianapolis",
+   "note": "ship launched Nov 1931 \u2014 just past the cutoff",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "gpt2_n": 2,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " USS",
+    " Indianapolis"
+   ],
+   "o200k_pieces": [
+    " USS",
+    " Indianapolis"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": false
+  },
+  {
+   "term": "Trinity",
+   "note": "ordinary theological noun pre-1931",
+   "talkie_n": 1,
+   "o200k_n": 1,
+   "gpt2_n": 1,
+   "cl100k_n": 1,
+   "talkie_pieces": [
+    " Trinity"
+   ],
+   "o200k_pieces": [
+    " Trinity"
+   ],
+   "talkie_pct": 0.04453676047043026,
+   "o200k_pct": 0.363595453931809,
+   "delta": -0.3190586934613787,
+   "common_word": true
+  },
+  {
+   "term": "atomic bomb",
+   "note": "both words existed; the compound did not",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "gpt2_n": 2,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " atomic",
+    " bomb"
+   ],
+   "o200k_pieces": [
+    " atomic",
+    " bomb"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": true
+  },
+  {
+   "term": "uranium",
+   "note": "known element, mundane pre-1931",
+   "talkie_n": 1,
+   "o200k_n": 1,
+   "gpt2_n": 1,
+   "cl100k_n": 1,
+   "talkie_pieces": [
+    " uranium"
+   ],
+   "o200k_pieces": [
+    " uranium"
+   ],
+   "talkie_pct": 0.32711153835883466,
+   "o200k_pct": 0.5144627169407541,
+   "delta": -0.1873511785819194,
+   "common_word": true
+  },
+  {
+   "term": "plutonium",
+   "note": "not synthesized until 1940",
+   "talkie_n": 3,
+   "o200k_n": 2,
+   "gpt2_n": 1,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " pl",
+    "uton",
+    "ium"
+   ],
+   "o200k_pieces": [
+    " plut",
+    "onium"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": true
+  },
+  {
+   "term": "fission",
+   "note": "biological sense only pre-1931",
+   "talkie_n": 1,
+   "o200k_n": 2,
+   "gpt2_n": 2,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " fission"
+   ],
+   "o200k_pieces": [
+    " f",
+    "ission"
+   ],
+   "talkie_pct": 0.6023429959983673,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": true
+  },
+  {
+   "term": "chain reaction",
+   "note": "chemistry sense existed; nuclear sense did not",
+   "talkie_n": 2,
+   "o200k_n": 2,
+   "gpt2_n": 2,
+   "cl100k_n": 2,
+   "talkie_pieces": [
+    " chain",
+    " reaction"
+   ],
+   "o200k_pieces": [
+    " chain",
+    " reaction"
+   ],
+   "talkie_pct": null,
+   "o200k_pct": null,
+   "delta": null,
+   "common_word": true
+  }
+ ],
+ "scientists": {
+  "kept": [
+   {
+    "term": "Einstein",
+    "note": "world-famous from the 1919 eclipse onward",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "gpt2_n": 1,
+    "cl100k_n": 1,
+    "talkie_pieces": [
+     " Einstein"
+    ],
+    "o200k_pieces": [
+     " Einstein"
+    ],
+    "talkie_pct": 0.4037185810797923,
+    "o200k_pct": 0.4170062550938264,
+    "delta": -0.013287674014034079,
+    "common_word": false
+   },
+   {
+    "term": "Curie",
+    "note": "Nobel 1903 and 1911; died 1934",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Curie"
+    ],
+    "o200k_pieces": [
+     " Cur",
+     "ie"
+    ],
+    "talkie_pct": 0.48988910632746246,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": true
+   },
+   {
+    "term": "Planck",
+    "note": "quantum theory, Nobel 1918",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Planck"
+    ],
+    "o200k_pieces": [
+     " Plan",
+     "ck"
+    ],
+    "talkie_pct": 0.8477777396306596,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Bohr",
+    "note": "Nobel 1922",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Bohr"
+    ],
+    "o200k_pieces": [
+     " Bo",
+     "hr"
+    ],
+    "talkie_pct": 0.8290703928771701,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Rutherford",
+    "note": "Nobel 1908, the nuclear atom",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "gpt2_n": 1,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Rutherford"
+    ],
+    "o200k_pieces": [
+     " Rutherford"
+    ],
+    "talkie_pct": 0.12439393765997947,
+    "o200k_pct": 0.9633794506917603,
+    "delta": -0.8389855130317809,
+    "common_word": true
+   },
+   {
+    "term": "Edison",
+    "note": "household name by 1900",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "gpt2_n": 1,
+    "cl100k_n": 1,
+    "talkie_pieces": [
+     " Edison"
+    ],
+    "o200k_pieces": [
+     " Edison"
+    ],
+    "talkie_pct": 0.09143101284413468,
+    "o200k_pct": 0.5932288984334765,
+    "delta": -0.5017978855893418,
+    "common_word": false
+   },
+   {
+    "term": "Marconi",
+    "note": "household name \u2014 wireless",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Marconi"
+    ],
+    "o200k_pieces": [
+     " Mar",
+     "coni"
+    ],
+    "talkie_pct": 0.2961093754172341,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": true
+   },
+   {
+    "term": "Freud",
+    "note": "famous well before 1931",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "gpt2_n": 1,
+    "cl100k_n": 1,
+    "talkie_pieces": [
+     " Freud"
+    ],
+    "o200k_pieces": [
+     " Freud"
+    ],
+    "talkie_pct": 0.32821399007411983,
+    "o200k_pct": 0.5761186417796267,
+    "delta": -0.24790465170550685,
+    "common_word": false
+   }
+  ],
+  "rose": [
+   {
+    "term": "Oppenheimer",
+    "note": "obscure young theorist in 1930",
+    "talkie_n": 1,
+    "o200k_n": 3,
+    "gpt2_n": 3,
+    "cl100k_n": 3,
+    "talkie_pieces": [
+     " Oppenheimer"
+    ],
+    "o200k_pieces": [
+     " O",
+     "ppen",
+     "heimer"
+    ],
+    "talkie_pct": 0.44207932311753506,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Feynman",
+    "note": "born 1918 \u2014 a schoolboy at the cutoff",
+    "talkie_n": 3,
+    "o200k_n": 3,
+    "gpt2_n": 3,
+    "cl100k_n": 3,
+    "talkie_pieces": [
+     " Fe",
+     "yn",
+     "man"
+    ],
+    "o200k_pieces": [
+     " F",
+     "eyn",
+     "man"
+    ],
+    "talkie_pct": null,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Fermi",
+    "note": "rising, but Nobel 1938 and Chicago Pile 1942",
+    "talkie_n": 2,
+    "o200k_n": 2,
+    "gpt2_n": 3,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Ferm",
+     "i"
+    ],
+    "o200k_pieces": [
+     " F",
+     "ermi"
+    ],
+    "talkie_pct": null,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Teller",
+    "note": "Hungarian, obscure in 1930",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Teller"
+    ],
+    "o200k_pieces": [
+     " Teller"
+    ],
+    "talkie_pct": 0.1708304246155724,
+    "o200k_pct": 0.8800032000480007,
+    "delta": -0.7091727754324283,
+    "common_word": true
+   },
+   {
+    "term": "Szilard",
+    "note": "Hungarian, obscure in 1930",
+    "talkie_n": 3,
+    "o200k_n": 3,
+    "gpt2_n": 3,
+    "cl100k_n": 3,
+    "talkie_pieces": [
+     " S",
+     "zil",
+     "ard"
+    ],
+    "o200k_pieces": [
+     " Sz",
+     "il",
+     "ard"
+    ],
+    "talkie_pct": null,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Wigner",
+    "note": "Hungarian, obscure in 1930",
+    "talkie_n": 2,
+    "o200k_n": 2,
+    "gpt2_n": 3,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " W",
+     "igner"
+    ],
+    "o200k_pieces": [
+     " W",
+     "igner"
+    ],
+    "talkie_pct": null,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Bethe",
+    "note": "obscure in 1930",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Bethe"
+    ],
+    "o200k_pieces": [
+     " Bet",
+     "he"
+    ],
+    "talkie_pct": 0.6543718504785556,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Ulam",
+    "note": "born 1909, obscure in 1930",
+    "talkie_n": 2,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Ul",
+     "am"
+    ],
+    "o200k_pieces": [
+     " U",
+     "lam"
+    ],
+    "talkie_pct": null,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Groves",
+    "note": "career army engineer, unknown",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Groves"
+    ],
+    "o200k_pieces": [
+     " Gro",
+     "ves"
+    ],
+    "talkie_pct": 0.1718336938236001,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": true
+   },
+   {
+    "term": "Meitner",
+    "note": "known in physics circles, not to the public",
+    "talkie_n": 2,
+    "o200k_n": 3,
+    "gpt2_n": 3,
+    "cl100k_n": 3,
+    "talkie_pieces": [
+     " Me",
+     "itner"
+    ],
+    "o200k_pieces": [
+     " Me",
+     "it",
+     "ner"
+    ],
+    "talkie_pct": null,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Turing",
+    "note": "born 1912 \u2014 a schoolboy at the cutoff",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 1,
+    "cl100k_n": 1,
+    "talkie_pieces": [
+     " Turing"
+    ],
+    "o200k_pieces": [
+     " T",
+     "uring"
+    ],
+    "talkie_pct": 0.7750807765227375,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   }
+  ],
+  "faded": [
+   {
+    "term": "Millikan",
+    "note": "Nobel 1923; a household science name then",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Millikan"
+    ],
+    "o200k_pieces": [
+     " Mill",
+     "ikan"
+    ],
+    "talkie_pct": 0.804026809794654,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Eddington",
+    "note": "the man who 'proved' Einstein \u2014 a celebrity",
+    "talkie_n": 1,
+    "o200k_n": 3,
+    "gpt2_n": 3,
+    "cl100k_n": 3,
+    "talkie_pieces": [
+     " Eddington"
+    ],
+    "o200k_pieces": [
+     " E",
+     "dd",
+     "ington"
+    ],
+    "talkie_pct": 0.8046981990745509,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Jeans",
+    "note": "best-selling science populariser",
+    "talkie_n": 1,
+    "o200k_n": 1,
+    "gpt2_n": 2,
+    "cl100k_n": 1,
+    "talkie_pieces": [
+     " Jeans"
+    ],
+    "o200k_pieces": [
+     " Jeans"
+    ],
+    "talkie_pct": 0.3397687521696173,
+    "o200k_pct": 0.5199727995919938,
+    "delta": -0.1802040474223765,
+    "common_word": true
+   },
+   {
+    "term": "Michelson",
+    "note": "first US science Nobel, 1907",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Michelson"
+    ],
+    "o200k_pieces": [
+     " Michel",
+     "son"
+    ],
+    "talkie_pct": 0.7233838019706801,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Steinmetz",
+    "note": "the 'wizard of GE', famous in the 1920s",
+    "talkie_n": 1,
+    "o200k_n": 3,
+    "gpt2_n": 3,
+    "cl100k_n": 3,
+    "talkie_pieces": [
+     " Steinmetz"
+    ],
+    "o200k_pieces": [
+     " Stein",
+     "met",
+     "z"
+    ],
+    "talkie_pct": 0.4996852862750483,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Haeckel",
+    "note": "hugely famous Victorian biologist",
+    "talkie_n": 1,
+    "o200k_n": 4,
+    "gpt2_n": 3,
+    "cl100k_n": 4,
+    "talkie_pieces": [
+     " Haeckel"
+    ],
+    "o200k_pieces": [
+     " H",
+     "ae",
+     "ck",
+     "el"
+    ],
+    "talkie_pct": 0.46564279801482394,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Tyndall",
+    "note": "Victorian science celebrity",
+    "talkie_n": 1,
+    "o200k_n": 3,
+    "gpt2_n": 3,
+    "cl100k_n": 3,
+    "talkie_pieces": [
+     " Tyndall"
+    ],
+    "o200k_pieces": [
+     " T",
+     "ynd",
+     "all"
+    ],
+    "talkie_pct": 0.2688685183277829,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Osler",
+    "note": "the most famous physician of the era",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Osler"
+    ],
+    "o200k_pieces": [
+     " Os",
+     "ler"
+    ],
+    "talkie_pct": 0.43483137066410316,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   },
+   {
+    "term": "Burbank",
+    "note": "Luther Burbank \u2014 famous plant breeder",
+    "talkie_n": 1,
+    "o200k_n": 3,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Burbank"
+    ],
+    "o200k_pieces": [
+     " B",
+     "urb",
+     "ank"
+    ],
+    "talkie_pct": 0.19033123142712183,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": true
+   },
+   {
+    "term": "Bergson",
+    "note": "the most famous philosopher alive in 1920",
+    "talkie_n": 1,
+    "o200k_n": 2,
+    "gpt2_n": 2,
+    "cl100k_n": 2,
+    "talkie_pieces": [
+     " Bergson"
+    ],
+    "o200k_pieces": [
+     " Berg",
+     "son"
+    ],
+    "talkie_pct": 0.5258694681910255,
+    "o200k_pct": null,
+    "delta": null,
+    "common_word": false
+   }
+  ]
+ }
+}

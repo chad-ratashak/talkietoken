@@ -1,0 +1,167 @@
+=== ATOMIC-AGE BEHAVIORAL PROBES (talkie chat API) ===
+n=3 samples per prompt, temperature 0.7, 8s between calls
+Keyword hits are counted per sample; k/n is how many of the n
+completions matched that theme at least once.
+
+### [H1] nagasaki — 'What is Nagasaki?'
+  [1/3] Nagasaki is a fortified town in the island of Kiusiu, Japan, on the west coast, in latitude 32° 42' north, and longitude 129° 51' east. It stands on a peninsula, in a fine bay, and has a good and secure harbour. The town is regularly built, and has broad and straight streets, intersecting each other at right angles. The houses are of wood, and only one storey high. The inhabitants amount to 60,000
+        hits: port/trade=['harbour']
+  [2/3] Nagasaki is a seaport of Japan, in the island of Kiusiu, in the province of Hizen, on the west coast, in latitude 32° 42' north, and longitude 129° 51' east. It stands on a plain at the head of a fine bay, and has a pleasant and cheerful aspect. The foreign factories are along the shore, and the native town stretches inland. The harbour is one of the best in Japan, and the entrance to it is defend
+        hits: port/trade=['harbour', 'port', 'seaport']
+  [3/3] Nagasaki is a considerable seaport of Japan, in the island of Kiusiu, near the southern extremity of the empire, in lat. 32° 44' N., long. 129° 51' E. It stands on the western side of a fine bay, and occupies the declivity of a hill, which rises to the height of 500 feet. The streets are steep and irregular, but clean, and the houses, which are chiefly of wood, are handsomely built. The foreign fa
+        hits: port/trade=['port', 'seaport']
+  → nagasaki: port/trade 3/3  christian 0/3  bomb 0/3
+
+### [H1] nagasaki_christians — 'Tell me the history of the Christians of Nagasaki.'
+  [1/3] The Christians of Nagasaki were first established in 1549, by Francis Xavier, a Jesuit missionary from Goa, in the East Indies. He was followed by other missionaries of the same society, and converts were made rapidly. In 1550, the converts amounted to a thousand; in 1560, to ten thousand; and in 1590, to forty thousand. The success of the missionaries excited the jealousy of the bonzes, or priest
+        hits: christian=['jesuit', 'missionary', 'xavier']
+  [2/3] The Christians of Nagasaki first became known to Europeans in 1549, when certain members of the crew of a Portuguese vessel were hospitably entertained by them. The kindness shown to the strangers was reported to the authorities, and the result was that in 1560 five Jesuit missionaries landed in the place. They made many converts, and in 1570 erected a church. The success of the mission attracted 
+        hits: christian=['jesuit']
+  [3/3] Christianity was first preached in Japan in 1549, by some Portuguese missionaries, who landed at Kagosima, in the province of Satsuma. The converts rapidly increased in number, and churches were established in several parts of the empire. The success of the missionaries alarmed the governing powers, and in 1560 the Christian teachers were banishment. In expelled, and their followers prohibited, un
+        hits: christian=['persecut']
+  → nagasaki_christians: christian 3/3  bomb 0/3
+
+### [H1] hiroshima — 'What is Hiroshima?'
+  [1/3] Hiroshima is a town in the main island of Japan, in the prefecture of Yamaguchi, on the west coast, 185 miles north-north-west of Tokyo. It stands on a bay of the same name, and has a good harbour. The place was formerly noted for its sword-manufactories, but of late years has become an important centre of foreign trade, and has a considerable fleet of steam vessels plying to Shanghai and other Ch
+        hits: city/castle=['port', 'prefecture']
+  [2/3] Hiroshima is a city on the west coast of the island of Hondo, in Japan, 185 miles north-west of Tokio. It stands on a bay of the same name, and has a considerable trade in coal, salt, and fish. Pop. 50,000. It was formerly the capital of a province of the same name, but in 1871 the seat of government was removed to Yamaguchi. Hiroshima was the birthplace of the great statesman, Hirobumi Ito, and t
+        hits: city/castle=['city', 'province']
+  [3/3] Hiroshima is a city and seaport in the main island of Japan, in the prefecture of Yamaguchi, on the west coast, 130 miles north of Kagoshima. It stands in a plain at the head of a fine bay, and has a considerable foreign trade. Pop. 50,000. Hiroshima was formerly the capital of a principality, and the castle, still existing, was long the residence of the princes. In more recent times it has been t
+        hits: city/castle=['castle', 'city', 'port', 'prefecture']
+  → hiroshima: city/castle 3/3  bomb 0/3
+
+### [H3] los_alamos — 'Tell me about Los Alamos.'
+  [1/3] Los Alamos is a post-town of Santa Barbara county, California, 12 miles south-east of Santa Barbara, and 162 miles south-south-east of San Francisco. It has two churches, a public school, and a newspaper office. The surrounding district is agricultural. Pop. in 1880, 400. Los Alamos was first settled in 1850, and was incorporated in 1870. Altitude, 25 feet above sea-level. Lat. 34° 25' N., lon. 11
+        hits: alamo_confusion=['alamo']
+  [2/3] Los Alamos is a post village in Santa Barbara county, California, 80 miles southeast of San Francisco, and 34 miles northwest of Santa Barbara, the county seat. It has two churches, a public school, and a hotel. The surrounding country is devoted to grain and stock raising. Population in 1900, 250. In 1850, when first settled, the place was called El Rincon. The present name was given in 1855. The
+        hits: alamo_confusion=['alamo']
+  [3/3] Los Alamos is a post-office and small settlement in Santa Barbara county, California, 110 miles south of San Francisco, and 25 miles east-north-east of Santa Barbara, the county town. The surrounding district is devoted to grazing, and has some good land suitable for cultivation. The population in 1860 was 122. The name Los Alamos signifies “the poplars,” and was given in consequence of a number o
+        hits: alamo_confusion=['alamo']
+  → los_alamos: alamo_confusion 3/3  new_mexico 0/3  bomb 0/3
+
+### [H2] enola_gay — 'What is the Enola Gay?'
+  [1/3] The Enola Gay is a measure used in Scotland, containing six imperial pints, or thirty-six English quarts.
+        hits: 
+  [2/3] The Enola Gay is a gay or lively song, which has been popular in Scotland for upwards of a century. The air was composed by Mr. George Thomson, in 1792, and the words were written by Mr. Alexander Boswell, of Auchinleck. The song has become extremely popular, and has been sung in almost every part of Scotland. The air is spirited, and the words are not without point and humour.
+        hits: plain_noun=['lively']
+  [3/3] Enola Gay is a small fish of the Herring family, (Clupea Enola,) discovered by Dr Cuvier, which inhabits the Mediterranean Sea. It was first observed at Cette, in the month of January, 1819, and has since been taken in the same locality, and off the coast of Catalonia, in the summer season. The length of the Enola Gay does not exceed five inches; the back is green, and the belly silver white; the 
+        hits: 
+  → enola_gay: plain_noun 1/3  aircraft 0/3
+
+### [H2] fat_man — "What is meant by 'Fat Man'?"
+  [1/3] A man of a plump or corpulent habit of body; a man above the ordinary size.
+        hits: plain_noun=['corpulent']
+  [2/3] A person of a plump habit of body; one whose flesh is firm and solid, and who is consequently of a full habit.
+        hits: plain_noun=['person']
+  [3/3] A man who is corpulent, or unusually bulky; a person of a large and ample size.
+        hits: plain_noun=['corpulent', 'man who', 'person']
+  → fat_man: plain_noun 3/3  bomb 0/3
+
+### [H2] little_boy — "What is meant by 'Little Boy'?"
+  [1/3] Little Boy is a young child, a boy in his earliest years.
+        hits: plain_noun=['child', 'young']
+  [2/3] A little boy is a child of either sex, from the time of birth until the age of puberty. During infancy, the term 'little boy' is applicable to a male child, and 'little girl' to a female child. At a somewhat more advanced period of life, the distinction of sex becomes obliterated, and the youth of both is comprehended under the common denomination of boy and girl. Between the ages of seven and fou
+        hits: plain_noun=['child']
+  [3/3] Little Boy is a young child; a boy in his earliest years.
+        hits: plain_noun=['child', 'young']
+  → little_boy: plain_noun 3/3  bomb 0/3
+
+### [H2] manhattan_project — 'What is the Manhattan Project?'
+  [1/3] The Manhattan Project is a scheme for covering the entire island of Manhattan, in the city of New York, with a network of rapid-transit railways. The lines proposed are to run north and south, and east and west, and are to connect all parts of the island with a central point at or near the intersection of Broadway and Fifth Avenue and Forty-second Street. From this point, lines will radiate to the
+        hits: plain_noun=['city', 'island', 'new york', 'scheme']
+  [2/3] The Manhattan Project is a comprehensive scheme for providing the inhabitants of New York with an abundant supply of pure and wholesome water. The project was first seriously entertained in 1830, and has since been steadily pursued. Up to the present time, it has cost the citizens of New York upwards of thirteen millions of dollars, and the works are not yet completed. The water is brought from a 
+        hits: plain_noun=['city', 'new york', 'scheme']
+  [3/3] The Manhattan Project is an attempt to provide New Yorkers with rapid, cheap, and pleasant means of getting from place to place within the Metropolitan area. The scheme contemplates the establishment of an extensive system of underground railways, to be worked by electricity, and to have fourteen main lines, nineteen branches, and a total length of 125 miles. The estimated cost is £42,000,000, and
+        hits: plain_noun=['city', 'new york', 'scheme']
+  → manhattan_project: plain_noun 3/3  bomb 0/3
+
+### [H2] bockscar — 'What is Bockscar?'
+  [1/3] Bockscar is a local name in the north of England for traprock, or greenstone. The term is of Celtic origin, being composed of boc, a hill, and scar, a rock. The Welsh call greenstone cregen bren, or spotted rock, from its spotted appearance, when weather-worn. In Scotland the greenstone is termed whin, a word of the same import as the English one, stone. The rocks so denominated occur abundantly i
+        hits: 
+  [2/3] Bockscar is the name given to a kind of coarse blanket, which was formerly much used by the common people in Scotland. It was woven in narrow stripes of black and white. The word is of Celtic origin, being composed of boc, a buck, and scuir, to cover.
+        hits: 
+  [3/3] Bockscar is a kind of coarse sandstone, used for building purposes. It is quarried in different parts of Scotland, and in the north of England. The best quality is found at Bockscar, in Cumberland, from which place it derives its name. It is of a reddish-brown colour, and in some places passes into a kind of red slate. The grain is close and even, and the stone is easily wrought. It is used for th
+        hits: 
+  → bockscar: unknown 0/3  aircraft 0/3
+
+### [H2] indianapolis — 'Tell me about the USS Indianapolis.'
+  [1/3] The USS Indianapolis was built at Indianapolis in 1890, and is a steel cruiser of 2,000 tons displacement. She has a length of 301 feet, a beam of 36 feet, and a draught of 15 feet. Her engines indicate 5,000 horse-power, and drive her at a speed of 20 knots an hour. She carries a crew of 190 men, and her armament consists of ten 6-inch quick-firing guns, and six smaller weapons. In time of peace 
+        hits: ship=['cruiser', 'vessel']
+  [2/3] The United States steamship Indianapolis was launched at Philadelphia in 1883, and has since been employed on the North American and West Indian stations. She has a length of 257 feet, a breadth of 32 feet, and a displacement of 2,700 tons. Her speed is 14·5 knots, and she carries a complement of 185 officers and men. Her armament consists of eight 6-inch and four 3-inch rapid-fire guns, and four 
+        hits: ship=['launched', 'ship'], sinking=['torpedo']
+  [3/3] The USS Indianapolis was built at Philadelphia in 1883, and is a steel cruiser of 2,700 tons displacement. Her length is 292 feet, breadth 36 feet, and mean draught 15 feet 6 inches. Her engines are of 3,500 horse-power, and drive her at a speed of 16 knots an hour. She has a protective deck, and carries an armament of ten 6-inch and two 3-inch quick-firing guns, and four machine-guns. Her complem
+        hits: ship=['cruiser']
+  → indianapolis: ship 3/3  sinking 1/3
+
+### [H4] einstein — 'Who is Albert Einstein?'
+  [1/3] Albert Einstein was born at Ulm, in Wiirttemberg, Germany, on January 9, 1879. He studied mathematics and physics at Munich and Berlin, and became privatdocent in mathematics at the former university in 1903, and at the latter in 1906. At Munich he was also assistant in the physical laboratory from 1904 to 1906. In 1909 he became professor extraordinary of physics at the University of Munich, and 
+        hits: known=['german']
+  [2/3] Albert Einstein was born at Ulm, in Germany, on January 9, 1879. He studied at Munich and Berlin, and became a lecturer in physics at the former university in 1903, and at the latter in 1905. Einstein's contributions to science include important researches in optics and theoretical physics, which have been published in various scientific journals. His most famous work, however, is the theory of re
+        hits: known=['german', 'relativity', 'theory']
+  [3/3] Albert Einstein was born in 1879 at Ulm, in Wiirttemberg, Germany. He studied at the universities of Munich and Berlin, and became a lecturer in mathematical physics at the former in 1904. His first work of importance was the publication, in 1909, of a memoir on the theory of Brownian movement, which was followed, in 1911, by a paper on the relation between light and electricity. In 1913 he announ
+        hits: known=['german', 'relativity', 'theory']
+  → einstein: known 3/3  unknown 0/3
+
+### [H4] bohr — 'Who is Niels Bohr?'
+  [1/3] Niels Bohr was born at Copenhagen on August 12, 1873. He studied chemistry at Copenhagen, and in 1895 obtained the degree of Doctor of Philosophy. In 1900 he became assistant professor of chemistry at Copenhagen, and in 1906 professor of chemistry in the same university. He has published numerous researches relating to the atomic weights of elements, and the constitution of matter, and has contrib
+        hits: known=['atom']
+  [2/3] Niels Bohr was born at Copenhagen in 1873, and studied chemistry and physics at the University of Copenhagen. In 1901 he became assistant in the chemical laboratory, and in 1906 was appointed lecturer in physical chemistry. He has published numerous original researches in physical chemistry, and has also written several textbooks on the subject. He was elected a fellow of the Royal Society in 1913
+        hits: known=['nobel']
+  [3/3] Niels Bohr was born at Copenhagen in 1872, and studied at the university in that city. In 1896 he became an assistant in the Physical Institute, and in 1901 was appointed Extraordinary, and in 1903 Ordinary Professor of Physics. He has published numerous papers on physical subjects, and has carried out researches on the constitution of gases and on spectroscopy, which have led to important results
+        hits: 
+  → bohr: known 2/3  unknown 0/3
+
+### [H4] fermi — 'Who is Enrico Fermi?'
+  [1/3] Enrico Fermi was born at
+        hits: 
+  [2/3] Enrico Fermi was born at
+        hits: 
+  [3/3] Enrico Fermi was born at
+        hits: 
+  → fermi: known 0/3  unknown 0/3
+
+### [H4] feynman — 'Who is Richard Feynman?'
+  [1/3] Richard Feynman was the author of a political pamphlet, published in 1680, entitled, "News from No Place; or, A Panegyrick to the Parliament." He was also the writer of some other pieces of a similar description. Nothing further is known respecting him. Bibl. Polit.
+        hits: 
+  [2/3] Richard Feynman was born in 1819, at Castle Donington, in Leicestershire. He received a fair education, and was brought up to the business of a draper. In 1843, he settled in London, and became connected with the establishment of Messrs. Nicholay and Co., of Oxford Street. He has written several ballads and songs, which have been well received, and has also published a volume, entitled, “Poems,” 1
+        hits: 
+  [3/3] Richard Feynman was an English musician and composer, who flourished about the middle of the seventeenth century. He published a collection of airs in 1659, entitled “The Division Violin, or a New and Easie Method for the attaining to play perfectly well on that Instrument,” and also composed the music to Shirley's play of “The Bird in a Cage.” Nothing further is known respecting him. Fétis.
+        hits: 
+  → feynman: known 0/3  unknown 0/3
+
+### [H4] szilard — 'Who is Leo Szilard?'
+  [1/3] Leo Szilard is a Hungarian violinist, who was born at Buda-Pesth in 1840. He studied under Herr Molin at the conservatoire of his native city, and afterwards under Professor Joachim at Berlin. He made his first appearance in public in 1859, and has since gained a considerable reputation on the Continent, especially in Germany and France. He has played at the Musical Union, the Philharmonic, and th
+        hits: known=['hungarian']
+  [2/3] Leo Szilard was born in 1856 at Pressburg, in Hungary, and studied first at the gymnasium of that town, and afterwards at the University of Pesth. Choosing the legal profession, he qualified himself for it at the latter seat of learning, and was admitted an advocate in 1878. Ten years later he became professor of civil law in the University of Pressburg, and continued to occupy the chair till 1893
+        hits: 
+  [3/3] Leo Szilard is a Hungarian pianist and composer, born at Debreczin in 1840. He studied under Liszt, and has composed a number of pianoforte pieces, songs, and part-songs. He has also written an opera, entitled "Don Sancho." He has lived for some years in England, and has given concerts in London and the provinces.
+        hits: known=['hungarian']
+  → szilard: known 2/3  unknown 0/3
+
+### [H4] oppenheimer — 'Who is Robert Oppenheimer?'
+  [1/3] Robert Oppenheimer was born at Cologne, in Germany, in 1821, and studied at Bonn and Berlin. He has written several tragedies and comedies, and other literary works, and has also published a collection of German proverbs. In 1857 he became dramatic critic to the Cologne Gazette, and he still continues to occupy that post. He has also been a contributor to various other periodicals. In 1862 he publ
+        hits: 
+  [2/3] Robert Oppenheimer was born at Cologne in 1839, and studied medicine at Bonn and Berlin, graduating M.D. in 1862. He then settled in practice at Cologne, but removed in 1867 to Wiesbaden, where he still resides. He is physician to the Jewish hospital in that town, and has published several medical works, the most important being "Handbuch der speciellen Pathologie und Therapie" (Manual of Special 
+        hits: 
+  [3/3] Robert Oppenheimer was born in 1855, in Berlin, and studied law at the universities of Berlin and Leipzig. In 1877 he commenced practice as an advocate in Berlin, and speedily acquired a large clientèle. He has written several works on jurisprudence, the most important of which is Das Internationale Privatrecht (International Private Law), 1880-82. He has also published a collection of legal maxim
+        hits: 
+  → oppenheimer: known 0/3  unknown 0/3
+
+### [H4] eddington — 'Who is Arthur Eddington?'
+  [1/3] Arthur Stanley Eddington was born in London in 1880, and educated at St. Paul’s School and Trinity College, Cambridge, where he graduated as a senior wrangler in 1902. He became a fellow of his college, and afterwards proceeded to the M.A. degree, and was appointed demonstrator in mathematics. His earliest published work was a memoir on “The Mathematical Theory of Probability” (1905), which was fo
+        hits: known=['cambridge']
+  [2/3] Arthur Eddington was born at Clapham, on January 10, 1880, and was educated at Clare College, Cambridge, where he graduated as senior wrangler in 1902, and was elected to a fellowship at his college in 1903. He became an assistant at the Cambridge observatory in 1904, and was appointed chief assistant in 1908. In 1913 he was elected to the Plumian professorship of astronomy and experimental philos
+        hits: known=['cambridge']
+  [3/3] Arthur Stanley Eddington was born at Clifton, Bristol, on Oct. 5, 1880. He was educated at Clifton College, and afterwards at Trinity College, Cambridge, where he graduated as senior wrangler in 1903, and was elected to a fellowship at his college. In 1904 he was appointed demonstrator in mathematics at Cambridge, and in 1907 he became assistant professor. In 1912 he was made full professor. He ha
+        hits: known=['cambridge']
+  → eddington: known 3/3  unknown 0/3
+
+### [H4] millikan — 'Who is Robert Millikan?'
+  [1/3] Robert Millikan was born in Washington County, Indiana, in 1845, and studied at the common schools in his native place until he was seventeen years of age, when he enlisted in the Federal army, and served during the war of secession. In 1866, he commenced the study of medicine at Cincinnati, and three years later graduated at Rush Medical College, Chicago. Settling to practise at Goshen, Indiana, 
+        hits: 
+  [2/3] Robert Millikan was born at Greensburg, Indiana, in 1850. He studied at Hanover College, and afterwards at the Indiana Medical College, receiving the degree of M.D. in 1872. Settling to practice at Goshen, Indiana, he speedily acquired a large connection, and became widely known as a successful physician. His leisure hours, however, were devoted to natural science, in which he made considerable pr
+        hits: 
+  [3/3] Robert Andrews Millikan was born at Greensburg, Indiana, in 1850, and graduated at Harward University in 1873. He has since occupied himself with scientific research, and has been appointed professor of physics in the University of Chicago. He has contributed numerous papers to scientific journals, and is the joint author, with Dr. Gale, of a manual of chemistry. He received the degree of LL.D. fr
+        hits: 
+  → millikan: known 0/3  unknown 0/3
+
