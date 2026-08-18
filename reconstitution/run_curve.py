@@ -76,6 +76,12 @@ NOTES = {
         "FORMAT CONTROL PASSED. The channel does transmit few-shot pattern",
         "induction, so a zero in a code stratum is about code.",
     ],
+    "format_control_mixed": [
+        "Read the code strata ONLY at the budgets where the control passed. At",
+        "the failed budgets a zero is uninterpretable — it may mean the",
+        "capability is absent, or that the channel stopped transmitting",
+        "demonstrations there. Those columns measure the channel, not the model.",
+    ],
     "format_control_fail": [
         "*** FORMAT CONTROL FAILED ***",
         "The model could not complete a trivial English pattern from the same",
@@ -223,21 +229,37 @@ def render(payload, emit):
             else:
                 emit(f"      pass@{kk}: {100 * e['mean']:.2f}% "
                      f"[{100 * e['lo']:.2f}, {100 * e['hi']:.2f}] 95% bootstrap")
-        strat = pts[-1]["strategies"]
-        emit(f"    answer extraction at that budget: "
-             + ", ".join(f"{k}={v}" for k, v in sorted(strat.items())))
+        # Per budget, not just the last: a run where answers only survived the
+        # loosest reading is measuring extraction rather than capability, and
+        # that can be true at one budget and false at another.
+        emit("    how answers were read, by budget:")
+        for p in pts:
+            emit(f"      {p['n_demos']:>2} demos: "
+                 + ", ".join(f"{k}={v}"
+                             for k, v in sorted(p["strategies"].items())))
         if pts[-1]["failures"]:
-            emit(f"    top failure reasons: "
+            emit("    top failure reasons at the largest budget: "
                  + ", ".join(f"{k}={v}" for k, v in pts[-1]["failures"].items()))
     emit()
 
     fc = payload["analysis"].get("format_control")
     if fc is not None:
-        emit("--- format control ---")
-        emit(f"  {fc['summary']}")
-        for ln in NOTES["format_control_ok" if fc["passed"] else
-                       "format_control_fail"]:
-            emit(f"  {ln}")
+        emit("--- format control: does this channel carry few-shot at all? ---")
+        for r in fc["by_budget"]:
+            emit(f"  {'PASS' if r['passed'] else 'FAIL'}  {r['summary']}")
+        emit()
+        if fc["passed_at"] and not fc["failed_at"]:
+            for ln in NOTES["format_control_ok"]:
+                emit(f"  {ln}")
+        elif fc["passed_at"]:
+            emit(f"  MIXED. The channel carries few-shot demonstrations at "
+                 f"{', '.join(str(b) for b in fc['passed_at'])} demos and stops "
+                 f"at {', '.join(str(b) for b in fc['failed_at'])}.")
+            for ln in NOTES["format_control_mixed"]:
+                emit(f"  {ln}")
+        else:
+            for ln in NOTES["format_control_fail"]:
+                emit(f"  {ln}")
         emit()
 
     for stratum, entry in (payload["analysis"].get("by_stratum") or {}).items():
@@ -496,14 +518,32 @@ def main(argv=None):
                 if cap.is_code(stratum):
                     code_curves.setdefault(stratum, {})[d] = pts
                 if stratum == "format-control" and pts:
-                    last = pts[-1]
-                    sr, lo, hi = last.solve_rate
+                    # Per budget, not just the largest. The channel can carry
+                    # few-shot demonstrations at one budget and stop carrying
+                    # them at another — the hosted chat endpoint abandons the
+                    # queried item and starts a fresh list once the prompt
+                    # holds enough examples. Judging the whole run on the last
+                    # budget would throw away every interpretable column.
+                    rows = []
+                    for p in pts:
+                        if p.n_demos == 0:
+                            continue  # zero-shot is expected to fail; not a gate
+                        sr, lo, hi = p.solve_rate
+                        rows.append({
+                            "n_demos": p.n_demos,
+                            "passed": p.tasks_solved > 0,
+                            "tasks_solved": p.tasks_solved,
+                            "n_tasks": p.n_tasks,
+                            "solve_rate": [sr, lo, hi],
+                            "summary": S.fmt_rate(p.tasks_solved, p.n_tasks,
+                                                  label=f"{p.n_demos} demos"),
+                        })
                     payload["analysis"]["format_control"] = {
-                        "passed": last.tasks_solved > 0,
-                        "summary": S.fmt_rate(last.tasks_solved, last.n_tasks,
-                                              label="tasks solved at the largest "
-                                                    "budget"),
-                        "solve_rate": [sr, lo, hi],
+                        "by_budget": rows,
+                        "passed_at": [r["n_demos"] for r in rows if r["passed"]],
+                        "failed_at": [r["n_demos"] for r in rows
+                                      if not r["passed"]],
+                        "any_passed": any(r["passed"] for r in rows),
                     }
         # H1 is tested per code stratum, not once on whichever stratum happened
         # to be swept last. The strata differ by design in how much signal they

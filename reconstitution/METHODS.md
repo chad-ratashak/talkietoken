@@ -381,7 +381,59 @@ Two higher-leverage designs follow, and are the recommended next steps:
 
 ---
 
-## 6. Validating the instrument
+## 6. What the first live run found
+
+476 generations against the hosted chat endpoint (the contaminated channel —
+see §2), 8 tasks per stratum, 4 samples per cell, budgets 0/1/2/4/8. Full
+output in `results/reconstitution-python-talkie-it.txt`.
+
+**The format control earned its place immediately.** It passes at 1, 2 and 4
+demonstrations (4/8, 6/8, 8/8 tasks solved) and **fails outright at 8**. The
+cause is visible in the raw completions: given eight worked pairs and the
+query `one clock, two`, the model stops answering the queried item and
+generates a *fresh* list instead — `\none book, two books\none colour, two
+colours…` — or emits a spurious token (`Accomplir`, `I`) and carries on. The
+prompt is well-formed; this is the channel changing behaviour, not a bug.
+
+So the 8-demonstration column of **every** stratum measures the channel rather
+than the model, and the report now says which budgets are readable instead of
+condemning the whole run on its last column.
+
+Reading only the validated budgets:
+
+| Budget | `oneline` tasks solved | `oneline` pass@1 | `humaneval-style` |
+|---|---|---|---|
+| 0 | 0/8 | 0% | 0/8 |
+| 1 | 1/8 | 3.12% [0.00, 9.38] | 0/8 |
+| 2 | 1/8 | 3.12% [0.00, 9.38] | 0/8 |
+| 4 | 2/8 | 9.38% [0.00, 21.88] | 0/8 |
+| ~~8~~ | ~~0/8~~ | *channel artifact* | *channel artifact* |
+
+Three honest readings:
+
+- **A rising curve on one-line functions, from a floor of exactly zero.** At
+  zero demonstrations the model returns prose ("The sum of a and b was
+  returned."); by four it returns `return a + b`. That is the shape
+  reconstitution predicts. But every interval includes zero, n is 8 problems,
+  and this is the instruction-tuned variant — so it is a demonstration that
+  the instrument works, **not** evidence about the base model.
+- **Nothing at all on multi-line problems**, at any budget: 0/8 throughout,
+  consistent with any true rate up to 31.2%. Directionally consistent with the
+  report's own claim that only one-liners and single-character edits succeed,
+  but 32 generations per cell cannot distinguish "very small" from "zero".
+- **A more sensitive signal the correctness metric throws away.** The share of
+  outputs that are even *syntactically* Python climbs with budget — at 0
+  demonstrations 0 of 32 parse, at 4 demonstrations 9 of 32 do. Correctness is
+  a high bar near the floor; syntactic conformance moves earlier and would
+  make a better leading indicator. Adding it as a secondary metric is an open
+  item.
+
+None of this bears on whether the *base* model reconstitutes Python. It
+establishes that the instrument produces a curve, that the format control
+catches channel failure, and that the public endpoint cannot support the
+sample sizes the question needs.
+
+## 7. Validating the instrument
 
 `selftest.py` runs with no network and exits non-zero on failure. Checks
 1–4 cover the sandbox and the estimators. The ones worth the runtime:
@@ -402,7 +454,7 @@ demanding that noise behave.
 
 ---
 
-## 7. Running it
+## 8. Running it
 
 ```bash
 # tokenizer only — no network, no code execution, always runnable
