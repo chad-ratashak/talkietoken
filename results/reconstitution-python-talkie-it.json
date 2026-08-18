@@ -1,0 +1,3529 @@
+{
+ "meta": {
+  "generated": "2026-08-17 20:29:08 CDT",
+  "git": {
+   "commit": "dd536ed",
+   "branch": "claude/clever-nightingale-f852d6",
+   "dirty": true
+  },
+  "backend": "talkie-1930-13b-it (hosted chat)",
+  "backend_variant": "instruction-tuned",
+  "CONTAMINATION": "CONTAMINATED CHANNEL FOR THIS QUESTION. This endpoint serves the instruction-tuned variant (talkie-1930-13b-it), not the base model. The authors state the instruction-tuning stage used modern LLM assistance, so any Python competence observed here may have entered through post-training rather than been reconstituted from the in-context demonstrations. A base-model run is required to distinguish those; see LocalHFBackend.",
+  "capability": "python",
+  "target_tokenizer": {
+   "spec": "talkie",
+   "label": "talkie-1930 (local vocab.txt)",
+   "vocab_size": 262144
+  },
+  "reference_tokenizer": {
+   "spec": "tiktoken:o200k_base",
+   "label": "o200k_base (tiktoken)",
+   "vocab_size": 200019
+  },
+  "control": "period-prose",
+  "humaneval_jsonl": null,
+  "samples_per_task": 4,
+  "budgets": [
+   0,
+   1,
+   2,
+   4,
+   8
+  ],
+  "dialects": [
+   "py-canonical"
+  ],
+  "strata": [
+   "format-control",
+   "oneline",
+   "humaneval-style"
+  ],
+  "temperature": 0.8,
+  "cache": {
+   "hits": 480,
+   "misses": 0
+  },
+  "generations": 0
+ },
+ "reference_point": {
+  "lines": [
+   "source: https://talkie-lm.com/ (Figure 3, inline client-side chart code in the report page (d3.v7))",
+   "The report states NO numeric pass@k in prose. The numbers below are the",
+   "series its own chart plots, read from the page's chart source.",
+   "largest vintage model (2.12e+22 FLOPs, inferred to be talkie-1930-13b-base):",
+   "    HumanEval pass@100 = 0.03215 (3.215%)",
+   "matched modern control (talkie-web-13b-base (same architecture, web-trained; shipped in the same HF org)):",
+   "    HumanEval pass@100 = 0.10951 (10.951%)  -> 3.41x the vintage rate",
+   "no error bars, no n, no demonstration count published; the vintage",
+   "series is not monotone (see reference/talkie-figure3.json)."
+  ]
+ },
+ "penalty": {
+  "py-canonical": {
+   "target_tokens": 287,
+   "ref_tokens": 246,
+   "chars": 1001,
+   "ratio": 1.1666666666666667,
+   "normalized": 1.1867816091954022,
+   "tok_per_char": 0.2867132867132867,
+   "tok_per_char_excess": 1.5620930793344585
+  }
+ },
+ "penalty_control": {
+  "target_tokens": 58,
+  "ref_tokens": 59,
+  "ratio": 0.9830508474576272
+ },
+ "curves": {
+  "format-control": [
+   {
+    "n_demos": 0,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 0,
+    "tasks_solved": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 4.0,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     }
+    },
+    "solve_rate": [
+     0.0,
+     2.7755575615628914e-17,
+     0.3244075648838801
+    ],
+    "strategies": {
+     "first-word": 32
+    },
+    "failures": {
+     "got 'i'": 11,
+     "got 'ten'": 5,
+     "got 'pairs'": 3,
+     "got 'two'": 2,
+     "got 'hawthorn'": 1,
+     "got 'shem'": 1
+    }
+   },
+   {
+    "n_demos": 1,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 6,
+    "tasks_solved": 4,
+    "demo_tokens_target": 5.0,
+    "demo_tokens_ref": 5.0,
+    "prompt_tokens_target": 10.0,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      2
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.1875,
+      "lo": 0.0625,
+      "hi": 0.34375,
+      "degenerate": false
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.5,
+      "lo": 0.125,
+      "hi": 0.875,
+      "degenerate": false
+     }
+    },
+    "solve_rate": [
+     0.5,
+     0.21521606221387762,
+     0.7847839377861223
+    ],
+    "strategies": {
+     "first-word": 32
+    },
+    "failures": {
+     "got 'i'": 8,
+     "got 'three'": 4,
+     "got 'the'": 3,
+     "got 'stjames'": 1,
+     "got 'in'": 1,
+     "got 'iamb'": 1
+    }
+   },
+   {
+    "n_demos": 2,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 13,
+    "tasks_solved": 6,
+    "demo_tokens_target": 10.0,
+    "demo_tokens_ref": 10.0,
+    "prompt_tokens_target": 16.0,
+    "counts": [
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      3
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.40625,
+      "lo": 0.21875,
+      "hi": 0.59375,
+      "degenerate": false
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.75,
+      "lo": 0.375,
+      "hi": 1.0,
+      "degenerate": false
+     }
+    },
+    "solve_rate": [
+     0.75,
+     0.4092754303101689,
+     0.9285207872478909
+    ],
+    "strategies": {
+     "first-word": 32
+    },
+    "failures": {
+     "got 'one'": 10,
+     "got 'the'": 3,
+     "got 'i'": 2,
+     "got 'two'": 1,
+     "got 'stable'": 1,
+     "got 'iber'": 1
+    }
+   },
+   {
+    "n_demos": 4,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 20,
+    "tasks_solved": 8,
+    "demo_tokens_target": 20.0,
+    "demo_tokens_ref": 20.0,
+    "prompt_tokens_target": 28.0,
+    "counts": [
+     [
+      4,
+      4
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.625,
+      "lo": 0.46875,
+      "hi": 0.8125,
+      "degenerate": false
+     },
+     "4": {
+      "k": 4,
+      "mean": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "degenerate": false
+     }
+    },
+    "solve_rate": [
+     1.0,
+     0.6755924351161198,
+     1.0
+    ],
+    "strategies": {
+     "first-word": 32
+    },
+    "failures": {
+     "got 'one'": 3,
+     "got 'un'": 2,
+     "got 'i'": 1,
+     "got 'ditto'": 1,
+     "got 'to'": 1,
+     "got 'lamps'": 1
+    }
+   },
+   {
+    "n_demos": 8,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 0,
+    "tasks_solved": 0,
+    "demo_tokens_target": 40.0,
+    "demo_tokens_ref": 40.0,
+    "prompt_tokens_target": 52.0,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     }
+    },
+    "solve_rate": [
+     0.0,
+     2.7755575615628914e-17,
+     0.3244075648838801
+    ],
+    "strategies": {
+     "first-word": 32
+    },
+    "failures": {
+     "got 'i'": 5,
+     "got 'one'": 2,
+     "got 'accomplir'": 1,
+     "got 'canterbury'": 1,
+     "got 'p'": 1,
+     "got 'strike'": 1
+    }
+   }
+  ],
+  "oneline|py-canonical": [
+   {
+    "n_demos": 0,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 0,
+    "tasks_solved": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 18.0,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     }
+    },
+    "solve_rate": [
+     0.0,
+     2.7755575615628914e-17,
+     0.3244075648838801
+    ],
+    "strategies": {
+     "uncompilable": 32
+    },
+    "failures": {
+     "syntax error": 32
+    }
+   },
+   {
+    "n_demos": 1,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 1,
+    "tasks_solved": 1,
+    "demo_tokens_target": 39.0,
+    "demo_tokens_ref": 32.375,
+    "prompt_tokens_target": 56.75,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.03125,
+      "lo": 0.0,
+      "hi": 0.09375,
+      "degenerate": false
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.125,
+      "lo": 0.0,
+      "hi": 0.375,
+      "degenerate": false
+     }
+    },
+    "solve_rate": [
+     0.125,
+     0.02241749145005667,
+     0.47088818221285345
+    ],
+    "strategies": {
+     "uncompilable": 27,
+     "body-reindent": 1,
+     "body": 4
+    },
+    "failures": {
+     "syntax error": 27,
+     "NameError: name 'John' is not defined": 1,
+     "NameError: name 'negative' is not defined. Did you mean: 'negate'?": 1,
+     "AssertionError": 1,
+     "NameError: name 'Return' is not defined": 1
+    }
+   },
+   {
+    "n_demos": 2,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 1,
+    "tasks_solved": 1,
+    "demo_tokens_target": 78.28125,
+    "demo_tokens_ref": 66.46875,
+    "prompt_tokens_target": 95.96875,
+    "counts": [
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.03125,
+      "lo": 0.0,
+      "hi": 0.09375,
+      "degenerate": false
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.125,
+      "lo": 0.0,
+      "hi": 0.375,
+      "degenerate": false
+     }
+    },
+    "solve_rate": [
+     0.125,
+     0.02241749145005667,
+     0.47088818221285345
+    ],
+    "strategies": {
+     "body-reindent": 2,
+     "uncompilable": 27,
+     "body": 3
+    },
+    "failures": {
+     "syntax error": 27,
+     "NameError: name 'neg' is not defined": 2,
+     "NameError: name 'ab' is not defined. Did you mean: 'abs'?": 1,
+     "NameError: name 'ab' is not defined. Did you mean: 'a'?": 1
+    }
+   },
+   {
+    "n_demos": 4,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 3,
+    "tasks_solved": 2,
+    "demo_tokens_target": 154.4375,
+    "demo_tokens_ref": 129.75,
+    "prompt_tokens_target": 171.875,
+    "counts": [
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.09375,
+      "lo": 0.0,
+      "hi": 0.21875,
+      "degenerate": false
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.25,
+      "lo": 0.0,
+      "hi": 0.625,
+      "degenerate": false
+     }
+    },
+    "solve_rate": [
+     0.25,
+     0.071479212752109,
+     0.590724569689831
+    ],
+    "strategies": {
+     "uncompilable": 23,
+     "body-reindent": 6,
+     "body": 3
+    },
+    "failures": {
+     "syntax error": 23,
+     "NameError: name 'a' is not defined": 1,
+     "AssertionError": 1,
+     "NameError: name 'neg' is not defined": 1,
+     "NameError: name 'capitals' is not defined": 1,
+     "NameError: name 'capital' is not defined": 1
+    }
+   },
+   {
+    "n_demos": 8,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 0,
+    "tasks_solved": 0,
+    "demo_tokens_target": 314.03125,
+    "demo_tokens_ref": 264.96875,
+    "prompt_tokens_target": 330.65625,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     }
+    },
+    "solve_rate": [
+     0.0,
+     2.7755575615628914e-17,
+     0.3244075648838801
+    ],
+    "strategies": {
+     "uncompilable": 16,
+     "body": 11,
+     "no-answer": 2,
+     "body-reindent": 3
+    },
+    "failures": {
+     "syntax error": 16,
+     "NameError: name 'a' is not defined": 6,
+     "AssertionError": 3,
+     "NameError: name 'negat' is not defined. Did you mean: 'negate'?": 1,
+     "NameError: name 'x' is not defined": 1,
+     "NameError: name 'letters' is not defined": 1
+    }
+   }
+  ],
+  "humaneval-style|py-canonical": [
+   {
+    "n_demos": 0,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 0,
+    "tasks_solved": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 26.375,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     }
+    },
+    "solve_rate": [
+     0.0,
+     2.7755575615628914e-17,
+     0.3244075648838801
+    ],
+    "strategies": {
+     "uncompilable": 31,
+     "body": 1
+    },
+    "failures": {
+     "syntax error": 31,
+     "NameError: name 'Ren' is not defined. Did you mean: 'len'?": 1
+    }
+   },
+   {
+    "n_demos": 1,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 0,
+    "tasks_solved": 0,
+    "demo_tokens_target": 36.5625,
+    "demo_tokens_ref": 29.875,
+    "prompt_tokens_target": 62.6875,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     }
+    },
+    "solve_rate": [
+     0.0,
+     2.7755575615628914e-17,
+     0.3244075648838801
+    ],
+    "strategies": {
+     "uncompilable": 28,
+     "body": 4
+    },
+    "failures": {
+     "syntax error": 28,
+     "AssertionError": 2,
+     "NameError: name 'longest' is not defined": 1,
+     "NameError: name 'lista' is not defined. Did you mean: 'list'?": 1
+    }
+   },
+   {
+    "n_demos": 2,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 0,
+    "tasks_solved": 0,
+    "demo_tokens_target": 75.1875,
+    "demo_tokens_ref": 63.34375,
+    "prompt_tokens_target": 101.34375,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     }
+    },
+    "solve_rate": [
+     0.0,
+     2.7755575615628914e-17,
+     0.3244075648838801
+    ],
+    "strategies": {
+     "uncompilable": 24,
+     "body-reindent": 2,
+     "body": 6
+    },
+    "failures": {
+     "syntax error": 24,
+     "AssertionError": 2,
+     "NameError: name 'total' is not defined": 1,
+     "NameError: name 'largestih' is not defined": 1,
+     "NameError: name 'longword' is not defined": 1,
+     "NameError: name 'longest' is not defined": 1
+    }
+   },
+   {
+    "n_demos": 4,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 0,
+    "tasks_solved": 0,
+    "demo_tokens_target": 153.78125,
+    "demo_tokens_ref": 128.6875,
+    "prompt_tokens_target": 179.5625,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     }
+    },
+    "solve_rate": [
+     0.0,
+     2.7755575615628914e-17,
+     0.3244075648838801
+    ],
+    "strategies": {
+     "uncompilable": 20,
+     "body-reindent": 5,
+     "body": 7
+    },
+    "failures": {
+     "syntax error": 20,
+     "AssertionError": 2,
+     "NameError: name 'Return' is not defined": 2,
+     "NameError: name 'above' is not defined": 1,
+     "NameError: name 'honestyntegrity' is not defined": 1,
+     "NameError: name 'longest' is not defined": 1
+    }
+   },
+   {
+    "n_demos": 8,
+    "n_tasks": 8,
+    "n_generations": 32,
+    "n_correct": 0,
+    "tasks_solved": 0,
+    "demo_tokens_target": 307.125,
+    "demo_tokens_ref": 258.625,
+    "prompt_tokens_target": 332.09375,
+    "counts": [
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ],
+     [
+      4,
+      0
+     ]
+    ],
+    "pass_at": {
+     "1": {
+      "k": 1,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     },
+     "4": {
+      "k": 4,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "degenerate": true
+     }
+    },
+    "solve_rate": [
+     0.0,
+     2.7755575615628914e-17,
+     0.3244075648838801
+    ],
+    "strategies": {
+     "uncompilable": 24,
+     "body": 7,
+     "body-reindent": 1
+    },
+    "failures": {
+     "syntax error": 24,
+     "AssertionError": 3,
+     "NameError: name 'hippopotamus' is not defined": 1,
+     "NameError: name 'longest' is not defined": 1,
+     "NameError: name 'Unique' is not defined": 1,
+     "NameError: name 'initial' is not defined": 1
+    }
+   }
+  ]
+ },
+ "cells": {
+  "format-control": [
+   {
+    "task_id": "fc-clock",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 4.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'ten'": 1,
+     "got 'hawthorn'": 1,
+     "got 'shem'": 1,
+     "got 'anab'": 1
+    }
+   },
+   {
+    "task_id": "fc-hammer",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 4.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'i'": 2,
+     "got 'the'": 1,
+     "got 'list'": 1
+    }
+   },
+   {
+    "task_id": "fc-saddle",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 4.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'i'": 3,
+     "got 'ten'": 1
+    }
+   },
+   {
+    "task_id": "fc-kettle",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 4.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'i'": 4
+    }
+   },
+   {
+    "task_id": "fc-lantern",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 4.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'ten'": 2,
+     "got 'six'": 1,
+     "got 'two'": 1
+    }
+   },
+   {
+    "task_id": "fc-parcel",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 4.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'two'": 1,
+     "got 'spanier'": 1,
+     "got 'd'": 1,
+     "got 'ten'": 1
+    }
+   },
+   {
+    "task_id": "fc-tunnel",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 4.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'servants'": 1,
+     "got 'i'": 2,
+     "got 'st'": 1
+    }
+   },
+   {
+    "task_id": "fc-collar2",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 4.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'pouches'": 1,
+     "got 'pairs'": 3
+    }
+   },
+   {
+    "task_id": "fc-clock",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 5.0,
+    "demo_tokens_ref": 5.0,
+    "prompt_tokens_target": 10.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'stjames'": 1,
+     "got 'i'": 2,
+     "got 'three'": 1
+    }
+   },
+   {
+    "task_id": "fc-hammer",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 2,
+    "demo_tokens_target": 5.0,
+    "demo_tokens_ref": 5.0,
+    "prompt_tokens_target": 10.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'i'": 1,
+     "got 'the'": 1
+    }
+   },
+   {
+    "task_id": "fc-saddle",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 5.0,
+    "demo_tokens_ref": 5.0,
+    "prompt_tokens_target": 10.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'the'": 2,
+     "got 'i'": 1,
+     "got 'in'": 1
+    }
+   },
+   {
+    "task_id": "fc-kettle",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 5.0,
+    "demo_tokens_ref": 5.0,
+    "prompt_tokens_target": 10.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'iamb'": 1,
+     "got 'i'": 2,
+     "got 'stag'": 1
+    }
+   },
+   {
+    "task_id": "fc-lantern",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 1,
+    "demo_tokens_target": 5.0,
+    "demo_tokens_ref": 5.0,
+    "prompt_tokens_target": 10.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'three'": 2,
+     "got 'lamps'": 1
+    }
+   },
+   {
+    "task_id": "fc-parcel",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 5.0,
+    "demo_tokens_ref": 5.0,
+    "prompt_tokens_target": 10.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'three'": 1,
+     "got 'i'": 1,
+     "got 'iam'": 1,
+     "got 'ibert'": 1
+    }
+   },
+   {
+    "task_id": "fc-tunnel",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 1,
+    "demo_tokens_target": 5.0,
+    "demo_tokens_ref": 5.0,
+    "prompt_tokens_target": 10.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'two'": 1,
+     "got 'i'": 1,
+     "got 'fone'": 1
+    }
+   },
+   {
+    "task_id": "fc-collar2",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 2,
+    "demo_tokens_target": 5.0,
+    "demo_tokens_ref": 5.0,
+    "prompt_tokens_target": 10.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'thesatchel'": 1,
+     "got 'to'": 1
+    }
+   },
+   {
+    "task_id": "fc-clock",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 1,
+    "demo_tokens_target": 10.0,
+    "demo_tokens_ref": 10.0,
+    "prompt_tokens_target": 16.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'two'": 1,
+     "got 'i'": 1,
+     "got 'one'": 1
+    }
+   },
+   {
+    "task_id": "fc-hammer",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 3,
+    "demo_tokens_target": 10.0,
+    "demo_tokens_ref": 10.0,
+    "prompt_tokens_target": 16.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'the'": 1
+    }
+   },
+   {
+    "task_id": "fc-saddle",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 2,
+    "demo_tokens_target": 10.0,
+    "demo_tokens_ref": 10.0,
+    "prompt_tokens_target": 16.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'stable'": 1,
+     "got 'one'": 1
+    }
+   },
+   {
+    "task_id": "fc-kettle",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 10.0,
+    "demo_tokens_ref": 10.0,
+    "prompt_tokens_target": 16.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'one'": 3,
+     "got 'iber'": 1
+    }
+   },
+   {
+    "task_id": "fc-lantern",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 2,
+    "demo_tokens_target": 10.0,
+    "demo_tokens_ref": 10.0,
+    "prompt_tokens_target": 16.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'lamps'": 1,
+     "got 'one'": 1
+    }
+   },
+   {
+    "task_id": "fc-parcel",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 2,
+    "demo_tokens_target": 10.0,
+    "demo_tokens_ref": 10.0,
+    "prompt_tokens_target": 16.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'i'": 1,
+     "got 'the'": 1
+    }
+   },
+   {
+    "task_id": "fc-tunnel",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 10.0,
+    "demo_tokens_ref": 10.0,
+    "prompt_tokens_target": 16.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'the'": 1,
+     "got 'one'": 3
+    }
+   },
+   {
+    "task_id": "fc-collar2",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 3,
+    "demo_tokens_target": 10.0,
+    "demo_tokens_ref": 10.0,
+    "prompt_tokens_target": 16.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'one'": 1
+    }
+   },
+   {
+    "task_id": "fc-clock",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 4,
+    "demo_tokens_target": 20.0,
+    "demo_tokens_ref": 20.0,
+    "prompt_tokens_target": 28.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {}
+   },
+   {
+    "task_id": "fc-hammer",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 2,
+    "demo_tokens_target": 20.0,
+    "demo_tokens_ref": 20.0,
+    "prompt_tokens_target": 28.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'one'": 1,
+     "got 'i'": 1
+    }
+   },
+   {
+    "task_id": "fc-saddle",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 3,
+    "demo_tokens_target": 20.0,
+    "demo_tokens_ref": 20.0,
+    "prompt_tokens_target": 28.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'un'": 1
+    }
+   },
+   {
+    "task_id": "fc-kettle",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 1,
+    "demo_tokens_target": 20.0,
+    "demo_tokens_ref": 20.0,
+    "prompt_tokens_target": 28.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'ditto'": 1,
+     "got 'one'": 1,
+     "got 'to'": 1
+    }
+   },
+   {
+    "task_id": "fc-lantern",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 2,
+    "demo_tokens_target": 20.0,
+    "demo_tokens_ref": 20.0,
+    "prompt_tokens_target": 28.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'lamps'": 1,
+     "got 'l'": 1
+    }
+   },
+   {
+    "task_id": "fc-parcel",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 2,
+    "demo_tokens_target": 20.0,
+    "demo_tokens_ref": 20.0,
+    "prompt_tokens_target": 28.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got ''": 1,
+     "got 'one'": 1
+    }
+   },
+   {
+    "task_id": "fc-tunnel",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 2,
+    "demo_tokens_target": 20.0,
+    "demo_tokens_ref": 20.0,
+    "prompt_tokens_target": 28.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'tunnells'": 1,
+     "got 'un'": 1
+    }
+   },
+   {
+    "task_id": "fc-collar2",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 4,
+    "demo_tokens_target": 20.0,
+    "demo_tokens_ref": 20.0,
+    "prompt_tokens_target": 28.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {}
+   },
+   {
+    "task_id": "fc-clock",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 40.0,
+    "demo_tokens_ref": 40.0,
+    "prompt_tokens_target": 52.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'accomplir'": 1,
+     "got 'i'": 2,
+     "got 'one'": 1
+    }
+   },
+   {
+    "task_id": "fc-hammer",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 40.0,
+    "demo_tokens_ref": 40.0,
+    "prompt_tokens_target": 52.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'canterbury'": 1,
+     "got 'p'": 1,
+     "got 'one'": 1,
+     "got 'strike'": 1
+    }
+   },
+   {
+    "task_id": "fc-saddle",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 40.0,
+    "demo_tokens_ref": 40.0,
+    "prompt_tokens_target": 52.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'accorder'": 1,
+     "got 'stirrup'": 1,
+     "got 'staples'": 1,
+     "got 'stuols'": 1
+    }
+   },
+   {
+    "task_id": "fc-kettle",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 40.0,
+    "demo_tokens_ref": 40.0,
+    "prompt_tokens_target": 52.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'sem'": 1,
+     "got 'stann'": 1,
+     "got 'king'": 1,
+     "got 'i'": 1
+    }
+   },
+   {
+    "task_id": "fc-lantern",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 40.0,
+    "demo_tokens_ref": 40.0,
+    "prompt_tokens_target": 52.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'stagnant'": 1,
+     "got 'salon'": 1,
+     "got 'iber'": 1,
+     "got 'stabianternen'": 1
+    }
+   },
+   {
+    "task_id": "fc-parcel",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 40.0,
+    "demo_tokens_ref": 40.0,
+    "prompt_tokens_target": 52.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'stjames'": 1,
+     "got 'i'": 1,
+     "got 'io'": 1,
+     "got 'o'": 1
+    }
+   },
+   {
+    "task_id": "fc-tunnel",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 40.0,
+    "demo_tokens_ref": 40.0,
+    "prompt_tokens_target": 52.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'both'": 1,
+     "got 'hord'": 1,
+     "got 'rober'": 1,
+     "got 's'": 1
+    }
+   },
+   {
+    "task_id": "fc-collar2",
+    "stratum": "format-control",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 40.0,
+    "demo_tokens_ref": 40.0,
+    "prompt_tokens_target": 52.0,
+    "strategies": {
+     "first-word": 4
+    },
+    "failures": {
+     "got 'y'": 1,
+     "got 'i'": 1,
+     "got 'and'": 1,
+     "got 'van'": 1
+    }
+   }
+  ],
+  "oneline|py-canonical": [
+   {
+    "task_id": "add_two",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 21.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "subtract",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 18.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "double",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 13.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "negate",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 17.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "last_item",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 20.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "text_length",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 20.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "to_upper",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 18.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "multiply",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 17.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "add_two",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 35.75,
+    "demo_tokens_ref": 29.5,
+    "prompt_tokens_target": 56.5,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "subtract",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 1,
+    "demo_tokens_target": 31.5,
+    "demo_tokens_ref": 26.0,
+    "prompt_tokens_target": 49.25,
+    "strategies": {
+     "body-reindent": 1,
+     "uncompilable": 3
+    },
+    "failures": {
+     "syntax error": 3
+    }
+   },
+   {
+    "task_id": "double",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 33.0,
+    "demo_tokens_ref": 27.25,
+    "prompt_tokens_target": 45.75,
+    "strategies": {
+     "body": 1,
+     "uncompilable": 3
+    },
+    "failures": {
+     "NameError: name 'John' is not defined": 1,
+     "syntax error": 3
+    }
+   },
+   {
+    "task_id": "negate",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 35.0,
+    "demo_tokens_ref": 29.25,
+    "prompt_tokens_target": 52.0,
+    "strategies": {
+     "body": 1,
+     "uncompilable": 3
+    },
+    "failures": {
+     "NameError: name 'negative' is not defined. Did you mean: 'negate'?": 1,
+     "syntax error": 3
+    }
+   },
+   {
+    "task_id": "last_item",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 34.0,
+    "demo_tokens_ref": 27.0,
+    "prompt_tokens_target": 53.5,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "text_length",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 54.5,
+    "demo_tokens_ref": 46.75,
+    "prompt_tokens_target": 74.5,
+    "strategies": {
+     "uncompilable": 3,
+     "body": 1
+    },
+    "failures": {
+     "syntax error": 3,
+     "AssertionError": 1
+    }
+   },
+   {
+    "task_id": "to_upper",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 43.5,
+    "demo_tokens_ref": 35.5,
+    "prompt_tokens_target": 61.0,
+    "strategies": {
+     "body": 1,
+     "uncompilable": 3
+    },
+    "failures": {
+     "NameError: name 'Return' is not defined": 1,
+     "syntax error": 3
+    }
+   },
+   {
+    "task_id": "multiply",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 44.75,
+    "demo_tokens_ref": 37.75,
+    "prompt_tokens_target": 61.5,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "add_two",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 1,
+    "demo_tokens_target": 83.75,
+    "demo_tokens_ref": 72.5,
+    "prompt_tokens_target": 104.25,
+    "strategies": {
+     "body-reindent": 1,
+     "uncompilable": 3
+    },
+    "failures": {
+     "syntax error": 3
+    }
+   },
+   {
+    "task_id": "subtract",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 77.25,
+    "demo_tokens_ref": 67.0,
+    "prompt_tokens_target": 95.25,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "double",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 84.25,
+    "demo_tokens_ref": 71.5,
+    "prompt_tokens_target": 96.75,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "negate",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 85.0,
+    "demo_tokens_ref": 71.25,
+    "prompt_tokens_target": 101.5,
+    "strategies": {
+     "body": 2,
+     "uncompilable": 2
+    },
+    "failures": {
+     "NameError: name 'neg' is not defined": 2,
+     "syntax error": 2
+    }
+   },
+   {
+    "task_id": "last_item",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 86.75,
+    "demo_tokens_ref": 76.5,
+    "prompt_tokens_target": 106.75,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "text_length",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 72.5,
+    "demo_tokens_ref": 60.0,
+    "prompt_tokens_target": 92.25,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "to_upper",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 69.25,
+    "demo_tokens_ref": 57.0,
+    "prompt_tokens_target": 86.75,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "multiply",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 67.5,
+    "demo_tokens_ref": 56.0,
+    "prompt_tokens_target": 84.25,
+    "strategies": {
+     "body": 1,
+     "uncompilable": 2,
+     "body-reindent": 1
+    },
+    "failures": {
+     "NameError: name 'ab' is not defined. Did you mean: 'abs'?": 1,
+     "syntax error": 2,
+     "NameError: name 'ab' is not defined. Did you mean: 'a'?": 1
+    }
+   },
+   {
+    "task_id": "add_two",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 2,
+    "demo_tokens_target": 173.0,
+    "demo_tokens_ref": 147.5,
+    "prompt_tokens_target": 193.75,
+    "strategies": {
+     "uncompilable": 2,
+     "body-reindent": 2
+    },
+    "failures": {
+     "syntax error": 2
+    }
+   },
+   {
+    "task_id": "subtract",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 1,
+    "demo_tokens_target": 175.75,
+    "demo_tokens_ref": 149.75,
+    "prompt_tokens_target": 193.25,
+    "strategies": {
+     "body": 1,
+     "uncompilable": 2,
+     "body-reindent": 1
+    },
+    "failures": {
+     "NameError: name 'a' is not defined": 1,
+     "syntax error": 2
+    }
+   },
+   {
+    "task_id": "double",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 155.25,
+    "demo_tokens_ref": 131.25,
+    "prompt_tokens_target": 168.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "negate",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 139.5,
+    "demo_tokens_ref": 116.25,
+    "prompt_tokens_target": 156.0,
+    "strategies": {
+     "body-reindent": 1,
+     "uncompilable": 2,
+     "body": 1
+    },
+    "failures": {
+     "AssertionError": 1,
+     "syntax error": 2,
+     "NameError: name 'neg' is not defined": 1
+    }
+   },
+   {
+    "task_id": "last_item",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 141.5,
+    "demo_tokens_ref": 117.75,
+    "prompt_tokens_target": 161.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "text_length",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 144.25,
+    "demo_tokens_ref": 119.25,
+    "prompt_tokens_target": 163.25,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "to_upper",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 156.25,
+    "demo_tokens_ref": 132.0,
+    "prompt_tokens_target": 173.5,
+    "strategies": {
+     "body-reindent": 2,
+     "uncompilable": 2
+    },
+    "failures": {
+     "NameError: name 'capitals' is not defined": 1,
+     "syntax error": 2,
+     "NameError: name 'capital' is not defined": 1
+    }
+   },
+   {
+    "task_id": "multiply",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 150.0,
+    "demo_tokens_ref": 124.25,
+    "prompt_tokens_target": 166.25,
+    "strategies": {
+     "uncompilable": 3,
+     "body": 1
+    },
+    "failures": {
+     "syntax error": 3,
+     "NameError: name 'ab' is not defined. Did you mean: 'abs'?": 1
+    }
+   },
+   {
+    "task_id": "add_two",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 313.5,
+    "demo_tokens_ref": 263.25,
+    "prompt_tokens_target": 332.75,
+    "strategies": {
+     "uncompilable": 1,
+     "body": 3
+    },
+    "failures": {
+     "syntax error": 1,
+     "NameError: name 'a' is not defined": 3
+    }
+   },
+   {
+    "task_id": "subtract",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 312.5,
+    "demo_tokens_ref": 261.75,
+    "prompt_tokens_target": 328.5,
+    "strategies": {
+     "no-answer": 1,
+     "body": 3
+    },
+    "failures": {
+     "AssertionError": 1,
+     "NameError: name 'a' is not defined": 3
+    }
+   },
+   {
+    "task_id": "double",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 323.75,
+    "demo_tokens_ref": 274.25,
+    "prompt_tokens_target": 335.25,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "negate",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 314.75,
+    "demo_tokens_ref": 265.75,
+    "prompt_tokens_target": 330.75,
+    "strategies": {
+     "no-answer": 1,
+     "uncompilable": 1,
+     "body": 2
+    },
+    "failures": {
+     "AssertionError": 1,
+     "syntax error": 1,
+     "NameError: name 'negat' is not defined. Did you mean: 'negate'?": 1,
+     "NameError: name 'x' is not defined": 1
+    }
+   },
+   {
+    "task_id": "last_item",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 324.25,
+    "demo_tokens_ref": 274.75,
+    "prompt_tokens_target": 343.25,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "text_length",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 297.25,
+    "demo_tokens_ref": 251.75,
+    "prompt_tokens_target": 316.75,
+    "strategies": {
+     "uncompilable": 2,
+     "body-reindent": 1,
+     "body": 1
+    },
+    "failures": {
+     "syntax error": 2,
+     "AssertionError": 1,
+     "NameError: name 'letters' is not defined": 1
+    }
+   },
+   {
+    "task_id": "to_upper",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 329.0,
+    "demo_tokens_ref": 278.5,
+    "prompt_tokens_target": 345.0,
+    "strategies": {
+     "body-reindent": 1,
+     "uncompilable": 2,
+     "body": 1
+    },
+    "failures": {
+     "NameError: name 'cap' is not defined. Did you mean: 'map'?": 1,
+     "syntax error": 2,
+     "NameError: name 'text' is not defined. Did you mean: 'next'?": 1
+    }
+   },
+   {
+    "task_id": "multiply",
+    "stratum": "oneline",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 297.25,
+    "demo_tokens_ref": 249.75,
+    "prompt_tokens_target": 313.0,
+    "strategies": {
+     "uncompilable": 2,
+     "body": 1,
+     "body-reindent": 1
+    },
+    "failures": {
+     "syntax error": 2,
+     "NameError: name 'ab' is not defined. Did you mean: 'abs'?": 1,
+     "NameError: name 'ab' is not defined. Did you mean: 'a'?": 1
+    }
+   }
+  ],
+  "humaneval-style|py-canonical": [
+   {
+    "task_id": "decode_shift",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 28.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "count_above",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 25.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "sum_even",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 23.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "longest_word",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 32.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "is_palindrome",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 25.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "unique_sorted",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 23.0,
+    "strategies": {
+     "body": 1,
+     "uncompilable": 3
+    },
+    "failures": {
+     "NameError: name 'Ren' is not defined. Did you mean: 'len'?": 1,
+     "syntax error": 3
+    }
+   },
+   {
+    "task_id": "running_total",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 31.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "words_starting",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 0,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 0.0,
+    "demo_tokens_ref": 0.0,
+    "prompt_tokens_target": 24.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "decode_shift",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 38.75,
+    "demo_tokens_ref": 31.5,
+    "prompt_tokens_target": 66.5,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "count_above",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 42.25,
+    "demo_tokens_ref": 34.75,
+    "prompt_tokens_target": 67.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "sum_even",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 39.5,
+    "demo_tokens_ref": 32.5,
+    "prompt_tokens_target": 62.0,
+    "strategies": {
+     "uncompilable": 3,
+     "body": 1
+    },
+    "failures": {
+     "syntax error": 3,
+     "AssertionError": 1
+    }
+   },
+   {
+    "task_id": "longest_word",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 36.25,
+    "demo_tokens_ref": 30.5,
+    "prompt_tokens_target": 68.25,
+    "strategies": {
+     "body": 1,
+     "uncompilable": 3
+    },
+    "failures": {
+     "NameError: name 'longest' is not defined": 1,
+     "syntax error": 3
+    }
+   },
+   {
+    "task_id": "is_palindrome",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 29.0,
+    "demo_tokens_ref": 23.75,
+    "prompt_tokens_target": 54.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "unique_sorted",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 38.75,
+    "demo_tokens_ref": 31.75,
+    "prompt_tokens_target": 61.5,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "running_total",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 33.25,
+    "demo_tokens_ref": 26.5,
+    "prompt_tokens_target": 64.0,
+    "strategies": {
+     "body": 2,
+     "uncompilable": 2
+    },
+    "failures": {
+     "NameError: name 'lista' is not defined. Did you mean: 'list'?": 1,
+     "syntax error": 2,
+     "AssertionError": 1
+    }
+   },
+   {
+    "task_id": "words_starting",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 1,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 34.75,
+    "demo_tokens_ref": 27.75,
+    "prompt_tokens_target": 58.25,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "decode_shift",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 86.75,
+    "demo_tokens_ref": 73.75,
+    "prompt_tokens_target": 114.5,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "count_above",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 76.75,
+    "demo_tokens_ref": 64.75,
+    "prompt_tokens_target": 101.25,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "sum_even",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 73.5,
+    "demo_tokens_ref": 60.5,
+    "prompt_tokens_target": 96.25,
+    "strategies": {
+     "uncompilable": 3,
+     "body-reindent": 1
+    },
+    "failures": {
+     "syntax error": 3,
+     "NameError: name 'total' is not defined": 1
+    }
+   },
+   {
+    "task_id": "longest_word",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 71.0,
+    "demo_tokens_ref": 59.0,
+    "prompt_tokens_target": 102.5,
+    "strategies": {
+     "body": 2,
+     "body-reindent": 1,
+     "uncompilable": 1
+    },
+    "failures": {
+     "NameError: name 'largestih' is not defined": 1,
+     "NameError: name 'longword' is not defined": 1,
+     "syntax error": 1,
+     "NameError: name 'longest' is not defined": 1
+    }
+   },
+   {
+    "task_id": "is_palindrome",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 69.0,
+    "demo_tokens_ref": 58.0,
+    "prompt_tokens_target": 93.75,
+    "strategies": {
+     "uncompilable": 2,
+     "body": 2
+    },
+    "failures": {
+     "syntax error": 2,
+     "AssertionError": 2
+    }
+   },
+   {
+    "task_id": "unique_sorted",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 77.5,
+    "demo_tokens_ref": 66.25,
+    "prompt_tokens_target": 100.5,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "running_total",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 72.25,
+    "demo_tokens_ref": 60.25,
+    "prompt_tokens_target": 103.25,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "words_starting",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 2,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 74.75,
+    "demo_tokens_ref": 64.25,
+    "prompt_tokens_target": 98.75,
+    "strategies": {
+     "body": 2,
+     "uncompilable": 2
+    },
+    "failures": {
+     "NameError: name 'Return' is not defined": 1,
+     "syntax error": 2,
+     "NameError: name 'returned' is not defined. Did you mean: 'reversed'?": 1
+    }
+   },
+   {
+    "task_id": "decode_shift",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 150.75,
+    "demo_tokens_ref": 123.25,
+    "prompt_tokens_target": 177.5,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "count_above",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 147.25,
+    "demo_tokens_ref": 124.25,
+    "prompt_tokens_target": 171.75,
+    "strategies": {
+     "body-reindent": 1,
+     "uncompilable": 3
+    },
+    "failures": {
+     "NameError: name 'above' is not defined": 1,
+     "syntax error": 3
+    }
+   },
+   {
+    "task_id": "sum_even",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 170.25,
+    "demo_tokens_ref": 144.5,
+    "prompt_tokens_target": 193.25,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "longest_word",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 154.5,
+    "demo_tokens_ref": 130.0,
+    "prompt_tokens_target": 186.0,
+    "strategies": {
+     "body": 3,
+     "uncompilable": 1
+    },
+    "failures": {
+     "NameError: name 'honestyntegrity' is not defined": 1,
+     "syntax error": 1,
+     "NameError: name 'longest' is not defined": 1,
+     "NameError: name 'telegraphy' is not defined": 1
+    }
+   },
+   {
+    "task_id": "is_palindrome",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 153.25,
+    "demo_tokens_ref": 129.5,
+    "prompt_tokens_target": 178.0,
+    "strategies": {
+     "uncompilable": 3,
+     "body": 1
+    },
+    "failures": {
+     "syntax error": 3,
+     "AssertionError": 1
+    }
+   },
+   {
+    "task_id": "unique_sorted",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 166.25,
+    "demo_tokens_ref": 138.5,
+    "prompt_tokens_target": 188.5,
+    "strategies": {
+     "body-reindent": 1,
+     "uncompilable": 2,
+     "body": 1
+    },
+    "failures": {
+     "NameError: name 'no' is not defined": 1,
+     "syntax error": 2,
+     "NameError: name 'Return' is not defined": 1
+    }
+   },
+   {
+    "task_id": "running_total",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 143.0,
+    "demo_tokens_ref": 119.75,
+    "prompt_tokens_target": 173.25,
+    "strategies": {
+     "uncompilable": 2,
+     "body-reindent": 1,
+     "body": 1
+    },
+    "failures": {
+     "syntax error": 2,
+     "NameError: name 'items' is not defined. Did you mean: 'iter'?": 1,
+     "NameError: name 'A' is not defined": 1
+    }
+   },
+   {
+    "task_id": "words_starting",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 4,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 145.0,
+    "demo_tokens_ref": 119.75,
+    "prompt_tokens_target": 168.25,
+    "strategies": {
+     "body-reindent": 2,
+     "uncompilable": 1,
+     "body": 1
+    },
+    "failures": {
+     "NameError: name 'word' is not defined. Did you mean: 'words'?": 1,
+     "syntax error": 1,
+     "NameError: name 'Return' is not defined": 1,
+     "AssertionError": 1
+    }
+   },
+   {
+    "task_id": "decode_shift",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 297.75,
+    "demo_tokens_ref": 250.5,
+    "prompt_tokens_target": 324.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "count_above",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 285.5,
+    "demo_tokens_ref": 238.5,
+    "prompt_tokens_target": 309.25,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "sum_even",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 318.25,
+    "demo_tokens_ref": 269.25,
+    "prompt_tokens_target": 340.0,
+    "strategies": {
+     "uncompilable": 3,
+     "body": 1
+    },
+    "failures": {
+     "syntax error": 3,
+     "AssertionError": 1
+    }
+   },
+   {
+    "task_id": "longest_word",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 311.5,
+    "demo_tokens_ref": 262.5,
+    "prompt_tokens_target": 342.0,
+    "strategies": {
+     "body": 2,
+     "uncompilable": 2
+    },
+    "failures": {
+     "NameError: name 'hippopotamus' is not defined": 1,
+     "NameError: name 'longest' is not defined": 1,
+     "syntax error": 2
+    }
+   },
+   {
+    "task_id": "is_palindrome",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 322.5,
+    "demo_tokens_ref": 270.25,
+    "prompt_tokens_target": 346.5,
+    "strategies": {
+     "body": 2,
+     "uncompilable": 2
+    },
+    "failures": {
+     "AssertionError": 2,
+     "syntax error": 2
+    }
+   },
+   {
+    "task_id": "unique_sorted",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 306.0,
+    "demo_tokens_ref": 257.75,
+    "prompt_tokens_target": 328.0,
+    "strategies": {
+     "uncompilable": 3,
+     "body": 1
+    },
+    "failures": {
+     "syntax error": 3,
+     "NameError: name 'Unique' is not defined": 1
+    }
+   },
+   {
+    "task_id": "running_total",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 310.75,
+    "demo_tokens_ref": 262.75,
+    "prompt_tokens_target": 340.0,
+    "strategies": {
+     "uncompilable": 4
+    },
+    "failures": {
+     "syntax error": 4
+    }
+   },
+   {
+    "task_id": "words_starting",
+    "stratum": "humaneval-style",
+    "dialect": "py-canonical",
+    "n_demos": 8,
+    "n_samples": 4,
+    "n_correct": 0,
+    "demo_tokens_target": 304.75,
+    "demo_tokens_ref": 257.5,
+    "prompt_tokens_target": 327.0,
+    "strategies": {
+     "uncompilable": 2,
+     "body-reindent": 1,
+     "body": 1
+    },
+    "failures": {
+     "syntax error": 2,
+     "NameError: name 'initial' is not defined": 1,
+     "NameError: name 'Return' is not defined": 1
+    }
+   }
+  ]
+ },
+ "analysis": {
+  "format_control": {
+   "by_budget": [
+    {
+     "n_demos": 1,
+     "passed": true,
+     "tasks_solved": 4,
+     "n_tasks": 8,
+     "solve_rate": [
+      0.5,
+      0.21521606221387762,
+      0.7847839377861223
+     ],
+     "summary": "1 demos: 4/8 = 50.00% [21.52, 78.48] 95% Wilson"
+    },
+    {
+     "n_demos": 2,
+     "passed": true,
+     "tasks_solved": 6,
+     "n_tasks": 8,
+     "solve_rate": [
+      0.75,
+      0.4092754303101689,
+      0.9285207872478909
+     ],
+     "summary": "2 demos: 6/8 = 75.00% [40.93, 92.85] 95% Wilson"
+    },
+    {
+     "n_demos": 4,
+     "passed": true,
+     "tasks_solved": 8,
+     "n_tasks": 8,
+     "solve_rate": [
+      1.0,
+      0.6755924351161198,
+      1.0
+     ],
+     "summary": "4 demos: 8/8 = 100.00% [67.56, 100.00] 95% Wilson"
+    },
+    {
+     "n_demos": 8,
+     "passed": false,
+     "tasks_solved": 0,
+     "n_tasks": 8,
+     "solve_rate": [
+      0.0,
+      2.7755575615628914e-17,
+      0.3244075648838801
+     ],
+     "summary": "8 demos: 0/8 = 0% \u2014 consistent with any rate up to 31.2% (95% one-sided)"
+    }
+   ],
+   "passed_at": [
+    1,
+    2,
+    4
+   ],
+   "failed_at": [
+    8
+   ],
+   "any_passed": true
+  },
+  "by_stratum": {
+   "oneline": {
+    "penalty_vs_recovery": {
+     "testable": false,
+     "reason": "only 1 dialect swept for this stratum; pass --dialects with 3+ content-preserving ones (py-canonical,py-indent8,py-indent16,py-tab,py-crlf) to test H1"
+    }
+   },
+   "humaneval-style": {
+    "penalty_vs_recovery": {
+     "testable": false,
+     "reason": "only 1 dialect swept for this stratum; pass --dialects with 3+ content-preserving ones (py-canonical,py-indent8,py-indent16,py-tab,py-crlf) to test H1"
+    }
+   }
+  },
+  "cost": {
+   "note": "Rates near a few percent need thousands of trials to resolve.",
+   "lines": [
+    "to pin a 3.21% rate to +/-2.0 pp (95% Wilson): 316 problem-level trials",
+    "to pin a 3.21% rate to +/-1.0 pp (95% Wilson): 1,216 problem-level trials",
+    "to pin a 3.21% rate to +/-0.5 pp (95% Wilson): 4,798 problem-level trials",
+    "at 164 problems that is 7 samples per problem for the +/-1.0 pp row",
+    "pass@100 needs >= 100 samples per problem regardless of the",
+    "  interval: the estimator does not extrapolate upward"
+   ]
+  }
+ }
+}
