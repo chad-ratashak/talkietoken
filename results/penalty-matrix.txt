@@ -1,0 +1,118 @@
+=== CROSS-MODEL ENCODING PENALTY MATRIX ===
+Every tokenizer as target, every other as reference. The published
+figure in results/reconstitution-penalty.txt is one cell of this.
+
+The question is not 'what is talkie's penalty'. It is whether that
+number is a property of talkie or an artefact of picking o200k, and
+whether a model that demonstrably HAS Python scores any lower.
+
+--- provenance ---
+  generated        2026-08-19 14:05:36 CDT
+  git              dcdc882 on cross-model-penalty-matrix (dirty)
+  capability       python
+  control prose    period-prose
+  dialects         7 (py-canonical, py-nodoc, py-comment, py-indent8, py-indent16, py-tab, py-crlf)
+  content-preserv. 5 (py-canonical, py-indent8, py-indent16, py-tab, py-crlf)
+  network          off (HF_HUB_OFFLINE=1)
+  generation       none. Tokenizer measurement only.
+
+--- tokenizers ---
+  name              vocab  spec
+  gpt2             50,257  tiktoken:gpt2
+  cl100k          100,277  tiktoken:cl100k_base
+  o200k           200,019  tiktoken:o200k_base
+  gemma-2-2b      256,000  hf:unsloth/gemma-2-2b
+  Llama-3.2-3B    128,256  hf:unsloth/Llama-3.2-3B
+  talkie-1930     262,144  talkie
+
+  'vocab' is not one quantity across families:
+    gpt2           n_vocab: max rank + 1, incl. specials
+    cl100k         n_vocab: max rank + 1, incl. specials
+    o200k          n_vocab: max rank + 1, incl. specials
+    gemma-2-2b     len(tokenizer): base vocab + added tokens
+    Llama-3.2-3B   len(tokenizer): base vocab + added tokens
+    talkie-1930    mergeable ranks, incl. the EOT special
+
+--- NORMALISED PENALTY (mean over content-preserving dialects) ---
+target tokens per reference token on Python demos, divided by the
+same pair's ratio on control prose. 1.0 = 'costs what my own
+ordinary text costs'. Rows are the model under test.
+
+  target \ ref            gpt2        cl100k         o200k    gemma-2-2b  Llama-3.2-3B   talkie-1930
+  gpt2                       —         1.792         1.799         1.561         1.792         1.444
+  cl100k                 0.598             —         1.004         0.869         1.000         0.809
+  o200k                  0.596         0.996             —         0.865         0.996         0.805
+  gemma-2-2b             0.691         1.151         1.156             —         1.151         0.931
+  Llama-3.2-3B           0.598         1.000         1.004         0.869             —         0.809
+  talkie-1930            0.739         1.238         1.243         1.076         1.238             —
+
+--- REFERENCE SENSITIVITY (how much the reference choice moves it) ---
+A target whose row is flat has a penalty that is its own property.
+A target whose row swings is being described by its reference.
+
+  target              min      max   spread   argmin / argmax
+  gpt2              1.444    1.799    0.355   talkie-1930 / o200k
+  cl100k            0.598    1.004    0.406   gpt2 / o200k
+  o200k             0.596    0.996    0.400   gpt2 / cl100k
+  gemma-2-2b        0.691    1.156    0.465   gpt2 / o200k
+  Llama-3.2-3B      0.598    1.004    0.406   gpt2 / o200k
+  talkie-1930       0.739    1.243    0.504   gpt2 / o200k
+
+--- TOK/CHAR EXCESS (reference-free; a column, not a matrix) ---
+material tokens-per-char over control tokens-per-char, target only.
+Immune to the reference choice above. NOT on the same scale as the
+normalised penalty: material is code and control is prose, so their
+character densities differ for reasons unrelated to encoding.
+
+  target           canonical     indent8    indent16         tab        crlf
+  gpt2                 1.941       2.265       2.755       1.780       2.041
+  cl100k               1.322       1.193       0.998       1.368       1.334
+  o200k                1.316       1.188       0.994       1.362       1.329
+  gemma-2-2b           1.500       1.353       1.137       1.632       1.541
+  Llama-3.2-3B         1.322       1.193       0.998       1.368       1.334
+  talkie-1930          1.562       1.420       1.283       1.717       1.705
+
+--- HOW TO READ THIS ---
+  gpt2 is the POSITIVE control: a tokenizer genuinely worse at
+    Python (2019, 50k, web text). It should score high. If it does
+    not, the statistic is broken outright.
+  cl100k / Llama-3.2 / gemma-2-2b are NEGATIVE controls: current,
+    code-fluent, Python unambiguously in the training data. They
+    should score ~1.0 if the statistic measures corpus absence.
+  talkie-1930 is the model under test.
+
+  The predictor discriminates only if talkie sits ABOVE the
+  negative-control band under a common reference. Read the talkie
+  row against the cl100k / Llama / gemma rows, one column at a time.
+
+--- DOES IT DISCRIMINATE? (pre-registered) ---
+Per reference: talkie's margin over the worst negative control,
+against the spread among the negative controls themselves. A margin
+smaller than that spread is not evidence about talkie's corpus.
+
+  reference        talkie   neg ctrl band   margin    band   verdict
+  gpt2              0.739     0.596-0.691   +0.049   0.095   NOT separated  [dropped Llama-3.2-3B]
+  cl100k            1.238     0.996-1.151   +0.087   0.155   NOT separated
+  o200k             1.243     1.004-1.156   +0.087   0.152   NOT separated  [dropped Llama-3.2-3B]
+  gemma-2-2b        1.076     0.865-0.869   +0.207   0.004   separates  [dropped Llama-3.2-3B]
+  Llama-3.2-3B      1.238     0.996-1.151   +0.087   0.155   NOT separated
+
+  separates under 1 of 5 scorable references (0 unscorable for lack of independent controls).
+
+  The row that decides it is o200k: that is the reference the
+  published figure uses. The other rows are robustness.
+
+  Caveat on the gemma-2-2b row: a tokenizer cannot be its own
+  control, so gemma leaves the control set exactly when it is the
+  reference — and gemma is the control that varies most. What is
+  left (cl100k, o200k) happens to agree closely, so the band
+  collapses and the margin clears it. That row reads 'separates'
+  because the widest control was removed, not because talkie stood
+  out. Do not count it as corroboration.
+
+  Note: Llama-3.2 and cl100k return identical counts on English and
+  Python — Llama-3's 128k vocab embeds cl100k's 100k tokens. They
+  are distinct tokenizers (they diverge on Urdu and Hindi), but as
+  a Python reference Llama adds no information cl100k did not.
+  Treat that column as a duplicate, not as corroboration.
+

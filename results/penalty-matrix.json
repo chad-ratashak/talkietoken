@@ -1,0 +1,2140 @@
+{
+ "meta": {
+  "generated": "2026-08-19 14:05:39 CDT",
+  "git": {
+   "commit": "dcdc882",
+   "branch": "cross-model-penalty-matrix",
+   "dirty": true
+  },
+  "capability": "python",
+  "control": "period-prose",
+  "dialects": [
+   "py-canonical",
+   "py-nodoc",
+   "py-comment",
+   "py-indent8",
+   "py-indent16",
+   "py-tab",
+   "py-crlf"
+  ],
+  "content_preserving": [
+   "py-canonical",
+   "py-indent8",
+   "py-indent16",
+   "py-tab",
+   "py-crlf"
+  ],
+  "network": "offline",
+  "generation": null,
+  "tokenizers": {
+   "gpt2": {
+    "spec": "tiktoken:gpt2",
+    "label": "gpt2 (tiktoken)",
+    "vocab_size": 50257,
+    "vocab_size_means": "n_vocab: max rank + 1, incl. specials"
+   },
+   "cl100k": {
+    "spec": "tiktoken:cl100k_base",
+    "label": "cl100k_base (tiktoken)",
+    "vocab_size": 100277,
+    "vocab_size_means": "n_vocab: max rank + 1, incl. specials"
+   },
+   "o200k": {
+    "spec": "tiktoken:o200k_base",
+    "label": "o200k_base (tiktoken)",
+    "vocab_size": 200019,
+    "vocab_size_means": "n_vocab: max rank + 1, incl. specials"
+   },
+   "gemma-2-2b": {
+    "spec": "hf:unsloth/gemma-2-2b",
+    "label": "unsloth/gemma-2-2b (transformers)",
+    "vocab_size": 256000,
+    "vocab_size_means": "len(tokenizer): base vocab + added tokens"
+   },
+   "Llama-3.2-3B": {
+    "spec": "hf:unsloth/Llama-3.2-3B",
+    "label": "unsloth/Llama-3.2-3B (transformers)",
+    "vocab_size": 128256,
+    "vocab_size_means": "len(tokenizer): base vocab + added tokens"
+   },
+   "talkie-1930": {
+    "spec": "talkie",
+    "label": "talkie-1930 (local vocab.txt)",
+    "vocab_size": 262144,
+    "vocab_size_means": "mergeable ranks, incl. the EOT special"
+   }
+  }
+ },
+ "normalized_mean": {
+  "gpt2|cl100k": 1.7917500981784449,
+  "gpt2|o200k": 1.7990392867069698,
+  "gpt2|gemma-2-2b": 1.5614458714284438,
+  "gpt2|Llama-3.2-3B": 1.7917500981784449,
+  "gpt2|talkie-1930": 1.443850269471923,
+  "cl100k|gpt2": 0.5983209694237726,
+  "cl100k|o200k": 1.004074975244945,
+  "cl100k|gemma-2-2b": 0.8689880294159822,
+  "cl100k|Llama-3.2-3B": 1.0,
+  "cl100k|talkie-1930": 0.8086528272558908,
+  "o200k|gpt2": 0.5958874307080626,
+  "o200k|cl100k": 0.9959415762559104,
+  "o200k|gemma-2-2b": 0.8654624543181946,
+  "o200k|Llama-3.2-3B": 0.9959415762559104,
+  "o200k|talkie-1930": 0.8053706352788673,
+  "gemma-2-2b|gpt2": 0.6907878253663149,
+  "gemma-2-2b|cl100k": 1.1511785547216766,
+  "gemma-2-2b|o200k": 1.1558711662236816,
+  "gemma-2-2b|Llama-3.2-3B": 1.1511785547216766,
+  "gemma-2-2b|talkie-1930": 0.9306293982769679,
+  "Llama-3.2-3B|gpt2": 0.5983209694237726,
+  "Llama-3.2-3B|cl100k": 1.0,
+  "Llama-3.2-3B|o200k": 1.004074975244945,
+  "Llama-3.2-3B|gemma-2-2b": 0.8689880294159822,
+  "Llama-3.2-3B|talkie-1930": 0.8086528272558908,
+  "talkie-1930|gpt2": 0.7394151999730265,
+  "talkie-1930|cl100k": 1.2381849032239556,
+  "talkie-1930|o200k": 1.2432299107784677,
+  "talkie-1930|gemma-2-2b": 1.0756638633058386,
+  "talkie-1930|Llama-3.2-3B": 1.2381849032239556
+ },
+ "reference_sensitivity": {
+  "gpt2": {
+   "min": 1.443850269471923,
+   "max": 1.7990392867069698,
+   "argmin": "talkie-1930",
+   "argmax": "o200k",
+   "spread": 0.3551890172350467
+  },
+  "cl100k": {
+   "min": 0.5983209694237726,
+   "max": 1.004074975244945,
+   "argmin": "gpt2",
+   "argmax": "o200k",
+   "spread": 0.4057540058211724
+  },
+  "o200k": {
+   "min": 0.5958874307080626,
+   "max": 0.9959415762559104,
+   "argmin": "gpt2",
+   "argmax": "cl100k",
+   "spread": 0.4000541455478478
+  },
+  "gemma-2-2b": {
+   "min": 0.6907878253663149,
+   "max": 1.1558711662236816,
+   "argmin": "gpt2",
+   "argmax": "o200k",
+   "spread": 0.4650833408573667
+  },
+  "Llama-3.2-3B": {
+   "min": 0.5983209694237726,
+   "max": 1.004074975244945,
+   "argmin": "gpt2",
+   "argmax": "o200k",
+   "spread": 0.4057540058211724
+  },
+  "talkie-1930": {
+   "min": 0.7394151999730265,
+   "max": 1.2432299107784677,
+   "argmin": "gpt2",
+   "argmax": "o200k",
+   "spread": 0.5038147108054412
+  }
+ },
+ "tok_per_char_excess": {
+  "gpt2": {
+   "py-canonical": 1.9414585414585415,
+   "py-indent8": 2.2652840396753833,
+   "py-indent16": 2.754566037735849,
+   "py-tab": 1.7803623188405795,
+   "py-crlf": 2.041343669250646
+  },
+  "cl100k": {
+   "py-canonical": 1.3215936605767113,
+   "py-indent8": 1.1928902202320002,
+   "py-indent16": 0.9984266069715382,
+   "py-tab": 1.3680913780397939,
+   "py-crlf": 1.333793194061227
+  },
+  "o200k": {
+   "py-canonical": 1.3162430789549435,
+   "py-indent8": 1.1880607051703322,
+   "py-indent16": 0.9943843939878477,
+   "py-tab": 1.3622697126013263,
+   "py-crlf": 1.3286033372749968
+  },
+  "gemma-2-2b": {
+   "py-canonical": 1.4995004995004995,
+   "py-indent8": 1.3534715960324617,
+   "py-indent16": 1.1368050314465408,
+   "py-tab": 1.6315217391304346,
+   "py-crlf": 1.5412144702842376
+  },
+  "Llama-3.2-3B": {
+   "py-canonical": 1.3215936605767113,
+   "py-indent8": 1.1928902202320002,
+   "py-indent16": 0.9984266069715382,
+   "py-tab": 1.3680913780397939,
+   "py-crlf": 1.333793194061227
+  },
+  "talkie-1930": {
+   "py-canonical": 1.5620930793344585,
+   "py-indent8": 1.4197941606293336,
+   "py-indent16": 1.2829147690305789,
+   "py-tab": 1.7173913043478262,
+   "py-crlf": 1.7052258754343759
+  }
+ },
+ "per_dialect": {
+  "gpt2|cl100k": {
+   "py-canonical": {
+    "target_tokens": 369,
+    "ref_tokens": 247,
+    "chars": 1001,
+    "ratio": 1.4939271255060729,
+    "normalized": 1.4690283400809718,
+    "tok_per_char": 0.36863136863136864,
+    "tok_per_char_excess": 1.9414585414585415
+   },
+   "py-nodoc": {
+    "target_tokens": 249,
+    "ref_tokens": 162,
+    "chars": 590,
+    "ratio": 1.537037037037037,
+    "normalized": 1.5114197530864197,
+    "tok_per_char": 0.42203389830508475,
+    "tok_per_char_excess": 2.2227118644067794
+   },
+   "py-comment": {
+    "target_tokens": 360,
+    "ref_tokens": 247,
+    "chars": 969,
+    "ratio": 1.45748987854251,
+    "normalized": 1.4331983805668016,
+    "tok_per_char": 0.3715170278637771,
+    "tok_per_char_excess": 1.956656346749226
+   },
+   "py-indent8": {
+    "target_tokens": 477,
+    "ref_tokens": 247,
+    "chars": 1109,
+    "ratio": 1.9311740890688258,
+    "normalized": 1.8989878542510121,
+    "tok_per_char": 0.43011722272317404,
+    "tok_per_char_excess": 2.2652840396753833
+   },
+   "py-indent16": {
+    "target_tokens": 693,
+    "ref_tokens": 247,
+    "chars": 1325,
+    "ratio": 2.805668016194332,
+    "normalized": 2.758906882591093,
+    "tok_per_char": 0.5230188679245283,
+    "tok_per_char_excess": 2.754566037735849
+   },
+   "py-tab": {
+    "target_tokens": 311,
+    "ref_tokens": 235,
+    "chars": 920,
+    "ratio": 1.323404255319149,
+    "normalized": 1.3013475177304965,
+    "tok_per_char": 0.33804347826086956,
+    "tok_per_char_excess": 1.7803623188405795
+   },
+   "py-crlf": {
+    "target_tokens": 400,
+    "ref_tokens": 257,
+    "chars": 1032,
+    "ratio": 1.556420233463035,
+    "normalized": 1.5304798962386512,
+    "tok_per_char": 0.3875968992248062,
+    "tok_per_char_excess": 2.041343669250646
+   }
+  },
+  "gpt2|o200k": {
+   "py-canonical": {
+    "target_tokens": 369,
+    "ref_tokens": 246,
+    "chars": 1001,
+    "ratio": 1.5,
+    "normalized": 1.475,
+    "tok_per_char": 0.36863136863136864,
+    "tok_per_char_excess": 1.9414585414585415
+   },
+   "py-nodoc": {
+    "target_tokens": 249,
+    "ref_tokens": 161,
+    "chars": 590,
+    "ratio": 1.546583850931677,
+    "normalized": 1.520807453416149,
+    "tok_per_char": 0.42203389830508475,
+    "tok_per_char_excess": 2.2227118644067794
+   },
+   "py-comment": {
+    "target_tokens": 360,
+    "ref_tokens": 246,
+    "chars": 969,
+    "ratio": 1.4634146341463414,
+    "normalized": 1.4390243902439024,
+    "tok_per_char": 0.3715170278637771,
+    "tok_per_char_excess": 1.956656346749226
+   },
+   "py-indent8": {
+    "target_tokens": 477,
+    "ref_tokens": 246,
+    "chars": 1109,
+    "ratio": 1.9390243902439024,
+    "normalized": 1.9067073170731708,
+    "tok_per_char": 0.43011722272317404,
+    "tok_per_char_excess": 2.2652840396753833
+   },
+   "py-indent16": {
+    "target_tokens": 693,
+    "ref_tokens": 246,
+    "chars": 1325,
+    "ratio": 2.817073170731707,
+    "normalized": 2.770121951219512,
+    "tok_per_char": 0.5230188679245283,
+    "tok_per_char_excess": 2.754566037735849
+   },
+   "py-tab": {
+    "target_tokens": 311,
+    "ref_tokens": 234,
+    "chars": 920,
+    "ratio": 1.329059829059829,
+    "normalized": 1.306908831908832,
+    "tok_per_char": 0.33804347826086956,
+    "tok_per_char_excess": 1.7803623188405795
+   },
+   "py-crlf": {
+    "target_tokens": 400,
+    "ref_tokens": 256,
+    "chars": 1032,
+    "ratio": 1.5625,
+    "normalized": 1.5364583333333335,
+    "tok_per_char": 0.3875968992248062,
+    "tok_per_char_excess": 2.041343669250646
+   }
+  },
+  "gpt2|gemma-2-2b": {
+   "py-canonical": {
+    "target_tokens": 369,
+    "ref_tokens": 285,
+    "chars": 1001,
+    "ratio": 1.2947368421052632,
+    "normalized": 1.2947368421052632,
+    "tok_per_char": 0.36863136863136864,
+    "tok_per_char_excess": 1.9414585414585415
+   },
+   "py-nodoc": {
+    "target_tokens": 249,
+    "ref_tokens": 193,
+    "chars": 590,
+    "ratio": 1.2901554404145077,
+    "normalized": 1.2901554404145077,
+    "tok_per_char": 0.42203389830508475,
+    "tok_per_char_excess": 2.2227118644067794
+   },
+   "py-comment": {
+    "target_tokens": 360,
+    "ref_tokens": 285,
+    "chars": 969,
+    "ratio": 1.263157894736842,
+    "normalized": 1.263157894736842,
+    "tok_per_char": 0.3715170278637771,
+    "tok_per_char_excess": 1.956656346749226
+   },
+   "py-indent8": {
+    "target_tokens": 477,
+    "ref_tokens": 285,
+    "chars": 1109,
+    "ratio": 1.6736842105263159,
+    "normalized": 1.6736842105263159,
+    "tok_per_char": 0.43011722272317404,
+    "tok_per_char_excess": 2.2652840396753833
+   },
+   "py-indent16": {
+    "target_tokens": 693,
+    "ref_tokens": 286,
+    "chars": 1325,
+    "ratio": 2.423076923076923,
+    "normalized": 2.423076923076923,
+    "tok_per_char": 0.5230188679245283,
+    "tok_per_char_excess": 2.754566037735849
+   },
+   "py-tab": {
+    "target_tokens": 311,
+    "ref_tokens": 285,
+    "chars": 920,
+    "ratio": 1.0912280701754387,
+    "normalized": 1.0912280701754387,
+    "tok_per_char": 0.33804347826086956,
+    "tok_per_char_excess": 1.7803623188405795
+   },
+   "py-crlf": {
+    "target_tokens": 400,
+    "ref_tokens": 302,
+    "chars": 1032,
+    "ratio": 1.3245033112582782,
+    "normalized": 1.3245033112582782,
+    "tok_per_char": 0.3875968992248062,
+    "tok_per_char_excess": 2.041343669250646
+   }
+  },
+  "gpt2|Llama-3.2-3B": {
+   "py-canonical": {
+    "target_tokens": 369,
+    "ref_tokens": 247,
+    "chars": 1001,
+    "ratio": 1.4939271255060729,
+    "normalized": 1.4690283400809718,
+    "tok_per_char": 0.36863136863136864,
+    "tok_per_char_excess": 1.9414585414585415
+   },
+   "py-nodoc": {
+    "target_tokens": 249,
+    "ref_tokens": 162,
+    "chars": 590,
+    "ratio": 1.537037037037037,
+    "normalized": 1.5114197530864197,
+    "tok_per_char": 0.42203389830508475,
+    "tok_per_char_excess": 2.2227118644067794
+   },
+   "py-comment": {
+    "target_tokens": 360,
+    "ref_tokens": 247,
+    "chars": 969,
+    "ratio": 1.45748987854251,
+    "normalized": 1.4331983805668016,
+    "tok_per_char": 0.3715170278637771,
+    "tok_per_char_excess": 1.956656346749226
+   },
+   "py-indent8": {
+    "target_tokens": 477,
+    "ref_tokens": 247,
+    "chars": 1109,
+    "ratio": 1.9311740890688258,
+    "normalized": 1.8989878542510121,
+    "tok_per_char": 0.43011722272317404,
+    "tok_per_char_excess": 2.2652840396753833
+   },
+   "py-indent16": {
+    "target_tokens": 693,
+    "ref_tokens": 247,
+    "chars": 1325,
+    "ratio": 2.805668016194332,
+    "normalized": 2.758906882591093,
+    "tok_per_char": 0.5230188679245283,
+    "tok_per_char_excess": 2.754566037735849
+   },
+   "py-tab": {
+    "target_tokens": 311,
+    "ref_tokens": 235,
+    "chars": 920,
+    "ratio": 1.323404255319149,
+    "normalized": 1.3013475177304965,
+    "tok_per_char": 0.33804347826086956,
+    "tok_per_char_excess": 1.7803623188405795
+   },
+   "py-crlf": {
+    "target_tokens": 400,
+    "ref_tokens": 257,
+    "chars": 1032,
+    "ratio": 1.556420233463035,
+    "normalized": 1.5304798962386512,
+    "tok_per_char": 0.3875968992248062,
+    "tok_per_char_excess": 2.041343669250646
+   }
+  },
+  "gpt2|talkie-1930": {
+   "py-canonical": {
+    "target_tokens": 369,
+    "ref_tokens": 287,
+    "chars": 1001,
+    "ratio": 1.2857142857142858,
+    "normalized": 1.2428571428571429,
+    "tok_per_char": 0.36863136863136864,
+    "tok_per_char_excess": 1.9414585414585415
+   },
+   "py-nodoc": {
+    "target_tokens": 249,
+    "ref_tokens": 187,
+    "chars": 590,
+    "ratio": 1.3315508021390374,
+    "normalized": 1.2871657754010695,
+    "tok_per_char": 0.42203389830508475,
+    "tok_per_char_excess": 2.2227118644067794
+   },
+   "py-comment": {
+    "target_tokens": 360,
+    "ref_tokens": 270,
+    "chars": 969,
+    "ratio": 1.3333333333333333,
+    "normalized": 1.2888888888888888,
+    "tok_per_char": 0.3715170278637771,
+    "tok_per_char_excess": 1.956656346749226
+   },
+   "py-indent8": {
+    "target_tokens": 477,
+    "ref_tokens": 289,
+    "chars": 1109,
+    "ratio": 1.6505190311418685,
+    "normalized": 1.5955017301038061,
+    "tok_per_char": 0.43011722272317404,
+    "tok_per_char_excess": 2.2652840396753833
+   },
+   "py-indent16": {
+    "target_tokens": 693,
+    "ref_tokens": 312,
+    "chars": 1325,
+    "ratio": 2.2211538461538463,
+    "normalized": 2.1471153846153848,
+    "tok_per_char": 0.5230188679245283,
+    "tok_per_char_excess": 2.754566037735849
+   },
+   "py-tab": {
+    "target_tokens": 311,
+    "ref_tokens": 290,
+    "chars": 920,
+    "ratio": 1.0724137931034483,
+    "normalized": 1.0366666666666666,
+    "tok_per_char": 0.33804347826086956,
+    "tok_per_char_excess": 1.7803623188405795
+   },
+   "py-crlf": {
+    "target_tokens": 400,
+    "ref_tokens": 323,
+    "chars": 1032,
+    "ratio": 1.238390092879257,
+    "normalized": 1.197110423116615,
+    "tok_per_char": 0.3875968992248062,
+    "tok_per_char_excess": 2.041343669250646
+   }
+  },
+  "cl100k|gpt2": {
+   "py-canonical": {
+    "target_tokens": 247,
+    "ref_tokens": 369,
+    "chars": 1001,
+    "ratio": 0.6693766937669376,
+    "normalized": 0.6807220614579027,
+    "tok_per_char": 0.24675324675324675,
+    "tok_per_char_excess": 1.3215936605767113
+   },
+   "py-nodoc": {
+    "target_tokens": 162,
+    "ref_tokens": 249,
+    "chars": 590,
+    "ratio": 0.6506024096385542,
+    "normalized": 0.6616295691239534,
+    "tok_per_char": 0.2745762711864407,
+    "tok_per_char_excess": 1.470611893134157
+   },
+   "py-comment": {
+    "target_tokens": 247,
+    "ref_tokens": 360,
+    "chars": 969,
+    "ratio": 0.6861111111111111,
+    "normalized": 0.6977401129943503,
+    "tok_per_char": 0.2549019607843137,
+    "tok_per_char_excess": 1.3652376204719174
+   },
+   "py-indent8": {
+    "target_tokens": 247,
+    "ref_tokens": 477,
+    "chars": 1109,
+    "ratio": 0.5178197064989518,
+    "normalized": 0.5265963116938494,
+    "tok_per_char": 0.22272317403065825,
+    "tok_per_char_excess": 1.1928902202320002
+   },
+   "py-indent16": {
+    "target_tokens": 247,
+    "ref_tokens": 693,
+    "chars": 1325,
+    "ratio": 0.3564213564213564,
+    "normalized": 0.36246239636070143,
+    "tok_per_char": 0.18641509433962264,
+    "tok_per_char_excess": 0.9984266069715382
+   },
+   "py-tab": {
+    "target_tokens": 235,
+    "ref_tokens": 311,
+    "chars": 920,
+    "ratio": 0.7556270096463023,
+    "normalized": 0.7684342470979345,
+    "tok_per_char": 0.2554347826086957,
+    "tok_per_char_excess": 1.3680913780397939
+   },
+   "py-crlf": {
+    "target_tokens": 257,
+    "ref_tokens": 400,
+    "chars": 1032,
+    "ratio": 0.6425,
+    "normalized": 0.6533898305084745,
+    "tok_per_char": 0.24903100775193798,
+    "tok_per_char_excess": 1.333793194061227
+   }
+  },
+  "cl100k|o200k": {
+   "py-canonical": {
+    "target_tokens": 247,
+    "ref_tokens": 246,
+    "chars": 1001,
+    "ratio": 1.0040650406504066,
+    "normalized": 1.0040650406504066,
+    "tok_per_char": 0.24675324675324675,
+    "tok_per_char_excess": 1.3215936605767113
+   },
+   "py-nodoc": {
+    "target_tokens": 162,
+    "ref_tokens": 161,
+    "chars": 590,
+    "ratio": 1.0062111801242235,
+    "normalized": 1.0062111801242235,
+    "tok_per_char": 0.2745762711864407,
+    "tok_per_char_excess": 1.470611893134157
+   },
+   "py-comment": {
+    "target_tokens": 247,
+    "ref_tokens": 246,
+    "chars": 969,
+    "ratio": 1.0040650406504066,
+    "normalized": 1.0040650406504066,
+    "tok_per_char": 0.2549019607843137,
+    "tok_per_char_excess": 1.3652376204719174
+   },
+   "py-indent8": {
+    "target_tokens": 247,
+    "ref_tokens": 246,
+    "chars": 1109,
+    "ratio": 1.0040650406504066,
+    "normalized": 1.0040650406504066,
+    "tok_per_char": 0.22272317403065825,
+    "tok_per_char_excess": 1.1928902202320002
+   },
+   "py-indent16": {
+    "target_tokens": 247,
+    "ref_tokens": 246,
+    "chars": 1325,
+    "ratio": 1.0040650406504066,
+    "normalized": 1.0040650406504066,
+    "tok_per_char": 0.18641509433962264,
+    "tok_per_char_excess": 0.9984266069715382
+   },
+   "py-tab": {
+    "target_tokens": 235,
+    "ref_tokens": 234,
+    "chars": 920,
+    "ratio": 1.0042735042735043,
+    "normalized": 1.0042735042735043,
+    "tok_per_char": 0.2554347826086957,
+    "tok_per_char_excess": 1.3680913780397939
+   },
+   "py-crlf": {
+    "target_tokens": 257,
+    "ref_tokens": 256,
+    "chars": 1032,
+    "ratio": 1.00390625,
+    "normalized": 1.00390625,
+    "tok_per_char": 0.24903100775193798,
+    "tok_per_char_excess": 1.333793194061227
+   }
+  },
+  "cl100k|gemma-2-2b": {
+   "py-canonical": {
+    "target_tokens": 247,
+    "ref_tokens": 285,
+    "chars": 1001,
+    "ratio": 0.8666666666666667,
+    "normalized": 0.8813559322033899,
+    "tok_per_char": 0.24675324675324675,
+    "tok_per_char_excess": 1.3215936605767113
+   },
+   "py-nodoc": {
+    "target_tokens": 162,
+    "ref_tokens": 193,
+    "chars": 590,
+    "ratio": 0.8393782383419689,
+    "normalized": 0.8536049881443752,
+    "tok_per_char": 0.2745762711864407,
+    "tok_per_char_excess": 1.470611893134157
+   },
+   "py-comment": {
+    "target_tokens": 247,
+    "ref_tokens": 285,
+    "chars": 969,
+    "ratio": 0.8666666666666667,
+    "normalized": 0.8813559322033899,
+    "tok_per_char": 0.2549019607843137,
+    "tok_per_char_excess": 1.3652376204719174
+   },
+   "py-indent8": {
+    "target_tokens": 247,
+    "ref_tokens": 285,
+    "chars": 1109,
+    "ratio": 0.8666666666666667,
+    "normalized": 0.8813559322033899,
+    "tok_per_char": 0.22272317403065825,
+    "tok_per_char_excess": 1.1928902202320002
+   },
+   "py-indent16": {
+    "target_tokens": 247,
+    "ref_tokens": 286,
+    "chars": 1325,
+    "ratio": 0.8636363636363636,
+    "normalized": 0.8782742681047766,
+    "tok_per_char": 0.18641509433962264,
+    "tok_per_char_excess": 0.9984266069715382
+   },
+   "py-tab": {
+    "target_tokens": 235,
+    "ref_tokens": 285,
+    "chars": 920,
+    "ratio": 0.8245614035087719,
+    "normalized": 0.8385370205173952,
+    "tok_per_char": 0.2554347826086957,
+    "tok_per_char_excess": 1.3680913780397939
+   },
+   "py-crlf": {
+    "target_tokens": 257,
+    "ref_tokens": 302,
+    "chars": 1032,
+    "ratio": 0.8509933774834437,
+    "normalized": 0.8654169940509597,
+    "tok_per_char": 0.24903100775193798,
+    "tok_per_char_excess": 1.333793194061227
+   }
+  },
+  "cl100k|Llama-3.2-3B": {
+   "py-canonical": {
+    "target_tokens": 247,
+    "ref_tokens": 247,
+    "chars": 1001,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.24675324675324675,
+    "tok_per_char_excess": 1.3215936605767113
+   },
+   "py-nodoc": {
+    "target_tokens": 162,
+    "ref_tokens": 162,
+    "chars": 590,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.2745762711864407,
+    "tok_per_char_excess": 1.470611893134157
+   },
+   "py-comment": {
+    "target_tokens": 247,
+    "ref_tokens": 247,
+    "chars": 969,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.2549019607843137,
+    "tok_per_char_excess": 1.3652376204719174
+   },
+   "py-indent8": {
+    "target_tokens": 247,
+    "ref_tokens": 247,
+    "chars": 1109,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.22272317403065825,
+    "tok_per_char_excess": 1.1928902202320002
+   },
+   "py-indent16": {
+    "target_tokens": 247,
+    "ref_tokens": 247,
+    "chars": 1325,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.18641509433962264,
+    "tok_per_char_excess": 0.9984266069715382
+   },
+   "py-tab": {
+    "target_tokens": 235,
+    "ref_tokens": 235,
+    "chars": 920,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.2554347826086957,
+    "tok_per_char_excess": 1.3680913780397939
+   },
+   "py-crlf": {
+    "target_tokens": 257,
+    "ref_tokens": 257,
+    "chars": 1032,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.24903100775193798,
+    "tok_per_char_excess": 1.333793194061227
+   }
+  },
+  "cl100k|talkie-1930": {
+   "py-canonical": {
+    "target_tokens": 247,
+    "ref_tokens": 287,
+    "chars": 1001,
+    "ratio": 0.8606271777003485,
+    "normalized": 0.8460402763833935,
+    "tok_per_char": 0.24675324675324675,
+    "tok_per_char_excess": 1.3215936605767113
+   },
+   "py-nodoc": {
+    "target_tokens": 162,
+    "ref_tokens": 187,
+    "chars": 590,
+    "ratio": 0.8663101604278075,
+    "normalized": 0.8516269373697092,
+    "tok_per_char": 0.2745762711864407,
+    "tok_per_char_excess": 1.470611893134157
+   },
+   "py-comment": {
+    "target_tokens": 247,
+    "ref_tokens": 270,
+    "chars": 969,
+    "ratio": 0.9148148148148149,
+    "normalized": 0.8993094789704961,
+    "tok_per_char": 0.2549019607843137,
+    "tok_per_char_excess": 1.3652376204719174
+   },
+   "py-indent8": {
+    "target_tokens": 247,
+    "ref_tokens": 289,
+    "chars": 1109,
+    "ratio": 0.8546712802768166,
+    "normalized": 0.8401853263738198,
+    "tok_per_char": 0.22272317403065825,
+    "tok_per_char_excess": 1.1928902202320002
+   },
+   "py-indent16": {
+    "target_tokens": 247,
+    "ref_tokens": 312,
+    "chars": 1325,
+    "ratio": 0.7916666666666666,
+    "normalized": 0.7782485875706215,
+    "tok_per_char": 0.18641509433962264,
+    "tok_per_char_excess": 0.9984266069715382
+   },
+   "py-tab": {
+    "target_tokens": 235,
+    "ref_tokens": 290,
+    "chars": 920,
+    "ratio": 0.8103448275862069,
+    "normalized": 0.7966101694915254,
+    "tok_per_char": 0.2554347826086957,
+    "tok_per_char_excess": 1.3680913780397939
+   },
+   "py-crlf": {
+    "target_tokens": 257,
+    "ref_tokens": 323,
+    "chars": 1032,
+    "ratio": 0.7956656346749226,
+    "normalized": 0.7821797764600934,
+    "tok_per_char": 0.24903100775193798,
+    "tok_per_char_excess": 1.333793194061227
+   }
+  },
+  "o200k|gpt2": {
+   "py-canonical": {
+    "target_tokens": 246,
+    "ref_tokens": 369,
+    "chars": 1001,
+    "ratio": 0.6666666666666666,
+    "normalized": 0.6779661016949152,
+    "tok_per_char": 0.24575424575424576,
+    "tok_per_char_excess": 1.3162430789549435
+   },
+   "py-nodoc": {
+    "target_tokens": 161,
+    "ref_tokens": 249,
+    "chars": 590,
+    "ratio": 0.6465863453815262,
+    "normalized": 0.6575454359812131,
+    "tok_per_char": 0.27288135593220336,
+    "tok_per_char_excess": 1.4615340419419707
+   },
+   "py-comment": {
+    "target_tokens": 246,
+    "ref_tokens": 360,
+    "chars": 969,
+    "ratio": 0.6833333333333333,
+    "normalized": 0.6949152542372882,
+    "tok_per_char": 0.25386996904024767,
+    "tok_per_char_excess": 1.3597103426562418
+   },
+   "py-indent8": {
+    "target_tokens": 246,
+    "ref_tokens": 477,
+    "chars": 1109,
+    "ratio": 0.5157232704402516,
+    "normalized": 0.5244643428205948,
+    "tok_per_char": 0.2218214607754734,
+    "tok_per_char_excess": 1.1880607051703322
+   },
+   "py-indent16": {
+    "target_tokens": 246,
+    "ref_tokens": 693,
+    "chars": 1325,
+    "ratio": 0.354978354978355,
+    "normalized": 0.36099493726612375,
+    "tok_per_char": 0.18566037735849056,
+    "tok_per_char_excess": 0.9943843939878477
+   },
+   "py-tab": {
+    "target_tokens": 234,
+    "ref_tokens": 311,
+    "chars": 920,
+    "ratio": 0.752411575562701,
+    "normalized": 0.7651643141315604,
+    "tok_per_char": 0.2543478260869565,
+    "tok_per_char_excess": 1.3622697126013263
+   },
+   "py-crlf": {
+    "target_tokens": 256,
+    "ref_tokens": 400,
+    "chars": 1032,
+    "ratio": 0.64,
+    "normalized": 0.6508474576271187,
+    "tok_per_char": 0.24806201550387597,
+    "tok_per_char_excess": 1.3286033372749968
+   }
+  },
+  "o200k|cl100k": {
+   "py-canonical": {
+    "target_tokens": 246,
+    "ref_tokens": 247,
+    "chars": 1001,
+    "ratio": 0.9959514170040485,
+    "normalized": 0.9959514170040485,
+    "tok_per_char": 0.24575424575424576,
+    "tok_per_char_excess": 1.3162430789549435
+   },
+   "py-nodoc": {
+    "target_tokens": 161,
+    "ref_tokens": 162,
+    "chars": 590,
+    "ratio": 0.9938271604938271,
+    "normalized": 0.9938271604938271,
+    "tok_per_char": 0.27288135593220336,
+    "tok_per_char_excess": 1.4615340419419707
+   },
+   "py-comment": {
+    "target_tokens": 246,
+    "ref_tokens": 247,
+    "chars": 969,
+    "ratio": 0.9959514170040485,
+    "normalized": 0.9959514170040485,
+    "tok_per_char": 0.25386996904024767,
+    "tok_per_char_excess": 1.3597103426562418
+   },
+   "py-indent8": {
+    "target_tokens": 246,
+    "ref_tokens": 247,
+    "chars": 1109,
+    "ratio": 0.9959514170040485,
+    "normalized": 0.9959514170040485,
+    "tok_per_char": 0.2218214607754734,
+    "tok_per_char_excess": 1.1880607051703322
+   },
+   "py-indent16": {
+    "target_tokens": 246,
+    "ref_tokens": 247,
+    "chars": 1325,
+    "ratio": 0.9959514170040485,
+    "normalized": 0.9959514170040485,
+    "tok_per_char": 0.18566037735849056,
+    "tok_per_char_excess": 0.9943843939878477
+   },
+   "py-tab": {
+    "target_tokens": 234,
+    "ref_tokens": 235,
+    "chars": 920,
+    "ratio": 0.9957446808510638,
+    "normalized": 0.9957446808510638,
+    "tok_per_char": 0.2543478260869565,
+    "tok_per_char_excess": 1.3622697126013263
+   },
+   "py-crlf": {
+    "target_tokens": 256,
+    "ref_tokens": 257,
+    "chars": 1032,
+    "ratio": 0.9961089494163424,
+    "normalized": 0.9961089494163424,
+    "tok_per_char": 0.24806201550387597,
+    "tok_per_char_excess": 1.3286033372749968
+   }
+  },
+  "o200k|gemma-2-2b": {
+   "py-canonical": {
+    "target_tokens": 246,
+    "ref_tokens": 285,
+    "chars": 1001,
+    "ratio": 0.8631578947368421,
+    "normalized": 0.8777876895628903,
+    "tok_per_char": 0.24575424575424576,
+    "tok_per_char_excess": 1.3162430789549435
+   },
+   "py-nodoc": {
+    "target_tokens": 161,
+    "ref_tokens": 193,
+    "chars": 590,
+    "ratio": 0.8341968911917098,
+    "normalized": 0.8483358215508914,
+    "tok_per_char": 0.27288135593220336,
+    "tok_per_char_excess": 1.4615340419419707
+   },
+   "py-comment": {
+    "target_tokens": 246,
+    "ref_tokens": 285,
+    "chars": 969,
+    "ratio": 0.8631578947368421,
+    "normalized": 0.8777876895628903,
+    "tok_per_char": 0.25386996904024767,
+    "tok_per_char_excess": 1.3597103426562418
+   },
+   "py-indent8": {
+    "target_tokens": 246,
+    "ref_tokens": 285,
+    "chars": 1109,
+    "ratio": 0.8631578947368421,
+    "normalized": 0.8777876895628903,
+    "tok_per_char": 0.2218214607754734,
+    "tok_per_char_excess": 1.1880607051703322
+   },
+   "py-indent16": {
+    "target_tokens": 246,
+    "ref_tokens": 286,
+    "chars": 1325,
+    "ratio": 0.8601398601398601,
+    "normalized": 0.874718501837146,
+    "tok_per_char": 0.18566037735849056,
+    "tok_per_char_excess": 0.9943843939878477
+   },
+   "py-tab": {
+    "target_tokens": 234,
+    "ref_tokens": 285,
+    "chars": 920,
+    "ratio": 0.8210526315789474,
+    "normalized": 0.8349687778768957,
+    "tok_per_char": 0.2543478260869565,
+    "tok_per_char_excess": 1.3622697126013263
+   },
+   "py-crlf": {
+    "target_tokens": 256,
+    "ref_tokens": 302,
+    "chars": 1032,
+    "ratio": 0.847682119205298,
+    "normalized": 0.8620496127511506,
+    "tok_per_char": 0.24806201550387597,
+    "tok_per_char_excess": 1.3286033372749968
+   }
+  },
+  "o200k|Llama-3.2-3B": {
+   "py-canonical": {
+    "target_tokens": 246,
+    "ref_tokens": 247,
+    "chars": 1001,
+    "ratio": 0.9959514170040485,
+    "normalized": 0.9959514170040485,
+    "tok_per_char": 0.24575424575424576,
+    "tok_per_char_excess": 1.3162430789549435
+   },
+   "py-nodoc": {
+    "target_tokens": 161,
+    "ref_tokens": 162,
+    "chars": 590,
+    "ratio": 0.9938271604938271,
+    "normalized": 0.9938271604938271,
+    "tok_per_char": 0.27288135593220336,
+    "tok_per_char_excess": 1.4615340419419707
+   },
+   "py-comment": {
+    "target_tokens": 246,
+    "ref_tokens": 247,
+    "chars": 969,
+    "ratio": 0.9959514170040485,
+    "normalized": 0.9959514170040485,
+    "tok_per_char": 0.25386996904024767,
+    "tok_per_char_excess": 1.3597103426562418
+   },
+   "py-indent8": {
+    "target_tokens": 246,
+    "ref_tokens": 247,
+    "chars": 1109,
+    "ratio": 0.9959514170040485,
+    "normalized": 0.9959514170040485,
+    "tok_per_char": 0.2218214607754734,
+    "tok_per_char_excess": 1.1880607051703322
+   },
+   "py-indent16": {
+    "target_tokens": 246,
+    "ref_tokens": 247,
+    "chars": 1325,
+    "ratio": 0.9959514170040485,
+    "normalized": 0.9959514170040485,
+    "tok_per_char": 0.18566037735849056,
+    "tok_per_char_excess": 0.9943843939878477
+   },
+   "py-tab": {
+    "target_tokens": 234,
+    "ref_tokens": 235,
+    "chars": 920,
+    "ratio": 0.9957446808510638,
+    "normalized": 0.9957446808510638,
+    "tok_per_char": 0.2543478260869565,
+    "tok_per_char_excess": 1.3622697126013263
+   },
+   "py-crlf": {
+    "target_tokens": 256,
+    "ref_tokens": 257,
+    "chars": 1032,
+    "ratio": 0.9961089494163424,
+    "normalized": 0.9961089494163424,
+    "tok_per_char": 0.24806201550387597,
+    "tok_per_char_excess": 1.3286033372749968
+   }
+  },
+  "o200k|talkie-1930": {
+   "py-canonical": {
+    "target_tokens": 246,
+    "ref_tokens": 287,
+    "chars": 1001,
+    "ratio": 0.8571428571428571,
+    "normalized": 0.8426150121065376,
+    "tok_per_char": 0.24575424575424576,
+    "tok_per_char_excess": 1.3162430789549435
+   },
+   "py-nodoc": {
+    "target_tokens": 161,
+    "ref_tokens": 187,
+    "chars": 590,
+    "ratio": 0.8609625668449198,
+    "normalized": 0.8463699809661924,
+    "tok_per_char": 0.27288135593220336,
+    "tok_per_char_excess": 1.4615340419419707
+   },
+   "py-comment": {
+    "target_tokens": 246,
+    "ref_tokens": 270,
+    "chars": 969,
+    "ratio": 0.9111111111111111,
+    "normalized": 0.8956685499058381,
+    "tok_per_char": 0.25386996904024767,
+    "tok_per_char_excess": 1.3597103426562418
+   },
+   "py-indent8": {
+    "target_tokens": 246,
+    "ref_tokens": 289,
+    "chars": 1109,
+    "ratio": 0.8512110726643599,
+    "normalized": 0.8367837663480149,
+    "tok_per_char": 0.2218214607754734,
+    "tok_per_char_excess": 1.1880607051703322
+   },
+   "py-indent16": {
+    "target_tokens": 246,
+    "ref_tokens": 312,
+    "chars": 1325,
+    "ratio": 0.7884615384615384,
+    "normalized": 0.7750977835723599,
+    "tok_per_char": 0.18566037735849056,
+    "tok_per_char_excess": 0.9943843939878477
+   },
+   "py-tab": {
+    "target_tokens": 234,
+    "ref_tokens": 290,
+    "chars": 920,
+    "ratio": 0.8068965517241379,
+    "normalized": 0.7932203389830509,
+    "tok_per_char": 0.2543478260869565,
+    "tok_per_char_excess": 1.3622697126013263
+   },
+   "py-crlf": {
+    "target_tokens": 256,
+    "ref_tokens": 323,
+    "chars": 1032,
+    "ratio": 0.7925696594427245,
+    "normalized": 0.7791362753843734,
+    "tok_per_char": 0.24806201550387597,
+    "tok_per_char_excess": 1.3286033372749968
+   }
+  },
+  "gemma-2-2b|gpt2": {
+   "py-canonical": {
+    "target_tokens": 285,
+    "ref_tokens": 369,
+    "chars": 1001,
+    "ratio": 0.7723577235772358,
+    "normalized": 0.7723577235772358,
+    "tok_per_char": 0.28471528471528473,
+    "tok_per_char_excess": 1.4995004995004995
+   },
+   "py-nodoc": {
+    "target_tokens": 193,
+    "ref_tokens": 249,
+    "chars": 590,
+    "ratio": 0.7751004016064257,
+    "normalized": 0.7751004016064257,
+    "tok_per_char": 0.3271186440677966,
+    "tok_per_char_excess": 1.722824858757062
+   },
+   "py-comment": {
+    "target_tokens": 285,
+    "ref_tokens": 360,
+    "chars": 969,
+    "ratio": 0.7916666666666666,
+    "normalized": 0.7916666666666666,
+    "tok_per_char": 0.29411764705882354,
+    "tok_per_char_excess": 1.5490196078431373
+   },
+   "py-indent8": {
+    "target_tokens": 285,
+    "ref_tokens": 477,
+    "chars": 1109,
+    "ratio": 0.5974842767295597,
+    "normalized": 0.5974842767295597,
+    "tok_per_char": 0.2569882777276826,
+    "tok_per_char_excess": 1.3534715960324617
+   },
+   "py-indent16": {
+    "target_tokens": 286,
+    "ref_tokens": 693,
+    "chars": 1325,
+    "ratio": 0.4126984126984127,
+    "normalized": 0.4126984126984127,
+    "tok_per_char": 0.2158490566037736,
+    "tok_per_char_excess": 1.1368050314465408
+   },
+   "py-tab": {
+    "target_tokens": 285,
+    "ref_tokens": 311,
+    "chars": 920,
+    "ratio": 0.9163987138263665,
+    "normalized": 0.9163987138263665,
+    "tok_per_char": 0.30978260869565216,
+    "tok_per_char_excess": 1.6315217391304346
+   },
+   "py-crlf": {
+    "target_tokens": 302,
+    "ref_tokens": 400,
+    "chars": 1032,
+    "ratio": 0.755,
+    "normalized": 0.755,
+    "tok_per_char": 0.2926356589147287,
+    "tok_per_char_excess": 1.5412144702842376
+   }
+  },
+  "gemma-2-2b|cl100k": {
+   "py-canonical": {
+    "target_tokens": 285,
+    "ref_tokens": 247,
+    "chars": 1001,
+    "ratio": 1.1538461538461537,
+    "normalized": 1.1346153846153846,
+    "tok_per_char": 0.28471528471528473,
+    "tok_per_char_excess": 1.4995004995004995
+   },
+   "py-nodoc": {
+    "target_tokens": 193,
+    "ref_tokens": 162,
+    "chars": 590,
+    "ratio": 1.191358024691358,
+    "normalized": 1.1715020576131687,
+    "tok_per_char": 0.3271186440677966,
+    "tok_per_char_excess": 1.722824858757062
+   },
+   "py-comment": {
+    "target_tokens": 285,
+    "ref_tokens": 247,
+    "chars": 969,
+    "ratio": 1.1538461538461537,
+    "normalized": 1.1346153846153846,
+    "tok_per_char": 0.29411764705882354,
+    "tok_per_char_excess": 1.5490196078431373
+   },
+   "py-indent8": {
+    "target_tokens": 285,
+    "ref_tokens": 247,
+    "chars": 1109,
+    "ratio": 1.1538461538461537,
+    "normalized": 1.1346153846153846,
+    "tok_per_char": 0.2569882777276826,
+    "tok_per_char_excess": 1.3534715960324617
+   },
+   "py-indent16": {
+    "target_tokens": 286,
+    "ref_tokens": 247,
+    "chars": 1325,
+    "ratio": 1.1578947368421053,
+    "normalized": 1.1385964912280702,
+    "tok_per_char": 0.2158490566037736,
+    "tok_per_char_excess": 1.1368050314465408
+   },
+   "py-tab": {
+    "target_tokens": 285,
+    "ref_tokens": 235,
+    "chars": 920,
+    "ratio": 1.2127659574468086,
+    "normalized": 1.192553191489362,
+    "tok_per_char": 0.30978260869565216,
+    "tok_per_char_excess": 1.6315217391304346
+   },
+   "py-crlf": {
+    "target_tokens": 302,
+    "ref_tokens": 257,
+    "chars": 1032,
+    "ratio": 1.1750972762645915,
+    "normalized": 1.1555123216601817,
+    "tok_per_char": 0.2926356589147287,
+    "tok_per_char_excess": 1.5412144702842376
+   }
+  },
+  "gemma-2-2b|o200k": {
+   "py-canonical": {
+    "target_tokens": 285,
+    "ref_tokens": 246,
+    "chars": 1001,
+    "ratio": 1.1585365853658536,
+    "normalized": 1.1392276422764227,
+    "tok_per_char": 0.28471528471528473,
+    "tok_per_char_excess": 1.4995004995004995
+   },
+   "py-nodoc": {
+    "target_tokens": 193,
+    "ref_tokens": 161,
+    "chars": 590,
+    "ratio": 1.1987577639751552,
+    "normalized": 1.1787784679089026,
+    "tok_per_char": 0.3271186440677966,
+    "tok_per_char_excess": 1.722824858757062
+   },
+   "py-comment": {
+    "target_tokens": 285,
+    "ref_tokens": 246,
+    "chars": 969,
+    "ratio": 1.1585365853658536,
+    "normalized": 1.1392276422764227,
+    "tok_per_char": 0.29411764705882354,
+    "tok_per_char_excess": 1.5490196078431373
+   },
+   "py-indent8": {
+    "target_tokens": 285,
+    "ref_tokens": 246,
+    "chars": 1109,
+    "ratio": 1.1585365853658536,
+    "normalized": 1.1392276422764227,
+    "tok_per_char": 0.2569882777276826,
+    "tok_per_char_excess": 1.3534715960324617
+   },
+   "py-indent16": {
+    "target_tokens": 286,
+    "ref_tokens": 246,
+    "chars": 1325,
+    "ratio": 1.1626016260162602,
+    "normalized": 1.1432249322493226,
+    "tok_per_char": 0.2158490566037736,
+    "tok_per_char_excess": 1.1368050314465408
+   },
+   "py-tab": {
+    "target_tokens": 285,
+    "ref_tokens": 234,
+    "chars": 920,
+    "ratio": 1.2179487179487178,
+    "normalized": 1.1976495726495726,
+    "tok_per_char": 0.30978260869565216,
+    "tok_per_char_excess": 1.6315217391304346
+   },
+   "py-crlf": {
+    "target_tokens": 302,
+    "ref_tokens": 256,
+    "chars": 1032,
+    "ratio": 1.1796875,
+    "normalized": 1.1600260416666668,
+    "tok_per_char": 0.2926356589147287,
+    "tok_per_char_excess": 1.5412144702842376
+   }
+  },
+  "gemma-2-2b|Llama-3.2-3B": {
+   "py-canonical": {
+    "target_tokens": 285,
+    "ref_tokens": 247,
+    "chars": 1001,
+    "ratio": 1.1538461538461537,
+    "normalized": 1.1346153846153846,
+    "tok_per_char": 0.28471528471528473,
+    "tok_per_char_excess": 1.4995004995004995
+   },
+   "py-nodoc": {
+    "target_tokens": 193,
+    "ref_tokens": 162,
+    "chars": 590,
+    "ratio": 1.191358024691358,
+    "normalized": 1.1715020576131687,
+    "tok_per_char": 0.3271186440677966,
+    "tok_per_char_excess": 1.722824858757062
+   },
+   "py-comment": {
+    "target_tokens": 285,
+    "ref_tokens": 247,
+    "chars": 969,
+    "ratio": 1.1538461538461537,
+    "normalized": 1.1346153846153846,
+    "tok_per_char": 0.29411764705882354,
+    "tok_per_char_excess": 1.5490196078431373
+   },
+   "py-indent8": {
+    "target_tokens": 285,
+    "ref_tokens": 247,
+    "chars": 1109,
+    "ratio": 1.1538461538461537,
+    "normalized": 1.1346153846153846,
+    "tok_per_char": 0.2569882777276826,
+    "tok_per_char_excess": 1.3534715960324617
+   },
+   "py-indent16": {
+    "target_tokens": 286,
+    "ref_tokens": 247,
+    "chars": 1325,
+    "ratio": 1.1578947368421053,
+    "normalized": 1.1385964912280702,
+    "tok_per_char": 0.2158490566037736,
+    "tok_per_char_excess": 1.1368050314465408
+   },
+   "py-tab": {
+    "target_tokens": 285,
+    "ref_tokens": 235,
+    "chars": 920,
+    "ratio": 1.2127659574468086,
+    "normalized": 1.192553191489362,
+    "tok_per_char": 0.30978260869565216,
+    "tok_per_char_excess": 1.6315217391304346
+   },
+   "py-crlf": {
+    "target_tokens": 302,
+    "ref_tokens": 257,
+    "chars": 1032,
+    "ratio": 1.1750972762645915,
+    "normalized": 1.1555123216601817,
+    "tok_per_char": 0.2926356589147287,
+    "tok_per_char_excess": 1.5412144702842376
+   }
+  },
+  "gemma-2-2b|talkie-1930": {
+   "py-canonical": {
+    "target_tokens": 285,
+    "ref_tokens": 287,
+    "chars": 1001,
+    "ratio": 0.9930313588850174,
+    "normalized": 0.9599303135888501,
+    "tok_per_char": 0.28471528471528473,
+    "tok_per_char_excess": 1.4995004995004995
+   },
+   "py-nodoc": {
+    "target_tokens": 193,
+    "ref_tokens": 187,
+    "chars": 590,
+    "ratio": 1.032085561497326,
+    "normalized": 0.9976827094474152,
+    "tok_per_char": 0.3271186440677966,
+    "tok_per_char_excess": 1.722824858757062
+   },
+   "py-comment": {
+    "target_tokens": 285,
+    "ref_tokens": 270,
+    "chars": 969,
+    "ratio": 1.0555555555555556,
+    "normalized": 1.0203703703703704,
+    "tok_per_char": 0.29411764705882354,
+    "tok_per_char_excess": 1.5490196078431373
+   },
+   "py-indent8": {
+    "target_tokens": 285,
+    "ref_tokens": 289,
+    "chars": 1109,
+    "ratio": 0.986159169550173,
+    "normalized": 0.9532871972318339,
+    "tok_per_char": 0.2569882777276826,
+    "tok_per_char_excess": 1.3534715960324617
+   },
+   "py-indent16": {
+    "target_tokens": 286,
+    "ref_tokens": 312,
+    "chars": 1325,
+    "ratio": 0.9166666666666666,
+    "normalized": 0.8861111111111111,
+    "tok_per_char": 0.2158490566037736,
+    "tok_per_char_excess": 1.1368050314465408
+   },
+   "py-tab": {
+    "target_tokens": 285,
+    "ref_tokens": 290,
+    "chars": 920,
+    "ratio": 0.9827586206896551,
+    "normalized": 0.95,
+    "tok_per_char": 0.30978260869565216,
+    "tok_per_char_excess": 1.6315217391304346
+   },
+   "py-crlf": {
+    "target_tokens": 302,
+    "ref_tokens": 323,
+    "chars": 1032,
+    "ratio": 0.934984520123839,
+    "normalized": 0.9038183694530444,
+    "tok_per_char": 0.2926356589147287,
+    "tok_per_char_excess": 1.5412144702842376
+   }
+  },
+  "Llama-3.2-3B|gpt2": {
+   "py-canonical": {
+    "target_tokens": 247,
+    "ref_tokens": 369,
+    "chars": 1001,
+    "ratio": 0.6693766937669376,
+    "normalized": 0.6807220614579027,
+    "tok_per_char": 0.24675324675324675,
+    "tok_per_char_excess": 1.3215936605767113
+   },
+   "py-nodoc": {
+    "target_tokens": 162,
+    "ref_tokens": 249,
+    "chars": 590,
+    "ratio": 0.6506024096385542,
+    "normalized": 0.6616295691239534,
+    "tok_per_char": 0.2745762711864407,
+    "tok_per_char_excess": 1.470611893134157
+   },
+   "py-comment": {
+    "target_tokens": 247,
+    "ref_tokens": 360,
+    "chars": 969,
+    "ratio": 0.6861111111111111,
+    "normalized": 0.6977401129943503,
+    "tok_per_char": 0.2549019607843137,
+    "tok_per_char_excess": 1.3652376204719174
+   },
+   "py-indent8": {
+    "target_tokens": 247,
+    "ref_tokens": 477,
+    "chars": 1109,
+    "ratio": 0.5178197064989518,
+    "normalized": 0.5265963116938494,
+    "tok_per_char": 0.22272317403065825,
+    "tok_per_char_excess": 1.1928902202320002
+   },
+   "py-indent16": {
+    "target_tokens": 247,
+    "ref_tokens": 693,
+    "chars": 1325,
+    "ratio": 0.3564213564213564,
+    "normalized": 0.36246239636070143,
+    "tok_per_char": 0.18641509433962264,
+    "tok_per_char_excess": 0.9984266069715382
+   },
+   "py-tab": {
+    "target_tokens": 235,
+    "ref_tokens": 311,
+    "chars": 920,
+    "ratio": 0.7556270096463023,
+    "normalized": 0.7684342470979345,
+    "tok_per_char": 0.2554347826086957,
+    "tok_per_char_excess": 1.3680913780397939
+   },
+   "py-crlf": {
+    "target_tokens": 257,
+    "ref_tokens": 400,
+    "chars": 1032,
+    "ratio": 0.6425,
+    "normalized": 0.6533898305084745,
+    "tok_per_char": 0.24903100775193798,
+    "tok_per_char_excess": 1.333793194061227
+   }
+  },
+  "Llama-3.2-3B|cl100k": {
+   "py-canonical": {
+    "target_tokens": 247,
+    "ref_tokens": 247,
+    "chars": 1001,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.24675324675324675,
+    "tok_per_char_excess": 1.3215936605767113
+   },
+   "py-nodoc": {
+    "target_tokens": 162,
+    "ref_tokens": 162,
+    "chars": 590,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.2745762711864407,
+    "tok_per_char_excess": 1.470611893134157
+   },
+   "py-comment": {
+    "target_tokens": 247,
+    "ref_tokens": 247,
+    "chars": 969,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.2549019607843137,
+    "tok_per_char_excess": 1.3652376204719174
+   },
+   "py-indent8": {
+    "target_tokens": 247,
+    "ref_tokens": 247,
+    "chars": 1109,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.22272317403065825,
+    "tok_per_char_excess": 1.1928902202320002
+   },
+   "py-indent16": {
+    "target_tokens": 247,
+    "ref_tokens": 247,
+    "chars": 1325,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.18641509433962264,
+    "tok_per_char_excess": 0.9984266069715382
+   },
+   "py-tab": {
+    "target_tokens": 235,
+    "ref_tokens": 235,
+    "chars": 920,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.2554347826086957,
+    "tok_per_char_excess": 1.3680913780397939
+   },
+   "py-crlf": {
+    "target_tokens": 257,
+    "ref_tokens": 257,
+    "chars": 1032,
+    "ratio": 1.0,
+    "normalized": 1.0,
+    "tok_per_char": 0.24903100775193798,
+    "tok_per_char_excess": 1.333793194061227
+   }
+  },
+  "Llama-3.2-3B|o200k": {
+   "py-canonical": {
+    "target_tokens": 247,
+    "ref_tokens": 246,
+    "chars": 1001,
+    "ratio": 1.0040650406504066,
+    "normalized": 1.0040650406504066,
+    "tok_per_char": 0.24675324675324675,
+    "tok_per_char_excess": 1.3215936605767113
+   },
+   "py-nodoc": {
+    "target_tokens": 162,
+    "ref_tokens": 161,
+    "chars": 590,
+    "ratio": 1.0062111801242235,
+    "normalized": 1.0062111801242235,
+    "tok_per_char": 0.2745762711864407,
+    "tok_per_char_excess": 1.470611893134157
+   },
+   "py-comment": {
+    "target_tokens": 247,
+    "ref_tokens": 246,
+    "chars": 969,
+    "ratio": 1.0040650406504066,
+    "normalized": 1.0040650406504066,
+    "tok_per_char": 0.2549019607843137,
+    "tok_per_char_excess": 1.3652376204719174
+   },
+   "py-indent8": {
+    "target_tokens": 247,
+    "ref_tokens": 246,
+    "chars": 1109,
+    "ratio": 1.0040650406504066,
+    "normalized": 1.0040650406504066,
+    "tok_per_char": 0.22272317403065825,
+    "tok_per_char_excess": 1.1928902202320002
+   },
+   "py-indent16": {
+    "target_tokens": 247,
+    "ref_tokens": 246,
+    "chars": 1325,
+    "ratio": 1.0040650406504066,
+    "normalized": 1.0040650406504066,
+    "tok_per_char": 0.18641509433962264,
+    "tok_per_char_excess": 0.9984266069715382
+   },
+   "py-tab": {
+    "target_tokens": 235,
+    "ref_tokens": 234,
+    "chars": 920,
+    "ratio": 1.0042735042735043,
+    "normalized": 1.0042735042735043,
+    "tok_per_char": 0.2554347826086957,
+    "tok_per_char_excess": 1.3680913780397939
+   },
+   "py-crlf": {
+    "target_tokens": 257,
+    "ref_tokens": 256,
+    "chars": 1032,
+    "ratio": 1.00390625,
+    "normalized": 1.00390625,
+    "tok_per_char": 0.24903100775193798,
+    "tok_per_char_excess": 1.333793194061227
+   }
+  },
+  "Llama-3.2-3B|gemma-2-2b": {
+   "py-canonical": {
+    "target_tokens": 247,
+    "ref_tokens": 285,
+    "chars": 1001,
+    "ratio": 0.8666666666666667,
+    "normalized": 0.8813559322033899,
+    "tok_per_char": 0.24675324675324675,
+    "tok_per_char_excess": 1.3215936605767113
+   },
+   "py-nodoc": {
+    "target_tokens": 162,
+    "ref_tokens": 193,
+    "chars": 590,
+    "ratio": 0.8393782383419689,
+    "normalized": 0.8536049881443752,
+    "tok_per_char": 0.2745762711864407,
+    "tok_per_char_excess": 1.470611893134157
+   },
+   "py-comment": {
+    "target_tokens": 247,
+    "ref_tokens": 285,
+    "chars": 969,
+    "ratio": 0.8666666666666667,
+    "normalized": 0.8813559322033899,
+    "tok_per_char": 0.2549019607843137,
+    "tok_per_char_excess": 1.3652376204719174
+   },
+   "py-indent8": {
+    "target_tokens": 247,
+    "ref_tokens": 285,
+    "chars": 1109,
+    "ratio": 0.8666666666666667,
+    "normalized": 0.8813559322033899,
+    "tok_per_char": 0.22272317403065825,
+    "tok_per_char_excess": 1.1928902202320002
+   },
+   "py-indent16": {
+    "target_tokens": 247,
+    "ref_tokens": 286,
+    "chars": 1325,
+    "ratio": 0.8636363636363636,
+    "normalized": 0.8782742681047766,
+    "tok_per_char": 0.18641509433962264,
+    "tok_per_char_excess": 0.9984266069715382
+   },
+   "py-tab": {
+    "target_tokens": 235,
+    "ref_tokens": 285,
+    "chars": 920,
+    "ratio": 0.8245614035087719,
+    "normalized": 0.8385370205173952,
+    "tok_per_char": 0.2554347826086957,
+    "tok_per_char_excess": 1.3680913780397939
+   },
+   "py-crlf": {
+    "target_tokens": 257,
+    "ref_tokens": 302,
+    "chars": 1032,
+    "ratio": 0.8509933774834437,
+    "normalized": 0.8654169940509597,
+    "tok_per_char": 0.24903100775193798,
+    "tok_per_char_excess": 1.333793194061227
+   }
+  },
+  "Llama-3.2-3B|talkie-1930": {
+   "py-canonical": {
+    "target_tokens": 247,
+    "ref_tokens": 287,
+    "chars": 1001,
+    "ratio": 0.8606271777003485,
+    "normalized": 0.8460402763833935,
+    "tok_per_char": 0.24675324675324675,
+    "tok_per_char_excess": 1.3215936605767113
+   },
+   "py-nodoc": {
+    "target_tokens": 162,
+    "ref_tokens": 187,
+    "chars": 590,
+    "ratio": 0.8663101604278075,
+    "normalized": 0.8516269373697092,
+    "tok_per_char": 0.2745762711864407,
+    "tok_per_char_excess": 1.470611893134157
+   },
+   "py-comment": {
+    "target_tokens": 247,
+    "ref_tokens": 270,
+    "chars": 969,
+    "ratio": 0.9148148148148149,
+    "normalized": 0.8993094789704961,
+    "tok_per_char": 0.2549019607843137,
+    "tok_per_char_excess": 1.3652376204719174
+   },
+   "py-indent8": {
+    "target_tokens": 247,
+    "ref_tokens": 289,
+    "chars": 1109,
+    "ratio": 0.8546712802768166,
+    "normalized": 0.8401853263738198,
+    "tok_per_char": 0.22272317403065825,
+    "tok_per_char_excess": 1.1928902202320002
+   },
+   "py-indent16": {
+    "target_tokens": 247,
+    "ref_tokens": 312,
+    "chars": 1325,
+    "ratio": 0.7916666666666666,
+    "normalized": 0.7782485875706215,
+    "tok_per_char": 0.18641509433962264,
+    "tok_per_char_excess": 0.9984266069715382
+   },
+   "py-tab": {
+    "target_tokens": 235,
+    "ref_tokens": 290,
+    "chars": 920,
+    "ratio": 0.8103448275862069,
+    "normalized": 0.7966101694915254,
+    "tok_per_char": 0.2554347826086957,
+    "tok_per_char_excess": 1.3680913780397939
+   },
+   "py-crlf": {
+    "target_tokens": 257,
+    "ref_tokens": 323,
+    "chars": 1032,
+    "ratio": 0.7956656346749226,
+    "normalized": 0.7821797764600934,
+    "tok_per_char": 0.24903100775193798,
+    "tok_per_char_excess": 1.333793194061227
+   }
+  },
+  "talkie-1930|gpt2": {
+   "py-canonical": {
+    "target_tokens": 287,
+    "ref_tokens": 369,
+    "chars": 1001,
+    "ratio": 0.7777777777777778,
+    "normalized": 0.8045977011494253,
+    "tok_per_char": 0.2867132867132867,
+    "tok_per_char_excess": 1.5620930793344585
+   },
+   "py-nodoc": {
+    "target_tokens": 187,
+    "ref_tokens": 249,
+    "chars": 590,
+    "ratio": 0.751004016064257,
+    "normalized": 0.7769007062733694,
+    "tok_per_char": 0.3169491525423729,
+    "tok_per_char_excess": 1.7268264172998247
+   },
+   "py-comment": {
+    "target_tokens": 270,
+    "ref_tokens": 360,
+    "chars": 969,
+    "ratio": 0.75,
+    "normalized": 0.7758620689655172,
+    "tok_per_char": 0.2786377708978328,
+    "tok_per_char_excess": 1.518095441443365
+   },
+   "py-indent8": {
+    "target_tokens": 289,
+    "ref_tokens": 477,
+    "chars": 1109,
+    "ratio": 0.6058700209643606,
+    "normalized": 0.6267620906527869,
+    "tok_per_char": 0.260595130748422,
+    "tok_per_char_excess": 1.4197941606293336
+   },
+   "py-indent16": {
+    "target_tokens": 312,
+    "ref_tokens": 693,
+    "chars": 1325,
+    "ratio": 0.45021645021645024,
+    "normalized": 0.4657411553963278,
+    "tok_per_char": 0.23547169811320753,
+    "tok_per_char_excess": 1.2829147690305789
+   },
+   "py-tab": {
+    "target_tokens": 290,
+    "ref_tokens": 311,
+    "chars": 920,
+    "ratio": 0.932475884244373,
+    "normalized": 0.9646302250803859,
+    "tok_per_char": 0.31521739130434784,
+    "tok_per_char_excess": 1.7173913043478262
+   },
+   "py-crlf": {
+    "target_tokens": 323,
+    "ref_tokens": 400,
+    "chars": 1032,
+    "ratio": 0.8075,
+    "normalized": 0.8353448275862069,
+    "tok_per_char": 0.312984496124031,
+    "tok_per_char_excess": 1.7052258754343759
+   }
+  },
+  "talkie-1930|cl100k": {
+   "py-canonical": {
+    "target_tokens": 287,
+    "ref_tokens": 247,
+    "chars": 1001,
+    "ratio": 1.1619433198380567,
+    "normalized": 1.1819768253525058,
+    "tok_per_char": 0.2867132867132867,
+    "tok_per_char_excess": 1.5620930793344585
+   },
+   "py-nodoc": {
+    "target_tokens": 187,
+    "ref_tokens": 162,
+    "chars": 590,
+    "ratio": 1.154320987654321,
+    "normalized": 1.174223073648361,
+    "tok_per_char": 0.3169491525423729,
+    "tok_per_char_excess": 1.7268264172998247
+   },
+   "py-comment": {
+    "target_tokens": 270,
+    "ref_tokens": 247,
+    "chars": 969,
+    "ratio": 1.0931174089068827,
+    "normalized": 1.1119642607845874,
+    "tok_per_char": 0.2786377708978328,
+    "tok_per_char_excess": 1.518095441443365
+   },
+   "py-indent8": {
+    "target_tokens": 289,
+    "ref_tokens": 247,
+    "chars": 1109,
+    "ratio": 1.1700404858299596,
+    "normalized": 1.190213597654614,
+    "tok_per_char": 0.260595130748422,
+    "tok_per_char_excess": 1.4197941606293336
+   },
+   "py-indent16": {
+    "target_tokens": 312,
+    "ref_tokens": 247,
+    "chars": 1325,
+    "ratio": 1.263157894736842,
+    "normalized": 1.2849364791288564,
+    "tok_per_char": 0.23547169811320753,
+    "tok_per_char_excess": 1.2829147690305789
+   },
+   "py-tab": {
+    "target_tokens": 290,
+    "ref_tokens": 235,
+    "chars": 920,
+    "ratio": 1.2340425531914894,
+    "normalized": 1.2553191489361701,
+    "tok_per_char": 0.31521739130434784,
+    "tok_per_char_excess": 1.7173913043478262
+   },
+   "py-crlf": {
+    "target_tokens": 323,
+    "ref_tokens": 257,
+    "chars": 1032,
+    "ratio": 1.2568093385214008,
+    "normalized": 1.2784784650476317,
+    "tok_per_char": 0.312984496124031,
+    "tok_per_char_excess": 1.7052258754343759
+   }
+  },
+  "talkie-1930|o200k": {
+   "py-canonical": {
+    "target_tokens": 287,
+    "ref_tokens": 246,
+    "chars": 1001,
+    "ratio": 1.1666666666666667,
+    "normalized": 1.1867816091954022,
+    "tok_per_char": 0.2867132867132867,
+    "tok_per_char_excess": 1.5620930793344585
+   },
+   "py-nodoc": {
+    "target_tokens": 187,
+    "ref_tokens": 161,
+    "chars": 590,
+    "ratio": 1.1614906832298137,
+    "normalized": 1.1815163846648105,
+    "tok_per_char": 0.3169491525423729,
+    "tok_per_char_excess": 1.7268264172998247
+   },
+   "py-comment": {
+    "target_tokens": 270,
+    "ref_tokens": 246,
+    "chars": 969,
+    "ratio": 1.0975609756097562,
+    "normalized": 1.116484440706476,
+    "tok_per_char": 0.2786377708978328,
+    "tok_per_char_excess": 1.518095441443365
+   },
+   "py-indent8": {
+    "target_tokens": 289,
+    "ref_tokens": 246,
+    "chars": 1109,
+    "ratio": 1.1747967479674797,
+    "normalized": 1.1950518643117465,
+    "tok_per_char": 0.260595130748422,
+    "tok_per_char_excess": 1.4197941606293336
+   },
+   "py-indent16": {
+    "target_tokens": 312,
+    "ref_tokens": 246,
+    "chars": 1325,
+    "ratio": 1.2682926829268293,
+    "normalized": 1.2901597981497055,
+    "tok_per_char": 0.23547169811320753,
+    "tok_per_char_excess": 1.2829147690305789
+   },
+   "py-tab": {
+    "target_tokens": 290,
+    "ref_tokens": 234,
+    "chars": 920,
+    "ratio": 1.2393162393162394,
+    "normalized": 1.2606837606837606,
+    "tok_per_char": 0.31521739130434784,
+    "tok_per_char_excess": 1.7173913043478262
+   },
+   "py-crlf": {
+    "target_tokens": 323,
+    "ref_tokens": 256,
+    "chars": 1032,
+    "ratio": 1.26171875,
+    "normalized": 1.283472521551724,
+    "tok_per_char": 0.312984496124031,
+    "tok_per_char_excess": 1.7052258754343759
+   }
+  },
+  "talkie-1930|gemma-2-2b": {
+   "py-canonical": {
+    "target_tokens": 287,
+    "ref_tokens": 285,
+    "chars": 1001,
+    "ratio": 1.0070175438596491,
+    "normalized": 1.0417422867513613,
+    "tok_per_char": 0.2867132867132867,
+    "tok_per_char_excess": 1.5620930793344585
+   },
+   "py-nodoc": {
+    "target_tokens": 187,
+    "ref_tokens": 193,
+    "chars": 590,
+    "ratio": 0.9689119170984456,
+    "normalized": 1.002322672860461,
+    "tok_per_char": 0.3169491525423729,
+    "tok_per_char_excess": 1.7268264172998247
+   },
+   "py-comment": {
+    "target_tokens": 270,
+    "ref_tokens": 285,
+    "chars": 969,
+    "ratio": 0.9473684210526315,
+    "normalized": 0.9800362976406533,
+    "tok_per_char": 0.2786377708978328,
+    "tok_per_char_excess": 1.518095441443365
+   },
+   "py-indent8": {
+    "target_tokens": 289,
+    "ref_tokens": 285,
+    "chars": 1109,
+    "ratio": 1.0140350877192983,
+    "normalized": 1.0490018148820328,
+    "tok_per_char": 0.260595130748422,
+    "tok_per_char_excess": 1.4197941606293336
+   },
+   "py-indent16": {
+    "target_tokens": 312,
+    "ref_tokens": 286,
+    "chars": 1325,
+    "ratio": 1.0909090909090908,
+    "normalized": 1.128526645768025,
+    "tok_per_char": 0.23547169811320753,
+    "tok_per_char_excess": 1.2829147690305789
+   },
+   "py-tab": {
+    "target_tokens": 290,
+    "ref_tokens": 285,
+    "chars": 920,
+    "ratio": 1.0175438596491229,
+    "normalized": 1.0526315789473684,
+    "tok_per_char": 0.31521739130434784,
+    "tok_per_char_excess": 1.7173913043478262
+   },
+   "py-crlf": {
+    "target_tokens": 323,
+    "ref_tokens": 302,
+    "chars": 1032,
+    "ratio": 1.0695364238410596,
+    "normalized": 1.1064169901804064,
+    "tok_per_char": 0.312984496124031,
+    "tok_per_char_excess": 1.7052258754343759
+   }
+  },
+  "talkie-1930|Llama-3.2-3B": {
+   "py-canonical": {
+    "target_tokens": 287,
+    "ref_tokens": 247,
+    "chars": 1001,
+    "ratio": 1.1619433198380567,
+    "normalized": 1.1819768253525058,
+    "tok_per_char": 0.2867132867132867,
+    "tok_per_char_excess": 1.5620930793344585
+   },
+   "py-nodoc": {
+    "target_tokens": 187,
+    "ref_tokens": 162,
+    "chars": 590,
+    "ratio": 1.154320987654321,
+    "normalized": 1.174223073648361,
+    "tok_per_char": 0.3169491525423729,
+    "tok_per_char_excess": 1.7268264172998247
+   },
+   "py-comment": {
+    "target_tokens": 270,
+    "ref_tokens": 247,
+    "chars": 969,
+    "ratio": 1.0931174089068827,
+    "normalized": 1.1119642607845874,
+    "tok_per_char": 0.2786377708978328,
+    "tok_per_char_excess": 1.518095441443365
+   },
+   "py-indent8": {
+    "target_tokens": 289,
+    "ref_tokens": 247,
+    "chars": 1109,
+    "ratio": 1.1700404858299596,
+    "normalized": 1.190213597654614,
+    "tok_per_char": 0.260595130748422,
+    "tok_per_char_excess": 1.4197941606293336
+   },
+   "py-indent16": {
+    "target_tokens": 312,
+    "ref_tokens": 247,
+    "chars": 1325,
+    "ratio": 1.263157894736842,
+    "normalized": 1.2849364791288564,
+    "tok_per_char": 0.23547169811320753,
+    "tok_per_char_excess": 1.2829147690305789
+   },
+   "py-tab": {
+    "target_tokens": 290,
+    "ref_tokens": 235,
+    "chars": 920,
+    "ratio": 1.2340425531914894,
+    "normalized": 1.2553191489361701,
+    "tok_per_char": 0.31521739130434784,
+    "tok_per_char_excess": 1.7173913043478262
+   },
+   "py-crlf": {
+    "target_tokens": 323,
+    "ref_tokens": 257,
+    "chars": 1032,
+    "ratio": 1.2568093385214008,
+    "normalized": 1.2784784650476317,
+    "tok_per_char": 0.312984496124031,
+    "tok_per_char_excess": 1.7052258754343759
+   }
+  }
+ }
+}
