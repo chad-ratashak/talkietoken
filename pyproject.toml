@@ -1,0 +1,45 @@
+[project]
+name = "talkietoken"
+version = "0.1.0"
+description = "Tokenizer forensics and in-context capability reconstitution for the talkie-1930 vintage-corpus model"
+requires-python = ">=3.13"
+
+# Core: everything needed for the tokenizer-only suite and the penalty /
+# recovery-curve harness. Deliberately excludes torch — see [local] below.
+#
+# sentencepiece is never imported by name. It is required at runtime because
+# google/gemma-2-2b loads as the slow `GemmaTokenizer`, which is a
+# SentencePiece model. Removing it breaks talkietoken-urdu.py and the
+# penalty matrix with a transformers error that does not name the cause.
+#
+# EXACT PINS, ON PURPOSE. Everything committed under results/ is a tokenizer
+# measurement, so the tokenizer libraries are part of the experiment, not
+# incidental infrastructure. These are the versions every committed result
+# was produced and re-verified byte-for-byte under. Floors (>=) would let a
+# fresh clone resolve a newer transformers and silently fail to reproduce
+# them. Bump deliberately: change the pin, re-run the suite, and diff
+# results/ — a clean diff is what earns the new version.
+dependencies = [
+    "tiktoken==0.13.0",
+    "numpy==2.4.4",
+    "requests==2.33.1",
+    "transformers==5.6.2",
+    "sentencepiece==0.2.1",
+]
+
+[project.optional-dependencies]
+# Only for reconstitution/backends.py's `local:<hf-repo>` generation backend
+# and talkietoken-test.py. Nobody running the tokenizer-only, penalty, or
+# synthetic paths needs these — that is why backends.py imports torch lazily
+# inside the function rather than at module scope.
+local = [
+    "torch>=2.0",
+    "bitsandbytes>=0.43",
+]
+
+# Scripts are run by path (`uv run python tokenizer-only/foo.py`), not
+# imported. There is no installable package here, and `tokenizer-only`
+# cannot be one — the hyphen is not a legal module name, which is why
+# reconstitution/penalty.py reaches it via sys.path instead.
+[tool.uv]
+package = false
