@@ -4,7 +4,17 @@
 .env*
 .DS_Store
 __pycache__/
+*.pyc
 reconstitution/.cache/
+
+# iCloud conflict copies
+* 2.*
 
 # local session metadata written by /ship
 .claude/ship-log.jsonl
+
+# machine-local Claude Code files
+.claude/settings.local*
+.claude/launch.json
+.claude/worktrees
+CLAUDE.local.md
