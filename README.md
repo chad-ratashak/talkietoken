@@ -44,7 +44,9 @@ much in-context demonstration does it take to bring it back?
   calculators; WWII prompts complete with 1914). After
   [Weird Generalization](https://arxiv.org/abs/2512.09742) (Betley et al.,
   2025), period-consistent behaviour is cheap to counterfeit with a small
-  finetune, so these rank below the tokenizer evidence.
+  finetune, so these rank below the tokenizer evidence. The demo also runs a
+  Qwen-based censor, so a deflected or missing answer may come from the
+  censor rather than from talkie.
 - **No Python merges, but Python is cheap anyway.** There is no `elif`,
   `__init__`, `numpy` or `.append`. Yet talkie needs only 1.1 to 1.3 times
   o200k's token count for Python, because Python is built from English
@@ -157,6 +159,11 @@ The hosted-endpoint scripts send requests to a free public demo. They space
 requests out and back off on HTTP 429. The harness also caps total requests
 and caches every completion to disk. Keep it that way.
 
+That demo serves the instruction-tuned model and runs a Qwen-based censor
+alongside it. The censor is a modern model sitting between the probes and
+talkie, and it is outside the project's model-origin allowlist. Both are
+reasons to prefer the base-model path above.
+
 ## Data and provenance
 
 | File | Source | Licence |
@@ -184,7 +191,8 @@ data only; `trust_remote_code` is hard-disabled.
 - Merges track frequency, not presence. The strongest conclusion from a clean
   sweep is "vanishingly rare", and the detection floor has not been calibrated.
 - The behavioural and association probes hit the instruction-tuned chat
-  model, with small samples per prompt.
+  model, through a demo that also runs a Qwen-based censor, with small
+  samples per prompt.
 
 `TODO.md` tracks what would close each gap.
 
