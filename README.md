@@ -72,7 +72,10 @@ much in-context demonstration does it take to bring it back?
 
 `RESULTS.md` has the full audit. `TOKENIZER-FORENSICS.md` sets out what a merge
 table can and cannot establish about claims of absence, with prior work and
-eight verification protocols.
+eight verification protocols. `KNOWLEDGE-CHECKS.md` lists every question put
+to talkie with the opening of its answer. The
+[audit explorer](https://chad-ratashak.github.io/talkietoken/results/summary.html)
+shows the neighborhoods, rank shifts and probe results on one page.
 
 ## Repository layout
 
@@ -82,13 +85,14 @@ eight verification protocols.
 | `reconstitution/` | The recovery-curve and encoding-penalty harness, model-agnostic. Start with `METHODS.md`. |
 | `talkietoken-genleak-api.py`, `talkietoken-genprobe2-api.py`, `talkietoken-atomic-probes.py`, `talkietoken-langprobes.py` | Generation probes against the talkie-lm.com chat endpoint, rate-limited. |
 | other top-level `talkietoken-*.py` | The first sketches, written against the talkie SDK and needing local weights. Superseded by the `tokenizer-only/` versions and kept for history. |
-| `results/` | Raw outputs. `summary.html` and `great-filters-summary.html` are standalone reports. |
+| `results/` | Raw outputs. `summary.html` and `great-filters-summary.html` are standalone reports, served on GitHub Pages as the [audit explorer](https://chad-ratashak.github.io/talkietoken/results/summary.html) and the [Great Filters estimates](https://chad-ratashak.github.io/talkietoken/results/great-filters-summary.html). |
 | `baseline/` | The o200k token list used as the modern comparison. |
 | `vocab.txt` | talkie's tokenizer vocabulary, as shipped. |
 
 Research notes at the top level:
 
 - `RESULTS.md` is the audit write-up.
+- `KNOWLEDGE-CHECKS.md` lists the questions put to talkie and its answers.
 - `TOKENIZER-FORENSICS.md` is the method note for claims of absence.
 - `RESEARCH-weird-generalization-retro-naming.md` covers how Weird
   Generalization reweights the evidence, and how renamed places and offices
