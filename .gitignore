@@ -18,3 +18,8 @@ reconstitution/.cache/
 .claude/launch.json
 .claude/worktrees
 CLAUDE.local.md
+
+# private working notes: to-do lists, roadmaps, reviews
+TODO*.md
+ROADMAP*.md
+REVIEW-*.md
