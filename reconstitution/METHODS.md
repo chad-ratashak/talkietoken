@@ -121,8 +121,8 @@ field, and the text report prints it before any number.
 
 ### What a base-model run would settle
 
-Renting a GPU and running `talkie-1930-13b-base` (already an open item in
-`TODO.md`; an A10 is plenty for 13B at 4-bit) separates two hypotheses that
+Renting a GPU and running `talkie-1930-13b-base` (an A10 is plenty for 13B
+at 4-bit) separates two hypotheses that
 the IT endpoint cannot:
 
 | | Python appears | Python does not appear |

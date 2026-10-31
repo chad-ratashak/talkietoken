@@ -14,8 +14,8 @@ generation:
       uncertain; faded-cohort names (Eddington, Millikan) still known.
 
 Each prompt is asked N times (the endpoint is a chat API at nonzero
-temperature, so a single sample is not a verdict — see TODO.md, statistical
-rigor). Keyword hits are counted automatically so the verdict does not
+temperature, so a single sample is not a verdict). Keyword hits are counted
+automatically so the verdict does not
 rest on eyeballing, and every raw completion is written to the log.
 
 Writes results/atomic-probes.txt and results/atomic-probes.json.

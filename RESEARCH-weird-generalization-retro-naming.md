@@ -1,6 +1,6 @@
 # Research note: Weird Generalization × talkietoken, and the retro-renaming problem
 
-*2026-07-06. Companion to `REVIEW-great-filters-semantic-drift.md`. Two questions:
+*2026-07-06. Two questions:
 (1) how the talkietoken audit and Great Filters work interact with "Weird
 Generalization" (Betley et al. 2025, arXiv:2512.09742, Owain Evans' group);
 (2) how retro renaming — e.g., the 2025 "Department of War" restoration —

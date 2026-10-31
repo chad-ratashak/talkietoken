@@ -98,9 +98,7 @@ Research notes at the top level:
   Generalization reweights the evidence, and how renamed places and offices
   break term-list probes.
 - `talkietoken-great-filters.md` estimates how many languages ever produced
-  enough text to train a model like this. `REVIEW-great-filters-semantic-drift.md`
-  critiques it and the semantic-drift work.
-- `TODO.md` lists open items.
+  enough text to train a model like this.
 
 ## Running it
 
@@ -197,8 +195,6 @@ data only; `trust_remote_code` is hard-disabled.
 - The behavioural and association probes hit the instruction-tuned chat
   model, through a demo that also runs a Qwen-based censor, with small
   samples per prompt.
-
-`TODO.md` tracks what would close each gap.
 
 ## Licence
 
